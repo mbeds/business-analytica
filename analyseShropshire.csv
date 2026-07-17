@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Investor Intelligence Dashboard</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+
+<style>
+    :root {
+        --bg: #0d0f12;
+        --panel: #1a1d22;
+        --border: #333;
+        --accent: #9fc5ff;
+        --text: #e6e6e6;
+        --accent2: #ffcc00;
+        --danger: #ff4d4d;
+        --success: #00d68f;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+    }
+
+    h1, h2, h3 {
+        font-weight: 300;
+        margin: 0;
+        color: #ffffff;
+    }
+
+    #topBar {
+        padding: 8px 12px;
+        background: #111418;
+        border-bottom: 1px solid #222;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    #topBar-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    #topBar-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    #csvUpload, #companyFilter {
+        padding: 6px 8px;
+        background: var(--panel);
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-size: 12px;
+        max-width: 180px;
+    }
+
+    #topSection {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(280px, 360px);
+        grid-gap: 12px;
+        padding: 12px;
+        transition: grid-template-columns 0.35s ease;
+    }
+
+    #graphContainer h2 {
+        margin-bottom: 6px;
+        font-size: 16px;
+    }
+
+    #mainVisual {
+        width: 100%;
+        height: 380px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.35s ease;
+    }
+
+    #mainVisual::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle at 1px 1px, #222 1px, transparent 0);
+        background-size: 18px 18px;
+        opacity: 0.25;
+        pointer-events: none;
+    }
+
+    #sidebar {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 8px;
+        overflow: hidden;
+        font-size: 12px;
+        transition: width 0.35s ease;
+    }
+
+    /* Accordion */
+    .accordion-section {
+        border-bottom: 1px solid #22262c;
+    }
+
+    .accordion-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 4px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .accordion-header span.title {
+        font-size: 12px;
+        color: var(--accent);
+    }
+
+    .accordion-header span.count {
+        font-size: 11px;
+        color: #888;
+    }
+
+    .accordion-header:hover {
+        background: #181b20;
+    }
+
+    .accordion-content {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transform: scale(0.98);
+        transform-origin: top;
+        transition: max-height 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .accordion-section.open .accordion-content {
+        max-height: 420px;
+        opacity: 1;
+        transform: scale(1.02);
+    }
+
+    .accordion-inner {
+        padding: 4px 2px 6px 2px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--panel);
+        border-radius: 4px;
+        margin-bottom: 6px;
+        font-size: 11px;
+    }
+
+    th {
+        background: #22262c;
+        padding: 6px;
+        color: var(--accent);
+        text-align: left;
+    }
+
+    td {
+        padding: 6px;
+        border-top: 1px solid #2a2f36;
+        word-break: break-word;
+    }
+
+    tr:nth-child(even) td {
+        background: #181b20;
+    }
+
+    tr:hover td {
+        background: #20242b;
+    }
+
+    h2.sectionTitle {
+        margin: 8px 12px;
+        font-size: 15px;
+    }
+
+    #summaryMetrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 0 12px 6px 12px;
+        font-size: 11px;
+    }
+
+    .metricTile {
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #14171c;
+        color: var(--accent);
+        white-space: nowrap;
+    }
+
+    #summaryWrapper {
+        max-height: 220px;
+        overflow-y: auto;
+        margin: 0 12px 12px 12px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 10px;
+        color: #666;
+        font-size: 11px;
+    }
+
+    /* Mobile / tablet */
+    @media (max-width: 900px) {
+        #topSection {
+            grid-template-columns: 1fr;
+        }
+
+        #mainVisual {
+            height: 320px;
+        }
+
+        #topBar {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #topBar-right {
+            width: 100%;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        #csvUpload, #companyFilter {
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 600px) {
+        #mainVisual {
+            height: 280px;
+        }
+
+        h1 {
+            font-size: 16px;
+        }
+
+        #topBar {
+            padding: 6px 8px;
+        }
+
+        #topSection {
+            padding: 8px;
+        }
+
+        h2.sectionTitle {
+            margin: 6px 8px;
+        }
+
+        #summaryWrapper {
+            margin: 0 8px 8px 8px;
+        }
+
+        #summaryMetrics {
+            margin: 0 8px 4px 8px;
+        }
+    }
+
+    .highlight-node {
+        stroke: #ffffff;
+        stroke-width: 2px;
+    }
+
+    .dim-node {
+        opacity: 0.25;
+    }
+
+    .dim-link {
+        opacity: 0.2;
+    }
+</style>
+</head>
+<body>
+
+<div id="topBar">
+    <div id="topBar-left">
+        <h1>Investor Intelligence</h1>
+    </div>
+    <div id="topBar-right">
+        <input type="file" id="csvUpload" accept=".csv">
+        <select id="companyFilter"></select>
+    </div>
+</div>
+
+<div id="topSection">
+    <div id="graphContainer">
+        <h2>Relationship Map</h2>
+        <div id="mainVisual"></div>
+    </div>
+
+    <div id="sidebar">
+        <!-- Node-centric accordion -->
+        <div id="section-main" class="accordion-section">
+            <div class="accordion-header">
+                <span class="title" id="mainTitle">Details</span>
+                <span class="count" id="mainSubtitle"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner" id="mainContent"></div>
+            </div>
+        </div>
+
+        <div id="section-1" class="accordion-section">
+            <div class="accordion-header">
+                <span class="title" id="section1Title">Section 1</span>
+                <span class="count" id="section1Count"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner" id="section1Content"></div>
+            </div>
+        </div>
+
+        <div id="section-2" class="accordion-section">
+            <div class="accordion-header">
+                <span class="title" id="section2Title">Section 2</span>
+                <span class="count" id="section2Count"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner" id="section2Content"></div>
+            </div>
+        </div>
+
+        <div id="section-3" class="accordion-section">
+            <div class="accordion-header">
+                <span class="title" id="section3Title">Section 3</span>
+                <span class="count" id="section3Count"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner" id="section3Content"></div>
+            </div>
+        </div>
+
+        <div id="section-4" class="accordion-section">
+            <div class="accordion-header">
+                <span class="title" id="section4Title">Section 4</span>
+                <span class="count" id="section4Count"></span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner" id="section4Content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="sectionTitle">Company Summary</h2>
+<div id="summaryMetrics">
+    <div class="metricTile" id="metricCompanies">Companies: 0</div>
+    <div class="metricTile" id="metricProperties">Properties: 0</div>
+    <div class="metricTile" id="metricCharges">Charges: 0</div>
+    <div class="metricTile" id="metricAvgProps">Avg Props/Co: 0</div>
+    <div class="metricTile" id="metricAvgChg">Avg Chg/Co: 0</div>
+</div>
+
+<div id="summaryWrapper">
+    <table id="summaryTable">
+        <thead>
+            <tr>
+                <th data-sort="CompanyName">Company</th>
+                <th data-sort="Industry">SIC</th>
+                <th data-sort="CompanyStatus">Status</th>
+                <th data-sort="Properties"># Properties</th>
+                <th data-sort="Charges"># Charges</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<footer>© Investor Intelligence Dashboard</footer>
+
+<script>
+let dataset = [];
+let summarySortAsc = true;
+let currentNode = null;
+let currentType = null;
+let svg, g, linkSelection, nodeSelection, labelSelection;
+
+/* CSV LOAD */
+// Add this to your script to load the SHROPSHIRE data on startup
+window.addEventListener("DOMContentLoaded", () => {
+    const shropshireUrl = "https://raw.githubusercontent.com/mbeds/business-analytica/main/SHROPSHIRE.csv";
+    
+    fetch(shropshireUrl)
+        .then(response => response.text())
+        .then(csvText => {
+            Papa.parse(csvText, {
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    dataset = results.data;
+                    renderSummaryTable();
+                    populateCompanyFilter();
+                    renderMainVisual();
+                    updateGlobalMetrics();
+                    openAccordionSection("section-main");
+                }
+            });
+        })
+        .catch(err => console.error("Error loading default dataset:", err));
+});
+
+/* COMPANY FILTER */
+function populateCompanyFilter() {
+    const select = document.getElementById("companyFilter");
+    select.innerHTML = "<option value='ALL'>ALL COMPANIES</option>";
+
+    dataset.forEach(row => {
+        const opt = document.createElement("option");
+        opt.value = row.CompanyName;
+        opt.textContent = row.CompanyName;
+        select.appendChild(opt);
+    });
+
+    select.onchange = () => renderMainVisual(select.value);
+}
+
+/* GLOBAL METRICS */
+function updateGlobalMetrics() {
+    let totalCompanies = dataset.length;
+    let totalProps = 0;
+    let totalChg = 0;
+
+    dataset.forEach(row => {
+        let props = [];
+        let charges = [];
+        try { props = JSON.parse(row.Properties.replace(/'/g, '"')); } catch {}
+        try { charges = JSON.parse(row.RawCharges.replace(/'/g, '"')).items || []; } catch {}
+        totalProps += props.length;
+        totalChg += charges.length;
+    });
+
+    const avgProps = totalCompanies ? (totalProps / totalCompanies).toFixed(1) : 0;
+    const avgChg = totalCompanies ? (totalChg / totalCompanies).toFixed(1) : 0;
+
+    document.getElementById("metricCompanies").textContent = `Companies: ${totalCompanies}`;
+    document.getElementById("metricProperties").textContent = `Properties: ${totalProps}`;
+    document.getElementById("metricCharges").textContent = `Charges: ${totalChg}`;
+    document.getElementById("metricAvgProps").textContent = `Avg Props/Co: ${avgProps}`;
+    document.getElementById("metricAvgChg").textContent = `Avg Chg/Co: ${avgChg}`;
+}
+
+/* SUMMARY TABLE */
+function renderSummaryTable(sortKey = null) {
+    const tbody = document.querySelector("#summaryTable tbody");
+    tbody.innerHTML = "";
+
+    let rows = dataset.map(row => {
+        let props = [];
+        let charges = [];
+        try { props = JSON.parse(row.Properties.replace(/'/g, '"')); } catch {}
+        try { charges = JSON.parse(row.RawCharges.replace(/'/g, '"')).items || []; } catch {}
+
+        return {
+            CompanyName: row.CompanyName,
+            Industry: row.Industry,
+            CompanyStatus: row.CompanyStatus,
+            Properties: props.length,
+            Charges: charges.length
+        };
+    });
+
+    if (sortKey) {
+        rows.sort((a, b) => {
+            if (typeof a[sortKey] === "number") {
+                return summarySortAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey];
+            }
+            return summarySortAsc
+                ? String(a[sortKey]).localeCompare(String(b[sortKey]))
+                : String(b[sortKey]).localeCompare(String(a[sortKey]));
+        });
+        summarySortAsc = !summarySortAsc;
+    }
+
+    rows.forEach(r => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td onclick="handleNodeClick('${r.CompanyName}','company')">${r.CompanyName}</td>
+            <td>${r.Industry}</td>
+            <td>${r.CompanyStatus}</td>
+            <td>${r.Properties}</td>
+            <td>${r.Charges}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+document.querySelectorAll("#summaryTable th").forEach(th => {
+    th.addEventListener("click", () => {
+        const sortKey = th.dataset.sort;
+        renderSummaryTable(sortKey);
+    });
+});
+
+/* DRAG */
+function drag(simulation) {
+    function dragstarted(event, d) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+    }
+
+    function dragged(event, d) {
+        d.fx = event.x;
+        d.fy = event.y;
+    }
+
+    function dragended(event, d) {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+    }
+
+    return d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended);
+}
+
+/* MAIN GRAPH */
+function renderMainVisual(filterCompany = "ALL") {
+    const div = document.getElementById("mainVisual");
+    div.innerHTML = "";
+
+    const nodesMap = new Map();
+    const links = [];
+
+    function addNode(id, type) {
+        if (!nodesMap.has(id)) {
+            nodesMap.set(id, { id, type });
+        }
+    }
+
+    dataset.forEach(row => {
+        if (filterCompany !== "ALL" && row.CompanyName !== filterCompany) return;
+
+        const companyName = row.CompanyName;
+        addNode(companyName, "company");
+
+        let directors = [];
+        try { directors = JSON.parse(row.BusinessStructure.replace(/'/g, '"')); } catch {}
+
+        directors.forEach(d => {
+            addNode(d.director, "director");
+            links.push({ source: companyName, target: d.director });
+
+            d.network.forEach(n => {
+                addNode(n.companyName, "company");
+                links.push({ source: d.director, target: n.companyName });
+            });
+        });
+
+        let props = [];
+        try { props = JSON.parse(row.Properties.replace(/'/g, '"')); } catch {}
+
+        props.forEach(p => {
+            addNode(p, "property");
+            links.push({ source: companyName, target: p });
+        });
+
+        let charges = [];
+        try { charges = JSON.parse(row.RawCharges.replace(/'/g, '"')).items || []; } catch {}
+
+        charges.forEach(c => {
+            const chargeId = `Charge ${c.charge_number} (${companyName})`;
+            addNode(chargeId, "charge");
+            links.push({ source: companyName, target: chargeId });
+
+            if (c.persons_entitled && Array.isArray(c.persons_entitled)) {
+                c.persons_entitled.forEach(p => {
+                    addNode(p.name, "lender");
+                    links.push({ source: chargeId, target: p.name });
+                });
+            }
+        });
+    });
+
+    const nodes = Array.from(nodesMap.values());
+
+    svg = d3.select("#mainVisual")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", "100%");
+
+    const width = div.clientWidth;
+    const height = div.clientHeight;
+
+    const zoom = d3.zoom()
+        .scaleExtent([0.2, 4])
+        .on("zoom", (event) => {
+            g.attr("transform", event.transform);
+        });
+
+    svg.call(zoom);
+
+    g = svg.append("g");
+
+    const simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(links).id(d => d.id).distance(130))
+        .force("charge", d3.forceManyBody().strength(-320))
+        .force("center", d3.forceCenter(width / 2, height / 2));
+
+    linkSelection = g.append("g")
+        .selectAll("line")
+        .data(links)
+        .enter().append("line")
+        .attr("stroke", "#555")
+        .attr("stroke-width", 1.5);
+
+    nodeSelection = g.append("g")
+        .selectAll("circle")
+        .data(nodes)
+        .enter().append("circle")
+        .attr("r", 9)
+        .attr("fill", d => {
+            if (d.type === "company") return "#4da3ff";
+            if (d.type === "director") return "#00d68f";
+            if (d.type === "property") return "#ffcc00";
+            if (d.type === "charge") return "#ff4d4d";
+            return "#b28cff";
+        })
+        .on("click", (event, d) => handleNodeClick(d.id, d.type))
+        .call(drag(simulation));
+
+    labelSelection = g.append("g")
+        .selectAll("text")
+        .data(nodes)
+        .enter().append("text")
+        .text(d => d.id)
+        .attr("font-size", 10)
+        .attr("dx", 12)
+        .attr("dy", 4)
+        .attr("fill", "#ccc");
+
+    simulation.on("tick", () => {
+        linkSelection.attr("x1", d => d.source.x)
+            .attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x)
+            .attr("y2", d => d.target.y);
+
+        nodeSelection.attr("cx", d => d.x)
+            .attr("cy", d => d.y);
+
+        labelSelection.attr("x", d => d.x)
+             .attr("y", d => d.y);
+    });
+}
+
+/* NODE CLICK HANDLER */
+function handleNodeClick(id, type) {
+    currentNode = id;
+    currentType = type;
+    highlightGraphNode(id);
+    updateSidebarForNode(id, type);
+}
+
+/* GRAPH HIGHLIGHTING */
+function highlightGraphNode(id) {
+    if (!nodeSelection || !linkSelection) return;
+
+    nodeSelection.classed("highlight-node", d => d.id === id)
+                 .classed("dim-node", d => d.id !== id);
+
+    linkSelection.classed("dim-link", d => d.source.id !== id && d.target.id !== id);
+}
+
+/* SIDEBAR ACCORDION */
+const sections = [
+    { id: "section-main", titleEl: "mainTitle", countEl: "mainSubtitle", contentEl: "mainContent" },
+    { id: "section-1", titleEl: "section1Title", countEl: "section1Count", contentEl: "section1Content" },
+    { id: "section-2", titleEl: "section2Title", countEl: "section2Count", contentEl: "section2Content" },
+    { id: "section-3", titleEl: "section3Title", countEl: "section3Count", contentEl: "section3Content" },
+    { id: "section-4", titleEl: "section4Title", countEl: "section4Count", contentEl: "section4Content" }
+];
+
+sections.forEach(sec => {
+    const header = document.querySelector(`#${sec.id} .accordion-header`);
+    header.addEventListener("click", () => {
+        openAccordionSection(sec.id);
+    });
+});
+
+function openAccordionSection(sectionId) {
+    sections.forEach(sec => {
+        const el = document.getElementById(sec.id);
+        if (sec.id === sectionId) {
+            el.classList.add("open");
+        } else {
+            el.classList.remove("open");
+        }
+    });
+
+    const mainVisual = document.getElementById("mainVisual");
+    mainVisual.style.transform = "translateX(-10px)";
+    setTimeout(() => {
+        mainVisual.style.transform = "translateX(0)";
+    }, 350);
+}
+
+/* NODE-CENTRIC SIDEBAR UPDATE */
+function updateSidebarForNode(id, type) {
+    sections.forEach(sec => {
+        document.getElementById(sec.contentEl).innerHTML = "";
+        document.getElementById(sec.countEl).textContent = "";
+    });
+
+    if (type === "company") {
+        updateCompanySidebar(id);
+        openAccordionSection("section-main");
+    } else if (type === "director") {
+        updateDirectorSidebar(id);
+        openAccordionSection("section-main");
+    } else if (type === "property") {
+        updatePropertySidebar(id);
+        openAccordionSection("section-main");
+    } else if (type === "charge") {
+        updateChargeSidebar(id);
+        openAccordionSection("section-main");
+    } else if (type === "lender") {
+        updateLenderSidebar(id);
+        openAccordionSection("section-main");
+    }
+}
+
+/* COMPANY SIDEBAR */
+function updateCompanySidebar(companyName) {
+    const mainTitle = document.getElementById("mainTitle");
+    const mainSubtitle = document.getElementById("mainSubtitle");
+    const mainContent = document.getElementById("mainContent");
+
+    const s1Title = document.getElementById("section1Title");
+    const s1Count = document.getElementById("section1Count");
+    const s1Content = document.getElementById("section1Content");
+
+    const s2Title = document.getElementById("section2Title");
+    const s2Count = document.getElementById("section2Count");
+    const s2Content = document.getElementById("section2Content");
+
+    const s3Title = document.getElementById("section3Title");
+    const s3Count = document.getElementById("section3Count");
+    const s3Content = document.getElementById("section3Content");
+
+    const s4Title = document.getElementById("section4Title");
+    const s4Count = document.getElementById("section4Count");
+    const s4Content = document.getElementById("section4Content");
+
+    const row = dataset.find(r => r.CompanyName === companyName);
+    if (!row) return;
+
+    let props = [];
+    let directors = [];
+    let charges = [];
+    try { props = JSON.parse(row.Properties.replace(/'/g, '"')); } catch {}
+    try { directors = JSON.parse(row.BusinessStructure.replace(/'/g, '"')); } catch {}
+    try { charges = JSON.parse(row.RawCharges.replace(/'/g, '"')).items || []; } catch {}
+
+    mainTitle.textContent = "Company Details";
+    mainSubtitle.textContent = companyName;
+    mainContent.innerHTML = `
+        <table>
+            <tbody>
+                <tr><td><strong>Name</strong></td><td>${row.CompanyName}</td></tr>
+                <tr><td><strong>SIC</strong></td><td>${row.Industry || ""}</td></tr>
+                <tr><td><strong>Status</strong></td><td>${row.CompanyStatus || ""}</td></tr>
+                <tr><td><strong>Properties</strong></td><td>${props.length}</td></tr>
+                <tr><td><strong>Charges</strong></td><td>${charges.length}</td></tr>
+            </tbody>
+        </table>
+    `;
+
+    s1Title.textContent = "Properties";
+    s1Count.textContent = `(${props.length})`;
+    s1Content.innerHTML = "";
+    if (props.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Property</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        props.forEach(p => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td onclick="handleNodeClick('${p}','property')">${p}</td>`;
+            tb.appendChild(tr);
+        });
+        s1Content.appendChild(tbl);
+    }
+
+    s2Title.textContent = "Directors";
+    s2Count.textContent = `(${directors.length})`;
+    s2Content.innerHTML = "";
+    if (directors.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Director</th><th>Network Companies</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        directors.forEach(d => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td onclick="handleNodeClick('${d.director}','director')">${d.director}</td>
+                <td>${d.network.map(n => n.companyName).join("<br>")}</td>
+            `;
+            tb.appendChild(tr);
+        });
+        s2Content.appendChild(tbl);
+    }
+
+    s3Title.textContent = "Charges";
+    s3Count.textContent = `(${charges.length})`;
+    s3Content.innerHTML = "";
+    if (charges.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>#</th><th>Status</th><th>Created</th><th>Entitled</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        charges.forEach(c => {
+            const chargeId = `Charge ${c.charge_number} (${row.CompanyName})`;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td onclick="handleNodeClick('${chargeId}','charge')">${c.charge_number}</td>
+                <td>${c.status || ""}</td>
+                <td>${c.created_on || ""}</td>
+                <td>${(c.persons_entitled || []).map(p => p.name).join(", ")}</td>
+            `;
+            tb.appendChild(tr);
+        });
+        s3Content.appendChild(tbl);
+    }
+
+    s4Title.textContent = "Lenders";
+    const lendersSet = new Set();
+    charges.forEach(c => {
+        (c.persons_entitled || []).forEach(p => lendersSet.add(p.name));
+    });
+    const lenders = Array.from(lendersSet);
+    s4Count.textContent = `(${lenders.length})`;
+    s4Content.innerHTML = "";
+    if (lenders.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Lender</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        lenders.forEach(l => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td onclick="handleNodeClick('${l}','lender')">${l}</td>`;
+            tb.appendChild(tr);
+        });
+        s4Content.appendChild(tbl);
+    }
+}
+
+/* DIRECTOR SIDEBAR */
+function updateDirectorSidebar(directorName) {
+    const mainTitle = document.getElementById("mainTitle");
+    const mainSubtitle = document.getElementById("mainSubtitle");
+    const mainContent = document.getElementById("mainContent");
+
+    const s1Title = document.getElementById("section1Title");
+    const s1Count = document.getElementById("section1Count");
+    const s1Content = document.getElementById("section1Content");
+
+    const s2Title = document.getElementById("section2Title");
+    const s2Count = document.getElementById("section2Count");
+    const s2Content = document.getElementById("section2Content");
+
+    const s3Title = document.getElementById("section3Title");
+    const s3Count = document.getElementById("section3Count");
+    const s3Content = document.getElementById("section3Content");
+
+    const s4Title = document.getElementById("section4Title");
+    const s4Count = document.getElementById("section4Count");
+    const s4Content = document.getElementById("section4Content");
+
+    let companies = [];
+    let props = [];
+    let charges = [];
+    let lendersSet = new Set();
+
+    dataset.forEach(row => {
+        let directors = [];
+        try { directors = JSON.parse(row.BusinessStructure.replace(/'/g, '"')); } catch {}
+        let rowProps = [];
+        let rowCharges = [];
+        try { rowProps = JSON.parse(row.Properties.replace(/'/g, '"')); } catch {}
+        try { rowCharges = JSON.parse(row.RawCharges.replace(/'/g, '"')).items || []; } catch {}
+
+        directors.forEach(d => {
+            if (d.director === directorName) {
+                companies.push(row.CompanyName);
+                props = props.concat(rowProps);
+                charges = charges.concat(rowCharges);
+                rowCharges.forEach(c => {
+                    (c.persons_entitled || []).forEach(p => lendersSet.add(p.name));
+                });
+            }
+        });
+    });
+
+    const lenders = Array.from(lendersSet);
+
+    mainTitle.textContent = "Director Details";
+    mainSubtitle.textContent = directorName;
+    mainContent.innerHTML = `
+        <table>
+            <tbody>
+                <tr><td><strong>Director</strong></td><td>${directorName}</td></tr>
+                <tr><td><strong>Companies</strong></td><td>${companies.length}</td></tr>
+                <tr><td><strong>Properties</strong></td><td>${props.length}</td></tr>
+                <tr><td><strong>Charges</strong></td><td>${charges.length}</td></tr>
+                <tr><td><strong>Lenders</strong></td><td>${lenders.length}</td></tr>
+            </tbody>
+        </table>
+    `;
+
+    s1Title.textContent = "Companies";
+    s1Count.textContent = `(${companies.length})`;
+    s1Content.innerHTML = "";
+    if (companies.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Company</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        companies.forEach(c => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td onclick="handleNodeClick('${c}','company')">${c}</td>`;
+            tb.appendChild(tr);
+        });
+        s1Content.appendChild(tbl);
+    }
+
+    s2Title.textContent = "Properties";
+    s2Count.textContent = `(${props.length})`;
+    s2Content.innerHTML = "";
+    if (props.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Property</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        props.forEach(p => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td onclick="handleNodeClick('${p}','property')">${p}</td>`;
+            tb.appendChild(tr);
+        });
+        s2Content.appendChild(tbl);
+    }
+
+    s3Title.textContent = "Charges";
+    s3Count.textContent = `(${charges.length})`;
+    s3Content.innerHTML = "";
+    if (charges.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>#</th><th>Status</th><th>Created</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        charges.forEach(c => {
+            const chargeId = `Charge ${c.charge_number} (?)`;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td onclick="handleNodeClick('${chargeId}','charge')">${c.charge_number}</td>
+                <td>${c.status || ""}</td>
+                <td>${c.created_on || ""}</td>
+            `;
+            tb.appendChild(tr);
+        });
+        s3Content.appendChild(tbl);
+    }
+
+    s4Title.textContent = "Lenders";
+    s4Count.textContent = `(${lenders.length})`;
+    s4Content.innerHTML = "";
+    if (lenders.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Lender</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        lenders.forEach(l => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td onclick="handleNodeClick('${l}','lender')">${l}</td>`;
+            tb.appendChild(tr);
+        });
+        s4Content.appendChild(tbl);
+    }
+}
+
+/* PROPERTY SIDEBAR */
+function updatePropertySidebar(propertyName) {
+    const mainTitle = document.getElementById("mainTitle");
+    const mainSubtitle = document.getElementById("mainSubtitle");
+    const mainContent = document.getElementById("mainContent");
+
+    const s1Title = document.getElementById("section1Title");
+    const s1Count = document.getElementById("section1Count");
+    const s1Content = document.getElementById("section1Content");
+
+    const s2Title = document.getElementById("section2Title");
+    const s2Count = document.getElementById("section2Count");
+    const s2Content = document.getElementById("section2Content");
+
+    const s3Title = document.getElementById("section3Title");
+    const s3Count = document.getElementById("section3Count");
+    const s3Content = document.getElementById("section3Content");
+
+    const s4Title = document.getElementById("section4Title");
+    const s4Count = document.getElementById("section4Count");
+    const s4Content = document.getElementById("section4Content");
+
+    let owningCompany = null;
+    let charges = [];
+    let lendersSet = new Set();
+
+    dataset.forEach(row => {
+        let props = [];
+        let rowCharges = [];
+        try { props = JSON.parse(row.Properties.replace(/'/g, '"')); } catch {}
+        try { rowCharges = JSON.parse(row.RawCharges.replace(/'/g, '"')).items || []; } catch {}
+
+        if (props.includes(propertyName)) {
+            owningCompany = row.CompanyName;
+            charges = charges.concat(rowCharges);
+            rowCharges.forEach(c => {
+                (c.persons_entitled || []).forEach(p => lendersSet.add(p.name));
+            });
+        }
+    });
+
+    const lenders = Array.from(lendersSet);
+
+    mainTitle.textContent = "Property Details";
+    mainSubtitle.textContent = propertyName;
+    mainContent.innerHTML = `
+        <table>
+            <tbody>
+                <tr><td><strong>Property</strong></td><td>${propertyName}</td></tr>
+                <tr><td><strong>Owning Company</strong></td><td>${owningCompany || "Unknown"}</td></tr>
+                <tr><td><strong>Charges</strong></td><td>${charges.length}</td></tr>
+                <tr><td><strong>Lenders</strong></td><td>${lenders.length}</td></tr>
+            </tbody>
+        </table>
+    `;
+
+    s1Title.textContent = "Owning Company";
+    s1Count.textContent = owningCompany ? "(1)" : "(0)";
+    s1Content.innerHTML = "";
+    if (owningCompany) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Company</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td onclick="handleNodeClick('${owningCompany}','company')">${owningCompany}</td>`;
+        tb.appendChild(tr);
+        s1Content.appendChild(tbl);
+    }
+
+    s2Title.textContent = "Charges";
+    s2Count.textContent = `(${charges.length})`;
+    s2Content.innerHTML = "";
+    if (charges.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>#</th><th>Status</th><th>Created</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        charges.forEach(c => {
+            const chargeId = `Charge ${c.charge_number} (${owningCompany || "?"})`;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td onclick="handleNodeClick('${chargeId}','charge')">${c.charge_number}</td>
+                <td>${c.status || ""}</td>
+                <td>${c.created_on || ""}</td>
+            `;
+            tb.appendChild(tr);
+        });
+        s2Content.appendChild(tbl);
+    }
+
+    s3Title.textContent = "Lenders";
+    s3Count.textContent = `(${lenders.length})`;
+    s3Content.innerHTML = "";
+    if (lenders.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Lender</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        lenders.forEach(l => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td onclick="handleNodeClick('${l}','lender')">${l}</td>`;
+            tb.appendChild(tr);
+        });
+        s3Content.appendChild(tbl);
+    }
+
+    s4Title.textContent = "Related Companies";
+    s4Count.textContent = "(0)";
+    s4Content.innerHTML = "";
+}
+
+/* CHARGE SIDEBAR */
+function updateChargeSidebar(chargeIdLabel) {
+    const mainTitle = document.getElementById("mainTitle");
+    const mainSubtitle = document.getElementById("mainSubtitle");
+    const mainContent = document.getElementById("mainContent");
+
+    const s1Title = document.getElementById("section1Title");
+    const s1Count = document.getElementById("section1Count");
+    const s1Content = document.getElementById("section1Content");
+
+    const s2Title = document.getElementById("section2Title");
+    const s2Count = document.getElementById("section2Count");
+    const s2Content = document.getElementById("section2Content");
+
+    const s3Title = document.getElementById("section3Title");
+    const s3Count = document.getElementById("section3Count");
+    const s3Content = document.getElementById("section3Content");
+
+    const s4Title = document.getElementById("section4Title");
+    const s4Count = document.getElementById("section4Count");
+    const s4Content = document.getElementById("section4Content");
+
+    let chargeObj = null;
+    let companyName = null;
+
+    dataset.forEach(row => {
+        let charges = [];
+        try { charges = JSON.parse(row.RawCharges.replace(/'/g, '"')).items || []; } catch {}
+        charges.forEach(c => {
+            const label = `Charge ${c.charge_number} (${row.CompanyName})`;
+            if (label === chargeIdLabel) {
+                chargeObj = c;
+                companyName = row.CompanyName;
+            }
+        });
+    });
+
+    if (!chargeObj) return;
+
+    const lenders = (chargeObj.persons_entitled || []).map(p => p.name);
+
+    mainTitle.textContent = "Charge Details";
+    mainSubtitle.textContent = chargeIdLabel;
+    mainContent.innerHTML = `
+        <table>
+            <tbody>
+                <tr><td><strong>Charge #</strong></td><td>${chargeObj.charge_number}</td></tr>
+                <tr><td><strong>Status</strong></td><td>${chargeObj.status || ""}</td></tr>
+                <tr><td><strong>Created</strong></td><td>${chargeObj.created_on || ""}</td></tr>
+                <tr><td><strong>Company</strong></td><td>${companyName || ""}</td></tr>
+                <tr><td><strong>Lenders</strong></td><td>${lenders.join(", ")}</td></tr>
+            </tbody>
+        </table>
+    `;
+
+    s1Title.textContent = "Company";
+    s1Count.textContent = companyName ? "(1)" : "(0)";
+    s1Content.innerHTML = "";
+    if (companyName) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Company</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td onclick="handleNodeClick('${companyName}','company')">${companyName}</td>`;
+        tb.appendChild(tr);
+        s1Content.appendChild(tbl);
+    }
+
+    s2Title.textContent = "Lenders";
+    s2Count.textContent = `(${lenders.length})`;
+    s2Content.innerHTML = "";
+    if (lenders.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Lender</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        lenders.forEach(l => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td onclick="handleNodeClick('${l}','lender')">${l}</td>`;
+            tb.appendChild(tr);
+        });
+        s2Content.appendChild(tbl);
+    }
+
+    s3Title.textContent = "Description";
+    s3Count.textContent = "";
+    s3Content.innerHTML = `
+        <table>
+            <tbody>
+                <tr><td>${(chargeObj.particulars && chargeObj.particulars.description) || ""}</td></tr>
+            </tbody>
+        </table>
+    `;
+
+    s4Title.textContent = "Other Info";
+    s4Count.textContent = "";
+    s4Content.innerHTML = "";
+}
+
+/* LENDER SIDEBAR */
+function updateLenderSidebar(lenderName) {
+    const mainTitle = document.getElementById("mainTitle");
+    const mainSubtitle = document.getElementById("mainSubtitle");
+    const mainContent = document.getElementById("mainContent");
+
+    const s1Title = document.getElementById("section1Title");
+    const s1Count = document.getElementById("section1Count");
+    const s1Content = document.getElementById("section1Content");
+
+    const s2Title = document.getElementById("section2Title");
+    const s2Count = document.getElementById("section2Count");
+    const s2Content = document.getElementById("section2Content");
+
+    const s3Title = document.getElementById("section3Title");
+    const s3Count = document.getElementById("section3Count");
+    const s3Content = document.getElementById("section3Content");
+
+    const s4Title = document.getElementById("section4Title");
+    const s4Count = document.getElementById("section4Count");
+    const s4Content = document.getElementById("section4Content");
+
+    let charges = [];
+    let companiesSet = new Set();
+
+    dataset.forEach(row => {
+        let rowCharges = [];
+        try { rowCharges = JSON.parse(row.RawCharges.replace(/'/g, '"')).items || []; } catch {}
+        rowCharges.forEach(c => {
+            if ((c.persons_entitled || []).some(p => p.name === lenderName)) {
+                charges.push({ charge: c, company: row.CompanyName });
+                companiesSet.add(row.CompanyName);
+            }
+        });
+    });
+
+    const companies = Array.from(companiesSet);
+
+    mainTitle.textContent = "Lender Details";
+    mainSubtitle.textContent = lenderName;
+    mainContent.innerHTML = `
+        <table>
+            <tbody>
+                <tr><td><strong>Lender</strong></td><td>${lenderName}</td></tr>
+                <tr><td><strong>Charges</strong></td><td>${charges.length}</td></tr>
+                <tr><td><strong>Companies</strong></td><td>${companies.length}</td></tr>
+            </tbody>
+        </table>
+    `;
+
+    s1Title.textContent = "Charges";
+    s1Count.textContent = `(${charges.length})`;
+    s1Content.innerHTML = "";
+    if (charges.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>#</th><th>Status</th><th>Company</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        charges.forEach(item => {
+            const label = `Charge ${item.charge.charge_number} (${item.company})`;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td onclick="handleNodeClick('${label}','charge')">${item.charge.charge_number}</td>
+                <td>${item.charge.status || ""}</td>
+                <td>${item.company}</td>
+            `;
+            tb.appendChild(tr);
+        });
+        s1Content.appendChild(tbl);
+    }
+
+    s2Title.textContent = "Companies";
+    s2Count.textContent = `(${companies.length})`;
+    s2Content.innerHTML = "";
+    if (companies.length) {
+        const tbl = document.createElement("table");
+        tbl.innerHTML = "<thead><tr><th>Company</th></tr></thead><tbody></tbody>";
+        const tb = tbl.querySelector("tbody");
+        companies.forEach(c => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td onclick="handleNodeClick('${c}','company')">${c}</td>`;
+            tb.appendChild(tr);
+        });
+        s2Content.appendChild(tbl);
+    }
+
+    s3Title.textContent = "Exposure Notes";
+    s3Count.textContent = "";
+    s3Content.innerHTML = "";
+
+    s4Title.textContent = "Other Info";
+    s4Count.textContent = "";
+    s4Content.innerHTML = "";
+}
+</script>
+
+</body>
+</html>
