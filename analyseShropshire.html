@@ -750,6 +750,25 @@ function updateSidebarForNode(id, type) {
 
 /* COMPANY SIDEBAR */
 function updateCompanySidebar(companyName) {
+    const row = dataset.find(r => r.CompanyName === companyName);
+    if (!row) return;
+
+    // Extracting more in-depth fields (ensure these headers exist in your CSV)
+    const incorporationDate = row.IncorporationDate || "N/A";
+    const regAddress = row.RegAddress_Full || "N/A";
+    const accountsNextDue = row.Accounts_NextDueDate || "N/A";
+
+    document.getElementById("mainContent").innerHTML = `
+        <table class="detailList">
+            <tbody>
+                <tr><td>Name</td><td>${row.CompanyName}</td></tr>
+                <tr><td>Address</td><td>${regAddress}</td></tr>
+                <tr><td>Incorporated</td><td>${incorporationDate}</td></tr>
+                <tr><td>Accounts Due</td><td>${accountsNextDue}</td></tr>
+                <tr><td>Status</td><td>${row.CompanyStatus}</td></tr>
+            </tbody>
+        </table>
+    `;
     const mainTitle = document.getElementById("mainTitle");
     const mainSubtitle = document.getElementById("mainSubtitle");
     const mainContent = document.getElementById("mainContent");
@@ -1297,6 +1316,22 @@ function updateLenderSidebar(lenderName) {
     s4Title.textContent = "Other Info";
     s4Count.textContent = "";
     s4Content.innerHTML = "";
+}
+function centerGraphOnNode(nodeId) {
+    const node = dataset.find(n => n.id === nodeId) || // Or lookup in your simulation nodes
+                 nodes.find(n => n.id === nodeId); 
+
+    if (!node) return;
+
+    const width = document.getElementById("mainVisual").clientWidth;
+    const height = document.getElementById("mainVisual").clientHeight;
+
+    // Calculate transformation to center
+    const transform = d3.zoomIdentity
+        .translate(width / 2 - node.x * 2, height / 2 - node.y * 2)
+        .scale(2); // Zoom level (2x)
+
+    svg.transition().duration(750).call(zoom.transform, transform);
 }
 </script>
 
