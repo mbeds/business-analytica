@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neo4j Cypher Analysis Terminal | Business Analytica</title>
+    <title>Cypher Analysis Terminal | Business Analytica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
@@ -61,7 +61,7 @@
             </div>
             <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-brand-textMuted">
                 <a href="https://github.com/mbeds/business-analytica/blob/main/CARDIFF.csv" target="_blank" class="hover:text-white transition-colors">Cardiff Dataset[cite: 1]</a>
-                <a href="#" class="text-white">Cypher Terminal</a>
+                <a href="#" class="text-white">Analysis Terminal</a>
                 <a href="https://www.business-analytica.com" class="hover:text-white transition-colors">Documentation</a>
             </nav>
             <div class="flex items-center gap-3">
@@ -70,7 +70,7 @@
                 </label>
                 <input type="file" id="csvUpload" accept=".csv" class="hidden">
                 <span class="text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-lg font-medium flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Neo4j Connected
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Database Connected
                 </span>
             </div>
         </div>
@@ -106,7 +106,7 @@
             </div>
             <div class="flex items-center gap-3 self-end lg:self-auto">
                 <button class="bg-brand-dark hover:bg-brand-border border border-brand-border text-xs font-medium px-4 py-2.5 rounded-lg transition-colors text-slate-300 font-mono">
-                    View Cypher Query
+                    View Query Statement
                 </button>
                 <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-blue-500/20">
                     Execute Query
@@ -116,7 +116,7 @@
 
         <!-- Cypher Code Preview Drawer -->
         <div class="bg-brand-dark border border-brand-border rounded-xl p-4 font-mono text-xs text-blue-300 overflow-x-auto shadow-inner">
-            <div class="text-brand-textMuted mb-1 text-[10px] uppercase tracking-wider">// Active Cypher Execution Statement (Linked to Cardiff Entity Graph)</div>
+            <div class="text-brand-textMuted mb-1 text-[10px] uppercase tracking-wider">// Active Execution Statement (Linked to Cardiff Entity Graph)</div>
             <code>MATCH (p:Property)&lt;-[rel_title:HOLDS_TITLE]-(c:Company)&lt;-[rel_role]-(d:Person) WHERE toLower(COALESCE(c.RegAddress_County, '')) CONTAINS 'cardiff' RETURN c.CompanyName AS Company_Name, c.Industry AS SIC, c.CompanyStatus AS Status, collect(p.Property_Address) AS Properties</code>
         </div>
 
@@ -126,7 +126,7 @@
             <!-- Relationship Graph Canvas (2 Cols) -->
             <div class="lg:col-span-2 bg-brand-card border border-brand-border rounded-xl shadow-xl overflow-hidden flex flex-col">
                 <div class="px-6 py-4 border-b border-brand-border flex items-center justify-between bg-brand-dark/40">
-                    <h2 class="text-base font-semibold text-white">Neo4j Relationship Map</h2>
+                    <h2 class="text-base font-semibold text-white">Entity Relationship Map</h2>
                     <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-0.5 rounded-full font-mono">Interactive Node Topology</span>
                 </div>
                 <div id="mainVisual" class="w-full h-[450px] bg-brand-dark relative overflow-hidden">
@@ -236,7 +236,7 @@
 
             <!-- Terminal Pagination footer -->
             <div class="px-6 py-4 border-t border-brand-border bg-brand-dark/20 flex items-center justify-between text-xs text-brand-textMuted">
-                <span>Neo4j Cypher Engine v5.15 • Datasource: CARDIFF.csv[cite: 1]</span>
+                <span>Analysis Engine v5.15 • Datasource: CARDIFF.csv[cite: 1]</span>
                 <span class="text-blue-400 font-mono">Ready for execution</span>
             </div>
         </div>
@@ -246,7 +246,7 @@
     <!-- Footer -->
     <footer class="border-t border-brand-border bg-brand-card/30 mt-auto py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-textMuted">
-            <p>&copy; 2026 Business Analytica. Neo4j Cypher Data Workspace.</p>
+            <p>&copy; 2026 Business Analytica. Data Workspace.</p>
             <div class="flex space-x-6">
                 <a href="https://github.com/mbeds/business-analytica/blob/main/CARDIFF.csv" target="_blank" class="hover:text-white transition-colors">Cardiff Repository[cite: 1]</a>
                 <a href="https://www.business-analytica.com" class="hover:text-white transition-colors">API Access</a>
@@ -590,7 +590,6 @@
             header.addEventListener("click", () => {
                 const content = card.querySelector(".accordion-content");
                 const isOpen = !content.classList.contains("hidden");
-                // Toggle open/close state
                 if(isOpen) {
                     content.classList.add("hidden");
                     card.classList.remove("open");
@@ -617,9 +616,7 @@
 
         /* SIDEBAR UPDATE ROUTERS */
         function updateSidebarForNode(id, type) {
-            // Auto-infer type if passed generically
             if(!type) {
-                // Check if company
                 if(dataset.some(r => r.CompanyName === id)) type = "company";
                 else type = "property";
             }
@@ -658,25 +655,21 @@
                 </table>
             `;
 
-            // Section 1: Properties
             document.getElementById("section1Title").textContent = "Properties";
             document.getElementById("section1Count").textContent = `(${props.length})`;
             const s1 = document.getElementById("section1Content");
             s1.innerHTML = props.length ? props.map(p => `<div class="p-1.5 hover:bg-brand-dark rounded cursor-pointer text-slate-300 font-mono text-[11px]" onclick="handleNodeClick('${p.replace(/'/g, "\\'")}','property')">• ${p}</div>`).join("") : "No properties listed.";
 
-            // Section 2: Directors
             document.getElementById("section2Title").textContent = "Directors";
             document.getElementById("section2Count").textContent = `(${directors.length})`;
             const s2 = document.getElementById("section2Content");
             s2.innerHTML = directors.length ? directors.map(d => `<div class="p-1.5 text-slate-300"><strong>${d.director}</strong></div>`).join("") : "No directors listed.";
 
-            // Section 3: Charges
             document.getElementById("section3Title").textContent = "Charges";
             document.getElementById("section3Count").textContent = `(${charges.length})`;
             const s3 = document.getElementById("section3Content");
             s3.innerHTML = charges.length ? charges.map(c => `<div class="p-1.5 text-slate-300 font-mono">#${c.charge_number} - ${c.status || 'Active'}</div>`).join("") : "No charges.";
 
-            // Section 4: Lenders
             const lendersSet = new Set();
             charges.forEach(c => { (c.persons_entitled || []).forEach(p => lendersSet.add(p.name)); });
             const lenders = Array.from(lendersSet);
