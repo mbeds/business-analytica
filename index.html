@@ -114,6 +114,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       opacity: 1;
     }
 
+    /* MOBILE NAVIGATION STYLES */
+    .mobile-menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-soft);
+      color: var(--text-main);
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
     main {
       max-width: 1200px;
       margin: auto;
@@ -137,31 +149,63 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       max-width: 800px;
     }
 
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 5rem 1rem;
-      margin-bottom: 4rem;
+    /* REVOLVING HERO SLIDER */
+    .hero-slider {
+      position: relative;
       background: radial-gradient(at top, #1e293b, #0f172a);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 4rem;
+      padding: 4rem 1rem;
+      text-align: center;
     }
 
-    .hero h1 {
-      font-size: 3rem;
+    .hero-slides-container {
+      position: relative;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      visibility: visible;
+      position: relative;
+    }
+
+    .hero-slide h1 {
+      font-size: 2.75rem;
       line-height: 1.15;
       margin-bottom: 1.2rem;
       letter-spacing: -0.03em;
     }
 
-    .hero h1 span {
+    .hero-slide h1 span {
       background: linear-gradient(135deg, #fff 30%, var(--accent-soft));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-subtitle {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
       margin: 0 auto 2rem auto;
       line-height: 1.6;
@@ -171,9 +215,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero-actions {
       display: flex;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin-top: 0.5rem;
       justify-content: center;
       flex-wrap: wrap;
+    }
+
+    /* Slider Dots / Controls */
+    .hero-dots {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .hero-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-dot.active {
+      background: var(--accent-blue);
+      transform: scale(1.2);
     }
 
     .btn-primary,
@@ -219,7 +286,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .grid-3 {
       display: grid;
       gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
     .card {
@@ -254,7 +321,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     .fee {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       color: #fff;
       margin: 1.25rem 0 0 0;
     }
@@ -262,7 +329,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* INTELLIGENCE BENCHMARKS */
     .benchmarks {
       background: #020617;
-      padding: 3rem 2rem;
+      padding: 2.5rem 1.5rem;
       border: 1px solid rgba(255,255,255,0.08);
       margin: 4rem 0;
       border-radius: 12px;
@@ -276,7 +343,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .data-points {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
     }
@@ -294,11 +361,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .about-professional {
       display: grid;
       grid-template-columns: 1.5fr 1fr;
-      gap: 4rem;
+      gap: 3rem;
       margin-top: 4rem;
       align-items: center;
       background: var(--card-bg);
-      padding: 3rem;
+      padding: 2.5rem;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.06);
     }
@@ -306,7 +373,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* ECOSYSTEM NETWORK SECTION */
     .ecosystem-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
       margin-top: 1.5rem;
     }
@@ -344,10 +411,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       box-shadow: 0 12px 35px rgba(56,189,248,0.15);
     }
 
-    .ecosystem-card:hover::before {
-      opacity: 1;
-    }
-
     .ecosystem-tag {
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -383,21 +446,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       margin-top: 4rem;
     }
 
-    .contact-card h2 {
-      font-size: 1.8rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .contact-card > p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-
     .contact-channels {
       display: grid;
       gap: 0.8rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 
     .channel-item {
@@ -420,7 +472,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 
     .channel-label {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--text-muted);
@@ -428,43 +480,85 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 
     .channel-value {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--accent-soft);
       font-weight: 500;
     }
 
-    /* MOBILE BREAKPOINTS */
+    /* RESPONSIVE BREAKPOINTS & MOBILE OPTIMISATION */
     @media (max-width: 960px) {
       .about-professional {
         grid-template-columns: 1fr;
         gap: 2rem;
-      }
-      nav {
-        display: none;
+        padding: 1.75rem;
       }
     }
 
-    @media (max-width: 600px) {
-      main {
-        padding: 1.5rem 1rem;
+    @media (max-width: 768px) {
+      .top-nav {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center;
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
       }
 
-      .hero h1 {
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(2, 6, 23, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 1rem 0;
+      }
+
+      nav.open {
+        display: block;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .hero-slider {
+        padding: 3rem 1rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero-slide h1 {
         font-size: 2rem;
       }
 
-      .about-professional, .contact-card {
-        padding: 1.25rem;
+      .hero-subtitle {
+        font-size: 0.95rem;
+      }
+
+      section h2 {
+        font-size: 1.6rem;
+      }
+
+      .contact-card, .benchmarks {
+        padding: 1.5rem 1rem;
       }
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem;
       background: rgba(0,0,0,0.85);
       color: var(--text-muted);
       font-size: 0.85rem;
       border-top: 1px solid rgba(255,255,255,0.08);
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -486,7 +580,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="logo-mark"></div>
       Business Analytica
     </div>
-    <nav>
+    <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
+    <nav id="mainNav">
       <ul>
         <li><a href="#services">Services</a></li>
         <li><a href="#benchmarks">Benchmarks</a></li>
@@ -501,15 +596,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Strategic <span>Business OSINT</span> & Due Diligence</h1>
-  <p class="hero-subtitle">
-    Providing mid-sized law firms, investors, and entrepreneurs with high-fidelity corporate intelligence. We map the hidden networks that standard due diligence misses across England & Wales, supported by structural data processing via <a href="https://www.business-analytica.com/analyse.com" style="color: var(--accent-soft); text-decoration: underline;">business-analytica.com/analyse.com</a>.
-  </p>
-  <div class="hero-actions">
-    <a href="mailto:info@business-analytica.com" class="btn-primary">Request Investigative Consultation</a>
-    <a href="#services" class="btn-secondary">View Frameworks</a>
+<!-- REVOLVING HERO SLIDER SECTION -->
+<section class="hero-slider">
+  <div class="hero-slides-container" id="heroSliderContainer">
+    
+    <!-- Slide 1: Strategic OSINT -->
+    <div class="hero-slide active">
+      <h1>Strategic <span>Business OSINT</span> & Due Diligence</h1>
+      <p class="hero-subtitle">
+        Providing mid-sized law firms, investors, and entrepreneurs with high-fidelity corporate intelligence across England & Wales, powered by structured analysis via <a href="https://www.business-analytica.com/analyse.com" style="color: var(--accent-soft); text-decoration: underline;">business-analytica.com/analyse.com</a>.
+      </p>
+      <div class="hero-actions">
+        <a href="mailto:info@business-analytica.com" class="btn-primary">Request Consultation</a>
+        <a href="#services" class="btn-secondary">View Frameworks</a>
+      </div>
+    </div>
+
+    <!-- Slide 2: Forensic Asset Tracing -->
+    <div class="hero-slide">
+      <h1>Forensic <span>Asset Tracing</span> & Recovery</h1>
+      <p class="hero-subtitle">
+        Uncover concealed residential properties, commercial assets, and complex multi-layered corporate holdings before litigation or debt recovery proceedings.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Explore Asset Tracing</a>
+        <a href="tel:+447986903415" class="btn-secondary">Call Secure Desk</a>
+      </div>
+    </div>
+
+    <!-- Slide 3: Distressed Land & Assets -->
+    <div class="hero-slide">
+      <h1>Distressed Land & <span>Off-Market Portfolios</span></h1>
+      <p class="hero-subtitle">
+        Proactive tracking of distressed land opportunities, administrative filings, and corporate restructuring portfolios ahead of public exposure.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Inquire About Land Lists</a>
+        <a href="#insights" class="btn-secondary">Read Research Briefs</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Slider Dots Navigation -->
+  <div class="hero-dots" id="heroDots">
+    <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
   </div>
 </section>
 
@@ -692,6 +825,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   &copy; 2026 Business Analytica. All services conducted in compliance with UK GDPR and the Data Protection Act 2018.<br>
   Independent. Professional. Accurate. Structured processing via <a href="https://www.business-analytica.com/analyse.com" style="color: var(--text-muted); text-decoration: underline;">business-analytica.com/analyse.com</a>.
 </footer>
+
+<!-- SCRIPT FOR MOBILE MENU & REVOLVING HERO SLIDER -->
+<script>
+  // Mobile Navigation Toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+
+  menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('open');
+  });
+
+  // Close mobile menu when a nav link is clicked
+  document.querySelectorAll('#mainNav a').forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('open');
+    });
+  });
+
+  // Revolving Hero Slider Logic
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  let currentSlide = 0;
+  const slideIntervalTime = 6000; // 6 seconds per slide
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+      dots[i].classList.toggle('active', i === index);
+    });
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    let nextIndex = (currentSlide + 1) % slides.length;
+    showSlide(nextIndex);
+  }
+
+  let slideTimer = setInterval(nextSlide, slideIntervalTime);
+
+  // Allow dot navigation click
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      clearInterval(slideTimer);
+      const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+      showSlide(slideIndex);
+      slideTimer = setInterval(nextSlide, slideIntervalTime);
+    });
+  });
+</script>
 
 </body>
 </html>
