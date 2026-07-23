@@ -1,223 +1,804 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l!='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NNRWPP3M');</script>
-<!-- End Google Tag Manager -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4CZY1E6JH"></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4TN2ETGH91"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-Y4CZY1E6JH');
+  gtag('config', 'G-4TN2ETGH91');
 </script>
-<!-- End Google Tag Manager -->
-  <meta charset="UTF-8" />
-  <title>Analyse Engine – Business Analytica</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="canonical" href="https://www.business-analytica.com/analyse.html" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Terminal | Business Analytica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0F17',
+                            card: '#131B2E',
+                            border: '#1E293B',
+                            accent: '#3B82F6',
+                            accentHover: '#2563EB',
+                            textMuted: '#94A3B8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-  <!-- HubSpot Tracking Code (EU) -->
-  <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/148894722.js"></script>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0B0F17; }
+        ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3B82F6; }
 
-  <style>
-    :root {
-      --bg-gradient: radial-gradient(circle at top left, #0f172a 0%, #111827 40%, #000000 100%);
-      --accent-blue: #38bdf8;
-      --accent-soft: #7dd3fc;
-      --gold-subtle: #b5935a;
-      --text-main: #f5f5f5;
-      --text-muted: #b3b3b3;
-      --card-bg: rgba(10, 10, 10, 0.85);
-      --border-soft: rgba(56, 189, 248, 0.35);
-      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+        .highlight-node {
+            stroke: #ffffff;
+            stroke-width: 3px;
+        }
 
-    body {
-      margin: 0;
-      background: var(--bg-gradient);
-      color: var(--text-main);
-      font-family: var(--font-main);
-      background-attachment: fixed;
-    }
+        .dim-node {
+            opacity: 0.2;
+        }
 
-    header {
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 1rem 1.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.95rem;
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .logo-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--accent-blue), #0369a1);
-      box-shadow: 0 0 18px rgba(56,189,248,0.7);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-      align-items: center;
-    }
-
-    nav a {
-      color: var(--text-main);
-      text-decoration: none;
-      font-size: 0.9rem;
-      opacity: 0.85;
-      transition: opacity 0.2s;
-    }
-
-    nav a:hover {
-      opacity: 1;
-    }
-
-    /* MOBILE NAVIGATION STYLES */
-    .mobile-menu-toggle {
-      display: none;
-      background: transparent;
-      border: 1px solid var(--border-soft);
-      color: var(--text-main);
-      padding: 0.4rem 0.6rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1.1rem;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2.5rem 1.25rem;
-    }
-
-    @media (max-width: 768px) {
-      .mobile-menu-toggle {
-        display: block;
-      }
-
-      nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(2, 6, 23, 0.95);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        padding: 1rem 0;
-      }
-
-      nav.open {
-        display: block;
-      }
-
-      nav ul {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: rgba(0,0,0,0.85);
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      line-height: 1.6;
-    }
-  </style>
+        .dim-link {
+            opacity: 0.1;
+        }
+    </style>
 </head>
+<body class="bg-brand-dark text-slate-100 min-h-screen flex flex-col">
 
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNRWPP3M"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Header / Navigation -->
+    <header class="border-b border-brand-border bg-brand-card/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="text-xl font-bold tracking-tight text-white">Business <span class="text-blue-500">Analytica</span></span>
+                <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded font-mono">Analysis GUI v2.9</span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-brand-textMuted">
+                <a href="https://github.com/mbeds/business-analytica/blob/main/CARDIFF.csv" target="_blank" class="hover:text-white transition-colors">Cardiff Dataset</a>
+                <a href="#" class="text-white">Analysis Terminal</a>
+                <a href="https://www.business-analytica.com" class="hover:text-white transition-colors">Documentation</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <label for="csvUpload" class="cursor-pointer bg-brand-dark hover:bg-brand-border border border-brand-border text-xs text-slate-300 px-3 py-1.5 rounded-lg transition-colors font-mono">
+                    Upload Spreadsheet (CSV)
+                </label>
+                <input type="file" id="csvUpload" accept=".csv" class="hidden">
+            </div>
+        </div>
+    </header>
 
-<header>
-  <div class="nav-container">
-    <a href="/" class="logo">
-      <div class="logo-mark"></div>
-      Business Analytica
-    </a>
-    <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
-    <nav id="mainNav">
-      <ul>
-        <li><a href="/analyse.html" style="color: var(--accent-soft);">Analyse</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#benchmarks">Benchmarks</a></li>
-        <li><a href="/#insights">Insights</a></li>
-        <li><a href="/#about">Policy</a></li>
-        <li><a href="/#ecosystem">Ecosystem</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+    <!-- Main GUI Workspace -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6">
+        
+        <!-- Controls & Parameters Toolbar -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-5 shadow-xl flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 w-full">
+                <div>
+                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">SIC Code Filter</label>
+                    <select id="sicFilter" class="w-full bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 font-mono">
+                        <option value="ALL">ALL SIC CODES</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">Company Number</label>
+                    <select id="companyNumberFilter" class="w-full bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 font-mono">
+                        <option value="ALL">ALL NUMBERS</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">Target Entity Filter</label>
+                    <select id="companyFilter" class="w-full bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 font-mono">
+                        <option value="ALL">ALL COMPANIES</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">Status Filter</label>
+                    <select id="statusFilter" class="w-full bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 font-mono">
+                        <option value="ALL">ALL STATUSES</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">County / Address</label>
+                    <select id="countyFilter" class="w-full bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 font-mono">
+                        <option value="ALL">ALL REGIONS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex items-center gap-3 self-end lg:self-auto">
+                <button id="runAnalysisBtn" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-blue-500/20 font-mono whitespace-nowrap">
+                    Run Filter
+                </button>
+            </div>
+        </div>
 
-<main>
-  <!-- KEEPING YOUR ORIGINAL ANALYSE CONTENT / GUI BELOW EXACTLY AS YOU HAD IT -->
-  <div id="analyse-app-content">
-    <!-- Paste or keep your original analyse.html body content structure here -->
-  </div>
-</main>
+        <!-- Top Section: Interactive Visual Map & Inspector Sidebar -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Relationship Graph Canvas (2 Cols) -->
+            <div class="lg:col-span-2 bg-brand-card border border-brand-border rounded-xl shadow-xl overflow-hidden flex flex-col">
+                <div class="px-6 py-4 border-b border-brand-border flex items-center justify-between bg-brand-dark/40">
+                    <h2 class="text-base font-semibold text-white">Entity Relationship Map</h2>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-0.5 rounded-full font-mono">Interactive Node Topology</span>
+                </div>
+                <div id="mainVisual" class="w-full h-[450px] bg-brand-dark relative overflow-hidden">
+                    <!-- D3 Network Render target -->
+                </div>
+            </div>
 
-<footer>
-  &copy; 2026 Business Analytica. All services conducted in compliance with UK GDPR and the Data Protection Act 2018.<br>
-  Independent. Professional. Accurate. Structured processing via <a href="/analyse.html" style="color: var(--text-muted); text-decoration: underline;">analyse.html</a>.
-</footer>
+            <!-- Inspector Sidebar Accordion (1 Col) - Made scrollable -->
+            <div class="bg-brand-card border border-brand-border rounded-xl shadow-xl flex flex-col overflow-hidden">
+                <div class="px-6 py-4 border-b border-brand-border bg-brand-dark/40">
+                    <h2 class="text-base font-semibold text-white">Node Inspector</h2>
+                </div>
+                <!-- Scrollable Container Added Here -->
+                <div class="p-4 flex flex-col gap-3 overflow-y-auto max-h-[450px]" id="sidebar">
+                    
+                    <!-- Section Main -->
+                    <div id="section-main" class="border border-brand-border rounded-lg bg-brand-dark/50 overflow-hidden open">
+                        <div class="accordion-header px-4 py-3 bg-brand-dark flex justify-between items-center cursor-pointer select-none">
+                            <span class="title text-xs font-semibold text-blue-400" id="mainTitle">Details</span>
+                            <span class="count text-[11px] text-brand-textMuted font-mono" id="mainSubtitle">Select a node</span>
+                        </div>
+                        <div class="accordion-content p-4 text-xs border-t border-brand-border">
+                            <div id="mainContent" class="text-brand-textMuted">Click any node in the relationship graph to analyze its spreadsheet record properties, company address, and identifiers.</div>
+                        </div>
+                    </div>
 
-<!-- SCRIPT FOR MOBILE MENU -->
-<script>
-  const menuToggle = document.getElementById('menuToggle');
-  const mainNav = document.getElementById('mainNav');
+                    <!-- Section 1 -->
+                    <div id="section-1" class="border border-brand-border rounded-lg bg-brand-dark/50 overflow-hidden">
+                        <div class="accordion-header px-4 py-3 bg-brand-dark flex justify-between items-center cursor-pointer select-none">
+                            <span class="title text-xs font-semibold text-slate-300" id="section1Title">Properties</span>
+                            <span class="count text-[11px] text-brand-textMuted font-mono" id="section1Count">(0)</span>
+                        </div>
+                        <div class="accordion-content p-4 text-xs border-t border-brand-border hidden max-h-40 overflow-y-auto">
+                            <div id="section1Content" class="text-brand-textMuted">No properties loaded.</div>
+                        </div>
+                    </div>
 
-  menuToggle.addEventListener('click', () => {
-    mainNav.classList.toggle('open');
-  });
+                    <!-- Section 2 -->
+                    <div id="section-2" class="border border-brand-border rounded-lg bg-brand-dark/50 overflow-hidden">
+                        <div class="accordion-header px-4 py-3 bg-brand-dark flex justify-between items-center cursor-pointer select-none">
+                            <span class="title text-xs font-semibold text-slate-300" id="section2Title">Directors / Network</span>
+                            <span class="count text-[11px] text-brand-textMuted font-mono" id="section2Count">(0)</span>
+                        </div>
+                        <div class="accordion-content p-4 text-xs border-t border-brand-border hidden max-h-40 overflow-y-auto">
+                            <div id="section2Content" class="text-brand-textMuted">No records available.</div>
+                        </div>
+                    </div>
 
-  document.querySelectorAll('#mainNav a').forEach(link => {
-    link.addEventListener('click', () => {
-      mainNav.classList.remove('open');
-    });
-  });
-</script>
+                    <!-- Section 3 -->
+                    <div id="section-3" class="border border-brand-border rounded-lg bg-brand-dark/50 overflow-hidden">
+                        <div class="accordion-header px-4 py-3 bg-brand-dark flex justify-between items-center cursor-pointer select-none">
+                            <span class="title text-xs font-semibold text-slate-300" id="section3Title">Charges & Mortgages</span>
+                            <span class="count text-[11px] text-brand-textMuted font-mono" id="section3Count">(0)</span>
+                        </div>
+                        <div class="accordion-content p-4 text-xs border-t border-brand-border hidden max-h-40 overflow-y-auto">
+                            <div id="section3Content" class="text-brand-textMuted">No charges found.</div>
+                        </div>
+                    </div>
 
+                    <!-- Section 4 -->
+                    <div id="section-4" class="border border-brand-border rounded-lg bg-brand-dark/50 overflow-hidden">
+                        <div class="accordion-header px-4 py-3 bg-brand-dark flex justify-between items-center cursor-pointer select-none">
+                            <span class="title text-xs font-semibold text-slate-300" id="section4Title">Lenders / Secured Parties</span>
+                            <span class="count text-[11px] text-brand-textMuted font-mono" id="section4Count">(0)</span>
+                        </div>
+                        <div class="accordion-content p-4 text-xs border-t border-brand-border hidden max-h-40 overflow-y-auto">
+                            <div id="section4Content" class="text-brand-textMuted">No lenders registered.</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Query Output Data Matrix -->
+        <div class="bg-brand-card border border-brand-border rounded-xl shadow-xl overflow-hidden flex-grow">
+            <div class="px-6 py-4 border-b border-brand-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-brand-dark/40">
+                <div class="flex items-center gap-3">
+                    <h2 class="text-base font-semibold text-white">Company Portfolio Summary Matrix</h2>
+                    <span id="recordCountBadge" class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full border border-brand-border">0 Records Loaded</span>
+                </div>
+                <div id="summaryMetrics" class="flex flex-wrap items-center gap-2">
+                    <span class="metricTile text-xs font-mono bg-brand-dark border border-brand-border px-2.5 py-1 rounded text-blue-400" id="metricCompanies">Companies: 0</span>
+                    <span class="metricTile text-xs font-mono bg-brand-dark border border-brand-border px-2.5 py-1 rounded text-amber-400" id="metricProperties">Properties: 0</span>
+                    <span class="metricTile text-xs font-mono bg-brand-dark border border-brand-border px-2.5 py-1 rounded text-rose-400" id="metricCharges">Charges: 0</span>
+                    <span class="metricTile text-xs font-mono bg-brand-dark border border-brand-border px-2.5 py-1 rounded text-slate-300" id="metricAvgProps">Avg Props/Co: 0</span>
+                    <span class="metricTile text-xs font-mono bg-brand-dark border border-brand-border px-2.5 py-1 rounded text-slate-300" id="metricAvgChg">Avg Chg/Co: 0</span>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto max-h-[350px]">
+                <table id="summaryTable" class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-brand-border text-xs font-semibold text-brand-textMuted uppercase tracking-wider bg-brand-dark/20 sticky top-0 backdrop-blur z-10">
+                            <th class="px-6 py-3.5 cursor-pointer hover:text-white" data-sort="CompanyName">Company Name & ID</th>
+                            <th class="px-6 py-3.5 cursor-pointer hover:text-white" data-sort="CompanyNumber">Company Number</th>
+                            <th class="px-6 py-3.5 cursor-pointer hover:text-white" data-sort="Industry">SIC Code</th>
+                            <th class="px-6 py-3.5 cursor-pointer hover:text-white" data-sort="CompanyStatus">Status</th>
+                            <th class="px-6 py-3.5 cursor-pointer hover:text-white" data-sort="Properties">Properties</th>
+                            <th class="px-6 py-3.5 text-right cursor-pointer hover:text-white" data-sort="Charges">Charges</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-brand-border text-sm">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Terminal Pagination footer -->
+            <div class="px-6 py-4 border-t border-brand-border bg-brand-dark/20 flex items-center justify-between text-xs text-brand-textMuted">
+                <span id="footerSourceInfo">Analysis Engine v5.15 • Datasource: CARDIFF.csv</span>
+                <span class="text-blue-400 font-mono">Spreadsheet Parsed Successfully</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-brand-border bg-brand-card/30 mt-auto py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-textMuted">
+            <p>&copy; 2026 Business Analytica. Data Workspace.</p>
+            <div class="flex space-x-6">
+                <a href="https://github.com/mbeds/business-analytica/blob/main/CARDIFF.csv" target="_blank" class="hover:text-white transition-colors">Repository</a>
+                <a href="https://www.business-analytica.com" class="hover:text-white transition-colors">API Access</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Logic Integration Scripts -->
+    <script>
+        let dataset = [];
+        let summarySortAsc = true;
+        let currentNode = null;
+        let currentType = null;
+        let svg, g, linkSelection, nodeSelection, labelSelection;
+
+        window.addEventListener("DOMContentLoaded", () => {
+            loadDefaultDataset();
+        });
+
+        function loadDefaultDataset() {
+            const defaultUrl = "https://raw.githubusercontent.com/mbeds/business-analytica/main/CARDIFF.csv";
+            Papa.parse(defaultUrl, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    if(results.data && results.data.length > 0) {
+                        dataset = results.data;
+                        processDatasetLoaded("CARDIFF.csv");
+                    }
+                },
+                error: function(err) {
+                    console.log("Auto-load note: Upload CSV manually if CORS restricts direct fetch.", err);
+                }
+            });
+        }
+
+        /* CSV UPLOAD HANDLER */
+        document.getElementById("csvUpload").addEventListener("change", function(e) {
+            const file = e.target.files[0];
+            if(!file) return;
+            
+            document.getElementById("footerSourceInfo").textContent = `Analysis Engine v5.15 • Datasource: ${file.name}`;
+
+            Papa.parse(file, {
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    if(results.data && results.data.length > 0) {
+                        dataset = results.data;
+                        processDatasetLoaded(file.name);
+                    }
+                }
+            });
+        });
+
+        function processDatasetLoaded(sourceName) {
+            renderSummaryTable();
+            populateFilters();
+            renderMainVisual();
+            updateGlobalMetrics();
+        }
+
+        document.getElementById("runAnalysisBtn").addEventListener("click", () => {
+            const selectedCompany = document.getElementById("companyFilter").value;
+            const selectedSic = document.getElementById("sicFilter").value;
+            const selectedCompNum = document.getElementById("companyNumberFilter").value;
+            const selectedStatus = document.getElementById("statusFilter").value;
+            const selectedCounty = document.getElementById("countyFilter").value;
+            renderMainVisual(selectedCompany, selectedSic, selectedCompNum, selectedStatus, selectedCounty);
+        });
+
+        /* FILTERS POPULATION */
+        function populateFilters() {
+            const compSelect = document.getElementById("companyFilter");
+            const sicSelect = document.getElementById("sicFilter");
+            const numSelect = document.getElementById("companyNumberFilter");
+            const statusSelect = document.getElementById("statusFilter");
+            const countySelect = document.getElementById("countyFilter");
+
+            compSelect.innerHTML = "<option value='ALL'>ALL COMPANIES</option>";
+            sicSelect.innerHTML = "<option value='ALL'>ALL SIC CODES</option>";
+            numSelect.innerHTML = "<option value='ALL'>ALL NUMBERS</option>";
+            statusSelect.innerHTML = "<option value='ALL'>ALL STATUSES</option>";
+            countySelect.innerHTML = "<option value='ALL'>ALL REGIONS</option>";
+
+            const sicSet = new Set();
+            const numSet = new Set();
+            const statusSet = new Set();
+            const countySet = new Set();
+
+            dataset.forEach(row => {
+                if(row.CompanyName) {
+                    const opt = document.createElement("option");
+                    opt.value = row.CompanyName;
+                    opt.textContent = row.CompanyName;
+                    compSelect.appendChild(opt);
+                }
+                if(row.Industry) sicSet.add(row.Industry);
+                const compNum = row.CompanyNumber || row.Company_Number || row.RegNumber;
+                if(compNum) numSet.add(compNum);
+                if(row.CompanyStatus) statusSet.add(row.CompanyStatus);
+                const county = row.RegAddress_County || row.County;
+                if(county) countySet.add(county);
+            });
+
+            sicSet.forEach(sic => {
+                const opt = document.createElement("option");
+                opt.value = sic;
+                opt.textContent = sic;
+                sicSelect.appendChild(opt);
+            });
+
+            numSet.forEach(num => {
+                const opt = document.createElement("option");
+                opt.value = num;
+                opt.textContent = num;
+                numSelect.appendChild(opt);
+            });
+
+            statusSet.forEach(status => {
+                const opt = document.createElement("option");
+                opt.value = status;
+                opt.textContent = status;
+                statusSelect.appendChild(opt);
+            });
+
+            countySet.forEach(county => {
+                const opt = document.createElement("option");
+                opt.value = county;
+                opt.textContent = county;
+                countySelect.appendChild(opt);
+            });
+        }
+
+        /* GLOBAL METRICS */
+        function updateGlobalMetrics() {
+            let totalCompanies = dataset.length;
+            let totalProps = 0;
+            let totalChg = 0;
+
+            dataset.forEach(row => {
+                let props = [];
+                let charges = [];
+                try { props = JSON.parse((row.Properties || "").replace(/'/g, '"')); } catch {}
+                try { charges = JSON.parse((row.RawCharges || "").replace(/'/g, '"')).items || []; } catch {}
+                totalProps += props.length;
+                totalChg += charges.length;
+            });
+
+            const avgProps = totalCompanies ? (totalProps / totalCompanies).toFixed(1) : 0;
+            const avgChg = totalCompanies ? (totalChg / totalCompanies).toFixed(1) : 0;
+
+            document.getElementById("metricCompanies").textContent = `Companies: ${totalCompanies}`;
+            document.getElementById("metricProperties").textContent = `Properties: ${totalProps}`;
+            document.getElementById("metricCharges").textContent = `Charges: ${totalChg}`;
+            document.getElementById("metricAvgProps").textContent = `Avg Props/Co: ${avgProps}`;
+            document.getElementById("metricAvgChg").textContent = `Avg Chg/Co: ${avgChg}`;
+            document.getElementById("recordCountBadge").textContent = `${totalCompanies} Records Found`;
+        }
+
+        /* SUMMARY TABLE */
+        function renderSummaryTable(sortKey = null) {
+            const tbody = document.querySelector("#summaryTable tbody");
+            tbody.innerHTML = "";
+
+            let rows = dataset.map(row => {
+                let props = [];
+                let charges = [];
+                try { props = JSON.parse((row.Properties || "").replace(/'/g, '"')); } catch {}
+                try { charges = JSON.parse((row.RawCharges || "").replace(/'/g, '"')).items || []; } catch {}
+
+                return {
+                    CompanyName: row.CompanyName || "Unknown",
+                    CompanyNumber: row.CompanyNumber || row.Company_Number || row.RegNumber || "N/A",
+                    Industry: row.Industry || "",
+                    CompanyStatus: row.CompanyStatus || "",
+                    Properties: props.length,
+                    Charges: charges.length
+                };
+            });
+
+            if (sortKey) {
+                rows.sort((a, b) => {
+                    if (typeof a[sortKey] === "number") {
+                        return summarySortAsc ? a[sortKey] - b[sortKey] : b[sortKey] - a[sortKey];
+                    }
+                    return summarySortAsc
+                        ? String(a[sortKey]).localeCompare(String(b[sortKey]))
+                        : String(b[sortKey]).localeCompare(String(a[sortKey]));
+                });
+                summarySortAsc = !summarySortAsc;
+            }
+
+            rows.forEach(r => {
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-slate-800/40 transition-colors cursor-pointer";
+                tr.innerHTML = `
+                    <td class="px-6 py-4 font-medium text-white" onclick="handleNodeClick('${r.CompanyName.replace(/'/g, "\\'")}','company')">${r.CompanyName}</td>
+                    <td class="px-6 py-4 text-slate-300 font-mono">${r.CompanyNumber}</td>
+                    <td class="px-6 py-4 text-slate-300">${r.Industry}</td>
+                    <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-xs">${r.CompanyStatus}</span></td>
+                    <td class="px-6 py-4 font-mono text-slate-300">${r.Properties}</td>
+                    <td class="px-6 py-4 text-right font-mono text-blue-400">${r.Charges}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.querySelectorAll("#summaryTable th").forEach(th => {
+            th.addEventListener("click", () => {
+                const sortKey = th.dataset.sort;
+                renderSummaryTable(sortKey);
+            });
+        });
+
+        /* DRAG */
+        function drag(simulation) {
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+
+            return d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended);
+        }
+
+        /* MAIN GRAPH */
+        function renderMainVisual(filterCompany = "ALL", filterSic = "ALL", filterCompNum = "ALL", filterStatus = "ALL", filterCounty = "ALL") {
+            const div = document.getElementById("mainVisual");
+            div.innerHTML = "";
+
+            const nodesMap = new Map();
+            const links = [];
+
+            function addNode(id, type) {
+                if (!nodesMap.has(id)) {
+                    nodesMap.set(id, { id, type });
+                }
+            }
+
+            dataset.forEach(row => {
+                if (filterCompany !== "ALL" && row.CompanyName !== filterCompany) return;
+                if (filterSic !== "ALL" && row.Industry !== filterSic) return;
+                const rowCompNum = row.CompanyNumber || row.Company_Number || row.RegNumber;
+                if (filterCompNum !== "ALL" && rowCompNum !== filterCompNum) return;
+                if (filterStatus !== "ALL" && row.CompanyStatus !== filterStatus) return;
+                const rowCounty = row.RegAddress_County || row.County;
+                if (filterCounty !== "ALL" && rowCounty !== filterCounty) return;
+
+                const companyName = row.CompanyName;
+                if(!companyName) return;
+                addNode(companyName, "company");
+
+                let directors = [];
+                try { directors = JSON.parse((row.BusinessStructure || "").replace(/'/g, '"')); } catch {}
+
+                directors.forEach(d => {
+                    if(!d.director) return;
+                    addNode(d.director, "director");
+                    links.push({ source: companyName, target: d.director });
+
+                    if(d.network && Array.isArray(d.network)) {
+                        d.network.forEach(n => {
+                            if(!n.companyName) return;
+                            addNode(n.companyName, "company");
+                            links.push({ source: d.director, target: n.companyName });
+                        });
+                    }
+                });
+
+                let props = [];
+                try { props = JSON.parse((row.Properties || "").replace(/'/g, '"')); } catch {}
+
+                props.forEach(p => {
+                    addNode(p, "property");
+                    links.push({ source: companyName, target: p });
+                });
+
+                let charges = [];
+                try { charges = JSON.parse((row.RawCharges || "").replace(/'/g, '"')).items || []; } catch {}
+
+                charges.forEach(c => {
+                    const chargeId = `Charge ${c.charge_number} (${companyName})`;
+                    addNode(chargeId, "charge");
+                    links.push({ source: companyName, target: chargeId });
+
+                    if (c.persons_entitled && Array.isArray(c.persons_entitled)) {
+                        c.persons_entitled.forEach(p => {
+                            if(!p.name) return;
+                            addNode(p.name, "lender");
+                            links.push({ source: chargeId, target: p.name });
+                        });
+                    }
+                });
+            });
+
+            const nodes = Array.from(nodesMap.values());
+
+            svg = d3.select("#mainVisual")
+                .append("svg")
+                .attr("width", "100%")
+                .attr("height", "100%");
+
+            const width = div.clientWidth || 600;
+            const height = div.clientHeight || 450;
+
+            const zoom = d3.zoom()
+                .scaleExtent([0.2, 4])
+                .on("zoom", (event) => {
+                    g.attr("transform", event.transform);
+                });
+
+            svg.call(zoom);
+
+            g = svg.append("g");
+
+            const simulation = d3.forceSimulation(nodes)
+                .force("link", d3.forceLink(links).id(d => d.id).distance(120))
+                .force("charge", d3.forceManyBody().strength(-280))
+                .force("center", d3.forceCenter(width / 2, height / 2));
+
+            linkSelection = g.append("g")
+                .selectAll("line")
+                .data(links)
+                .enter().append("line")
+                .attr("stroke", "#1E293B")
+                .attr("stroke-width", 1.5);
+
+            nodeSelection = g.append("g")
+                .selectAll("circle")
+                .data(nodes)
+                .enter().append("circle")
+                .attr("r", 7)
+                .attr("fill", d => {
+                    if (d.type === "company") return "#3B82F6";
+                    if (d.type === "director") return "#10B981";
+                    if (d.type === "property") return "#F59E0B";
+                    if (d.type === "charge") return "#EF4444";
+                    return "#8B5CF6";
+                })
+                .style("cursor", "pointer")
+                .on("click", (event, d) => handleNodeClick(d.id, d.type))
+                .call(drag(simulation));
+
+            labelSelection = g.append("g")
+                .selectAll("text")
+                .data(nodes)
+                .enter().append("text")
+                .text(d => d.id.length > 25 ? d.id.substring(0, 25) + '...' : d.id)
+                .attr("font-size", 9)
+                .attr("dx", 10)
+                .attr("dy", 3)
+                .attr("fill", "#94A3B8")
+                .style("font-family", "'JetBrains Mono', monospace");
+
+            simulation.on("tick", () => {
+                linkSelection.attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                nodeSelection.attr("cx", d => d.x)
+                    .attr("cy", d => d.y);
+
+                labelSelection.attr("x", d => d.x)
+                     .attr("y", d => d.y);
+            });
+        }
+
+        /* NODE CLICK HANDLER */
+        function handleNodeClick(id, type) {
+            currentNode = id;
+            currentType = type;
+            highlightGraphNode(id);
+            updateSidebarForNode(id, type);
+        }
+
+        /* GRAPH HIGHLIGHTING */
+        function highlightGraphNode(id) {
+            if (!nodeSelection || !linkSelection) return;
+
+            nodeSelection.classed("highlight-node", d => d.id === id)
+                         .classed("dim-node", d => d.id !== id);
+
+            linkSelection.classed("dim-link", d => d.source.id !== id && d.target.id !== id);
+        }
+
+        /* ACCORDION SETUP */
+        const sections = [
+            { id: "section-main", contentId: "section-main" },
+            { id: "section-1", contentId: "section-1" },
+            { id: "section-2", contentId: "section-2" },
+            { id: "section-3", contentId: "section-3" },
+            { id: "section-4", contentId: "section-4" }
+        ];
+
+        sections.forEach(sec => {
+            const card = document.getElementById(sec.id);
+            const header = card.querySelector(".accordion-header");
+            header.addEventListener("click", () => {
+                const content = card.querySelector(".accordion-content");
+                const isOpen = !content.classList.contains("hidden");
+                if(isOpen) {
+                    content.classList.add("hidden");
+                    card.classList.remove("open");
+                } else {
+                    content.classList.remove("hidden");
+                    card.classList.add("open");
+                }
+            });
+        });
+
+        function openAccordionSection(sectionId) {
+            sections.forEach(sec => {
+                const card = document.getElementById(sec.id);
+                const content = card.querySelector(".accordion-content");
+                if (sec.id === sectionId) {
+                    content.classList.remove("hidden");
+                    card.classList.add("open");
+                } else {
+                    content.classList.add("hidden");
+                    card.classList.remove("open");
+                }
+            });
+        }
+
+        /* SIDEBAR UPDATE ROUTERS */
+        function updateSidebarForNode(id, type) {
+            if(!type) {
+                if(dataset.some(r => r.CompanyName === id)) type = "company";
+                else type = "property";
+            }
+
+            if (type === "company") updateCompanySidebar(id);
+            else if (type === "director") updateDirectorSidebar(id);
+            else if (type === "property") updatePropertySidebar(id);
+            else if (type === "charge") updateChargeSidebar(id);
+            else if (type === "lender") updateLenderSidebar(id);
+            
+            openAccordionSection("section-main");
+        }
+
+        function updateCompanySidebar(companyName) {
+            const row = dataset.find(r => r.CompanyName === companyName);
+            if (!row) return;
+
+            let props = [];
+            let directors = [];
+            let charges = [];
+            try { props = JSON.parse((row.Properties || "").replace(/'/g, '"')); } catch {}
+            try { directors = JSON.parse((row.BusinessStructure || "").replace(/'/g, '"')); } catch {}
+            try { charges = JSON.parse((row.RawCharges || "").replace(/'/g, '"')).items || []; } catch {}
+
+            const compNum = row.CompanyNumber || row.Company_Number || row.RegNumber || "N/A";
+            const sicCode = row.Industry || "N/A";
+            const address = row.RegAddress_AddressLine1 || row.Address || row.RegAddress_County || "N/A";
+
+            document.getElementById("mainTitle").textContent = "Company Details";
+            document.getElementById("mainSubtitle").textContent = companyName;
+            document.getElementById("mainContent").innerHTML = `
+                <table class="w-full">
+                    <tbody class="divide-y divide-brand-border">
+                        <tr><td class="py-1 text-brand-textMuted font-semibold">Name</td><td class="py-1 text-white">${row.CompanyName}</td></tr>
+                        <tr><td class="py-1 text-brand-textMuted font-semibold">Company Number</td><td class="py-1 text-slate-300 font-mono">${compNum}</td></tr>
+                        <tr><td class="py-1 text-brand-textMuted font-semibold">SIC Code</td><td class="py-1 text-slate-300 font-mono">${sicCode}</td></tr>
+                        <tr><td class="py-1 text-brand-textMuted font-semibold">Address</td><td class="py-1 text-slate-300">${address}</td></tr>
+                        <tr><td class="py-1 text-brand-textMuted font-semibold">Status</td><td class="py-1 text-emerald-400">${row.CompanyStatus || ""}</td></tr>
+                        <tr><td class="py-1 text-brand-textMuted font-semibold">Properties</td><td class="py-1 text-slate-300 font-mono">${props.length}</td></tr>
+                        <tr><td class="py-1 text-brand-textMuted font-semibold">Charges</td><td class="py-1 text-blue-400 font-mono">${charges.length}</td></tr>
+                    </tbody>
+                </table>
+            `;
+
+            document.getElementById("section1Title").textContent = "Properties";
+            document.getElementById("section1Count").textContent = `(${props.length})`;
+            const s1 = document.getElementById("section1Content");
+            s1.innerHTML = props.length ? props.map(p => `<div class="p-1.5 hover:bg-brand-dark rounded cursor-pointer text-slate-300 font-mono text-[11px]" onclick="handleNodeClick('${p.replace(/'/g, "\\'")}','property')">• ${p}</div>`).join("") : "No properties listed.";
+
+            document.getElementById("section2Title").textContent = "Directors";
+            document.getElementById("section2Count").textContent = `(${directors.length})`;
+            const s2 = document.getElementById("section2Content");
+            s2.innerHTML = directors.length ? directors.map(d => `<div class="p-1.5 text-slate-300"><strong>${d.director}</strong></div>`).join("") : "No directors listed.";
+
+            document.getElementById("section3Title").textContent = "Charges";
+            document.getElementById("section3Count").textContent = `(${charges.length})`;
+            const s3 = document.getElementById("section3Content");
+            s3.innerHTML = charges.length ? charges.map(c => `<div class="p-1.5 text-slate-300 font-mono">#${c.charge_number} - ${c.status || 'Active'}</div>`).join("") : "No charges.";
+
+            const lendersSet = new Set();
+            charges.forEach(c => { (c.persons_entitled || []).forEach(p => lendersSet.add(p.name)); });
+            const lenders = Array.from(lendersSet);
+            document.getElementById("section4Title").textContent = "Lenders";
+            document.getElementById("section4Count").textContent = `(${lenders.length})`;
+            const s4 = document.getElementById("section4Content");
+            s4.innerHTML = lenders.length ? lenders.map(l => `<div class="p-1.5 text-slate-300">${l}</div>`).join("") : "No lenders registered.";
+        }
+
+        function updateDirectorSidebar(directorName) {
+            document.getElementById("mainTitle").textContent = "Director Profile";
+            document.getElementById("mainSubtitle").textContent = directorName;
+            document.getElementById("mainContent").innerHTML = `<div class="text-white font-medium">${directorName}</div><div class="text-brand-textMuted mt-1">Associated across network nodes.</div>`;
+        }
+
+        function updatePropertySidebar(propertyName) {
+            let owningCompany = "Unknown";
+            dataset.forEach(row => {
+                let props = [];
+                try { props = JSON.parse((row.Properties || "").replace(/'/g, '"')); } catch {}
+                if(props.includes(propertyName)) owningCompany = row.CompanyName;
+            });
+
+            document.getElementById("mainTitle").textContent = "Property Asset";
+            document.getElementById("mainSubtitle").textContent = propertyName;
+            document.getElementById("mainContent").innerHTML = `
+                <div class="text-slate-200 font-mono text-xs mb-2">${propertyName}</div>
+                <div class="text-brand-textMuted">Owning Entity: <span class="text-blue-400 font-semibold cursor-pointer" onclick="handleNodeClick('${owningCompany.replace(/'/g, "\\'")}','company')">${owningCompany}</span></div>
+            `;
+        }
+
+        function updateChargeSidebar(chargeIdLabel) {
+            document.getElementById("mainTitle").textContent = "Charge Record";
+            document.getElementById("mainSubtitle").textContent = chargeIdLabel;
+            document.getElementById("mainContent").innerHTML = `<div class="text-slate-200 font-mono text-xs">${chargeIdLabel}</div>`;
+        }
+
+        function updateLenderSidebar(lenderName) {
+            document.getElementById("mainTitle").textContent = "Secured Lender";
+            document.getElementById("mainSubtitle").textContent = lenderName;
+            document.getElementById("mainContent").innerHTML = `<div class="text-slate-200 font-medium">${lenderName}</div>`;
+        }
+    </script>
 </body>
 </html>
