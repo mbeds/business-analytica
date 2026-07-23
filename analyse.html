@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +57,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <span class="text-xl font-bold tracking-tight text-white">Business <span class="text-blue-500">Analytica</span></span>
-                <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded font-mono">Analysis GUI v2.7</span>
+                <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded font-mono">Analysis GUI v2.8</span>
             </div>
             <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-brand-textMuted">
                 <a href="https://github.com/mbeds/business-analytica/blob/main/CARDIFF.csv" target="_blank" class="hover:text-white transition-colors">Cardiff Dataset[cite: 1]</a>
@@ -82,14 +83,15 @@
         <div class="bg-brand-card border border-brand-border rounded-xl p-5 shadow-xl flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div class="flex flex-wrap items-center gap-4">
                 <div>
-                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">Select Analysis Module</label>
-                    <select id="analysisModule" class="bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500">
-                        <option>Perfect Storm (High Priority)</option>
-                        <option>Terminal Distress & High Equity</option>
-                        <option>Succession Targets (Age 68+)</option>
-                        <option>HMRC Pressure & Overdue Accounts</option>
-                        <option>The 2026 Rate Cliff</option>
-                        <option>High-Leverage Assets & Debt Gearing</option>
+                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">SIC Code Filter</label>
+                    <select id="sicFilter" class="bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 font-mono">
+                        <option value="ALL">ALL SIC CODES</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">Company Number Filter</label>
+                    <select id="companyNumberFilter" class="bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 font-mono">
+                        <option value="ALL">ALL COMPANY NUMBERS</option>
                     </select>
                 </div>
                 <div>
@@ -97,10 +99,6 @@
                     <select id="companyFilter" class="bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500 font-mono">
                         <option value="ALL">ALL COMPANIES</option>
                     </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">Active Data Source</label>
-                    <input type="text" id="activeSourceLabel" value="CARDIFF.csv[cite: 1]" readonly class="bg-brand-dark/50 border border-brand-border text-brand-textMuted text-sm rounded-lg px-3 py-2 font-mono w-44">
                 </div>
             </div>
             <div class="flex items-center gap-3 self-end lg:self-auto">
@@ -138,7 +136,7 @@
                             <span class="count text-[11px] text-brand-textMuted font-mono" id="mainSubtitle">Select a node</span>
                         </div>
                         <div class="accordion-content p-4 text-xs border-t border-brand-border">
-                            <div id="mainContent" class="text-brand-textMuted">Click any node in the relationship graph to analyze its property matrix, directors, and active debt chargers.</div>
+                            <div id="mainContent" class="text-brand-textMuted">Click any node in the relationship graph to analyze its spreadsheet record properties, company address, and identifiers.</div>
                         </div>
                     </div>
 
@@ -212,6 +210,7 @@
                     <thead>
                         <tr class="border-b border-brand-border text-xs font-semibold text-brand-textMuted uppercase tracking-wider bg-brand-dark/20 sticky top-0 backdrop-blur z-10">
                             <th class="px-6 py-3.5 cursor-pointer hover:text-white" data-sort="CompanyName">Company Name & ID</th>
+                            <th class="px-6 py-3.5 cursor-pointer hover:text-white" data-sort="CompanyNumber">Company Number</th>
                             <th class="px-6 py-3.5 cursor-pointer hover:text-white" data-sort="Industry">SIC Code</th>
                             <th class="px-6 py-3.5 cursor-pointer hover:text-white" data-sort="CompanyStatus">Status</th>
                             <th class="px-6 py-3.5 cursor-pointer hover:text-white" data-sort="Properties">Properties</th>
@@ -252,7 +251,6 @@
         let currentType = null;
         let svg, g, linkSelection, nodeSelection, labelSelection;
 
-        // Automatically load default CARDIFF dataset on startup if available or handle upload
         window.addEventListener("DOMContentLoaded", () => {
             loadDefaultDataset();
         });
@@ -280,7 +278,6 @@
             const file = e.target.files[0];
             if(!file) return;
             
-            document.getElementById("activeSourceLabel").value = file.name;
             document.getElementById("footerSourceInfo").textContent = `Analysis Engine v5.15 • Datasource: ${file.name}`;
 
             Papa.parse(file, {
@@ -297,30 +294,57 @@
 
         function processDatasetLoaded(sourceName) {
             renderSummaryTable();
-            populateCompanyFilter();
+            populateFilters();
             renderMainVisual();
             updateGlobalMetrics();
         }
 
         document.getElementById("runAnalysisBtn").addEventListener("click", () => {
             const selectedCompany = document.getElementById("companyFilter").value;
-            renderMainVisual(selectedCompany);
+            const selectedSic = document.getElementById("sicFilter").value;
+            const selectedCompNum = document.getElementById("companyNumberFilter").value;
+            renderMainVisual(selectedCompany, selectedSic, selectedCompNum);
         });
 
-        /* COMPANY FILTER */
-        function populateCompanyFilter() {
-            const select = document.getElementById("companyFilter");
-            select.innerHTML = "<option value='ALL'>ALL COMPANIES</option>";
+        /* FILTERS POPULATION */
+        function populateFilters() {
+            const compSelect = document.getElementById("companyFilter");
+            const sicSelect = document.getElementById("sicFilter");
+            const numSelect = document.getElementById("companyNumberFilter");
+
+            compSelect.innerHTML = "<option value='ALL'>ALL COMPANIES</option>";
+            sicSelect.innerHTML = "<option value='ALL'>ALL SIC CODES</option>";
+            numSelect.innerHTML = "<option value='ALL'>ALL COMPANY NUMBERS</option>";
+
+            const sicSet = new Set();
+            const numSet = new Set();
 
             dataset.forEach(row => {
-                if(!row.CompanyName) return;
-                const opt = document.createElement("option");
-                opt.value = row.CompanyName;
-                opt.textContent = row.CompanyName;
-                select.appendChild(opt);
+                if(row.CompanyName) {
+                    const opt = document.createElement("option");
+                    opt.value = row.CompanyName;
+                    opt.textContent = row.CompanyName;
+                    compSelect.appendChild(opt);
+                }
+                if(row.Industry) sicSet.add(row.Industry);
+                // Check multiple possible key names for company number from spreadsheet schemas
+                const compNum = row.CompanyNumber || row.Company_Number || row.RegNumber;
+                if(compNum) numSet.add(compNum);
             });
 
-            select.onchange = () => renderMainVisual(select.value);
+            sicSet.forEach(sic => {
+                const opt = document.createElement("option");
+                opt.value = sic;
+                opt.textContent = sic;
+                sicSelect.appendChild(opt);
+            });
+
+            numSet.forEach(num => {
+                const opt = document.createElement("option");
+                opt.value = num;
+                opt.textContent = num;
+                numSelect.appendChild(opt);
+            });
         }
 
         /* GLOBAL METRICS */
@@ -362,6 +386,7 @@
 
                 return {
                     CompanyName: row.CompanyName || "Unknown",
+                    CompanyNumber: row.CompanyNumber || row.Company_Number || row.RegNumber || "N/A",
                     Industry: row.Industry || "",
                     CompanyStatus: row.CompanyStatus || "",
                     Properties: props.length,
@@ -386,6 +411,7 @@
                 tr.className = "hover:bg-slate-800/40 transition-colors cursor-pointer";
                 tr.innerHTML = `
                     <td class="px-6 py-4 font-medium text-white" onclick="handleNodeClick('${r.CompanyName.replace(/'/g, "\\'")}','company')">${r.CompanyName}</td>
+                    <td class="px-6 py-4 text-slate-300 font-mono">${r.CompanyNumber}</td>
                     <td class="px-6 py-4 text-slate-300">${r.Industry}</td>
                     <td class="px-6 py-4"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-xs">${r.CompanyStatus}</span></td>
                     <td class="px-6 py-4 font-mono text-slate-300">${r.Properties}</td>
@@ -428,7 +454,7 @@
         }
 
         /* MAIN GRAPH */
-        function renderMainVisual(filterCompany = "ALL") {
+        function renderMainVisual(filterCompany = "ALL", filterSic = "ALL", filterCompNum = "ALL") {
             const div = document.getElementById("mainVisual");
             div.innerHTML = "";
 
@@ -443,6 +469,9 @@
 
             dataset.forEach(row => {
                 if (filterCompany !== "ALL" && row.CompanyName !== filterCompany) return;
+                if (filterSic !== "ALL" && row.Industry !== filterSic) return;
+                const rowCompNum = row.CompanyNumber || row.Company_Number || row.RegNumber;
+                if (filterCompNum !== "ALL" && rowCompNum !== filterCompNum) return;
 
                 const companyName = row.CompanyName;
                 if(!companyName) return;
@@ -648,13 +677,19 @@
             try { directors = JSON.parse((row.BusinessStructure || "").replace(/'/g, '"')); } catch {}
             try { charges = JSON.parse((row.RawCharges || "").replace(/'/g, '"')).items || []; } catch {}
 
+            const compNum = row.CompanyNumber || row.Company_Number || row.RegNumber || "N/A";
+            const sicCode = row.Industry || "N/A";
+            const address = row.RegAddress_AddressLine1 || row.Address || row.RegAddress_County || "N/A";
+
             document.getElementById("mainTitle").textContent = "Company Details";
             document.getElementById("mainSubtitle").textContent = companyName;
             document.getElementById("mainContent").innerHTML = `
                 <table class="w-full">
                     <tbody class="divide-y divide-brand-border">
                         <tr><td class="py-1 text-brand-textMuted font-semibold">Name</td><td class="py-1 text-white">${row.CompanyName}</td></tr>
-                        <tr><td class="py-1 text-brand-textMuted font-semibold">SIC Code</td><td class="py-1 text-slate-300 font-mono">${row.Industry || ""}</td></tr>
+                        <tr><td class="py-1 text-brand-textMuted font-semibold">Company Number</td><td class="py-1 text-slate-300 font-mono">${compNum}</td></tr>
+                        <tr><td class="py-1 text-brand-textMuted font-semibold">SIC Code</td><td class="py-1 text-slate-300 font-mono">${sicCode}</td></tr>
+                        <tr><td class="py-1 text-brand-textMuted font-semibold">Address</td><td class="py-1 text-slate-300">${address}</td></tr>
                         <tr><td class="py-1 text-brand-textMuted font-semibold">Status</td><td class="py-1 text-emerald-400">${row.CompanyStatus || ""}</td></tr>
                         <tr><td class="py-1 text-brand-textMuted font-semibold">Properties</td><td class="py-1 text-slate-300 font-mono">${props.length}</td></tr>
                         <tr><td class="py-1 text-brand-textMuted font-semibold">Charges</td><td class="py-1 text-blue-400 font-mono">${charges.length}</td></tr>
@@ -722,3 +757,5 @@
     </script>
 </body>
 </html>
+
+```
