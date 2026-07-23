@@ -88,6 +88,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       gap: 1.5rem;
       padding: 0;
       margin: 0;
+      align-items: center;
     }
 
     nav a {
@@ -295,6 +296,89 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       margin: 0;
     }
 
+    /* ECOSYSTEM / NETWORK SECTION - Professional Tying & Styling */
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .ecosystem-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 1.75rem;
+      border-radius: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ecosystem-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+      opacity: 0.4;
+      transition: opacity 0.25s ease;
+    }
+
+    .ecosystem-card:hover {
+      border-color: var(--border-soft);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(255,0,60,0.15);
+    }
+
+    .ecosystem-card:hover::before {
+      opacity: 1;
+    }
+
+    .ecosystem-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-soft);
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+
+    .ecosystem-card h3 {
+      font-size: 1.2rem;
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      color: var(--text-main);
+    }
+
+    .ecosystem-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .ecosystem-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--accent-soft);
+      margin-top: 1.25rem;
+      font-weight: 500;
+      transition: gap 0.2s ease;
+    }
+
+    .ecosystem-card:hover .ecosystem-link {
+      gap: 0.6rem;
+    }
+
     /* CONTACT SECTION */
     #contact {
       background: var(--card-bg);
@@ -382,6 +466,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><a href="#research">Data Research</a></li>
         <li><a href="#outputs">Analytical Outputs</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="#ecosystem">Ecosystem</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -514,12 +599,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ECOSYSTEM NETWORK -->
+<section id="ecosystem">
+  <h2>Ecosystem Network</h2>
+  <p>
+    Business Analytica operates in close alignment with specialized R&D initiatives, threat research divisions, and advanced testing infrastructure.
+  </p>
+
+  <div class="ecosystem-grid">
+    <a href="https://www.marchlandlabs.online" target="_blank" class="ecosystem-card">
+      <div>
+        <div class="ecosystem-tag">AI Research & Intelligence</div>
+        <h3>Marchland Labs</h3>
+        <p>Advanced graph RAG systems, cognitive memory architecture, and complex anomaly pattern analysis models.</p>
+      </div>
+      <span class="ecosystem-link">Explore Labs &rarr;</span>
+    </a>
+
+    <a href="https://ukcybersecuritytesting.co.uk/" target="_blank" class="ecosystem-card">
+      <div>
+        <div class="ecosystem-tag">Infrastructure Testing</div>
+        <h3>UK Cybersecurity Testing</h3>
+        <p>Rigorous vulnerability assessments, defensive security evaluations, and hardened data pipeline protection.</p>
+      </div>
+      <span class="ecosystem-link">Review Security &rarr;</span>
+    </a>
+
+    <a href="https://www.red-dragon-security.com" target="_blank" class="ecosystem-card">
+      <div>
+        <div class="ecosystem-tag">Threat Operations</div>
+        <h3>Red Dragon Security</h3>
+        <p>Specialized intelligence operations, tactical defense systems, and comprehensive risk mitigation frameworks.</p>
+      </div>
+      <span class="ecosystem-link">View Operations &rarr;</span>
+    </a>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <h2>Contact</h2>
   <p>
-    General: <a href="mailto:info@business-analytica.com">info@business-analytica.com</a><br>
-    Enquiries: <a href="mailto:enquiries@business-analytica.com">enquiries@business-analytica.com</a>
+    General Inquiries: <a href="mailto:info@business-analytica.com">info@business-analytica.com</a>
   </p>
 </section>
 
