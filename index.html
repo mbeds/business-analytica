@@ -216,18 +216,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 
     /* GRID SYSTEM */
-    .grid-3,
-    .grid-4 {
+    .grid-3 {
       display: grid;
       gap: 1.5rem;
-    }
-
-    .grid-3 {
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-
-    .grid-4 {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 
     .card {
@@ -380,27 +372,65 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       gap: 0.6rem;
     }
 
-    /* CONTACT SECTION */
-    #contact {
+    /* DIRECT CONTACT CARD */
+    .contact-card {
       background: var(--card-bg);
-      border: 1px solid rgba(255,255,255,0.06);
       padding: 2.5rem;
       border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      margin-top: 4rem;
     }
 
-    #contact p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      margin-bottom: 0;
+    .contact-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
     }
 
-    #contact a {
-      color: var(--accent-soft);
+    .contact-card > p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-channels {
+      display: grid;
+      gap: 0.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #050505;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
       text-decoration: none;
+      color: var(--text-main);
+      transition: all 0.2s ease;
     }
 
-    #contact a:hover {
-      text-decoration: underline;
+    .channel-item:hover {
+      border-color: var(--accent-blue);
+      background: rgba(56,189,248,0.05);
+      transform: translateY(-1px);
+    }
+
+    .channel-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .channel-value {
+      font-size: 0.95rem;
+      color: var(--accent-soft);
+      font-weight: 500;
     }
 
     /* MOBILE BREAKPOINTS */
@@ -423,7 +453,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         font-size: 2rem;
       }
 
-      .about-professional, #contact {
+      .about-professional, .contact-card {
         padding: 1.25rem;
       }
     }
@@ -447,7 +477,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="top-nav">
   <div><strong>BUSINESS ANALYTICA</strong> // ENGLAND & WALES</div>
-  <div>📍 TELFORD HQ | ✉️ info@business-analytica.com | 📞 +44 (0) 20 7946 0900</div>
+  <div>📍 TELFORD HQ | ✉️ info@business-analytica.com | 📞 +44 7986 903415</div>
 </div>
 
 <header>
@@ -486,7 +516,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="services">
   <h2>Specialist Intelligence Services</h2>
   <p>
-    Targeted advisory and technical assessment built on deep corporate registry and asset tracing frameworks.
+    Targeted advisory and technical assessment built on deep corporate registry, asset tracing, and distressed property frameworks.
   </p>
 
   <div class="grid-3">
@@ -503,8 +533,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="card">
-      <h3>Market Intelligence</h3>
-      <p>Proactive monitoring of competitor activities, market density analysis, and identifying "stressed asset" opportunities before they hit the open market.</p>
+      <h3>Distressed Land & Assets</h3>
+      <p>Proactive tracking of distressed land opportunities, administrative filings, and off-market corporate portfolios before public exposure.</p>
       <div class="fee">£350+ <span style="font-size: 0.8rem; color: var(--text-muted);">/ LIST</span></div>
     </div>
   </div>
@@ -581,13 +611,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" class="contact-card">
   <h2>Contact Operations</h2>
-  <p>
-    Email: <a href="mailto:info@business-analytica.com">info@business-analytica.com</a><br>
-    Phone: <a href="tel:+442079460900">+44 (0) 20 7946 0900</a><br>
-    Secure Channels: Signal / Telegram / WhatsApp via direct dispatch.
-  </p>
+  <p>Connect directly with our advisory and technical response team through secure channels.</p>
+
+  <div class="contact-channels">
+    <a href="mailto:info@business-analytica.com" class="channel-item">
+      <span class="channel-label">Email</span>
+      <span class="channel-value">info@business-analytica.com</span>
+    </a>
+    <a href="tel:+447986903415" class="channel-item">
+      <span class="channel-label">Phone</span>
+      <span class="channel-value">+44 7986 903415</span>
+    </a>
+    <a href="https://wa.me/447986903415" target="_blank" class="channel-item">
+      <span class="channel-label">WhatsApp</span>
+      <span class="channel-value">Message Secure Desk</span>
+    </a>
+    <a href="https://signal.me/#u/businessanalytica" target="_blank" class="channel-item">
+      <span class="channel-label">Signal</span>
+      <span class="channel-value">@businessanalytica</span>
+    </a>
+    <a href="https://t.me/businessanalytica" target="_blank" class="channel-item">
+      <span class="channel-label">Telegram</span>
+      <span class="channel-value">@businessanalytica</span>
+    </a>
+  </div>
 </section>
 
 </main>
