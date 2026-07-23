@@ -6,10 +6,10 @@
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','G-Y4CZY1E6JH');</script>
+})(window,document,'script','dataLayer','GTM-NNRWPP3M');</script>
 <!-- End Google Tag Manager -->
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4CZY1E6JH"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LRQGY8MY8L"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
-  <title>Business Analytica – Structured Data Research & Intelligence</title>
+  <title>Business Analytica – Strategic OSINT & Structured Market Intelligence</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="canonical" href="https://www.business-analytica.com" />
 
@@ -31,6 +31,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       --bg-gradient: radial-gradient(circle at top left, #0f172a 0%, #111827 40%, #000000 100%);
       --accent-blue: #38bdf8;
       --accent-soft: #7dd3fc;
+      --gold-subtle: #b5935a;
       --text-main: #f5f5f5;
       --text-muted: #b3b3b3;
       --card-bg: rgba(10, 10, 10, 0.85);
@@ -44,6 +45,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       color: var(--text-main);
       font-family: var(--font-main);
       background-attachment: fixed;
+    }
+
+    .top-nav {
+      background: #020617;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0.8rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
     }
 
     header {
@@ -128,11 +139,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* HERO */
     .hero {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 2.5rem;
-      align-items: center;
-      margin-bottom: 5rem;
+      text-align: center;
+      padding: 5rem 1rem;
+      margin-bottom: 4rem;
+      background: radial-gradient(at top, #1e293b, #0f172a);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
     }
 
     .hero h1 {
@@ -151,14 +163,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero-subtitle {
       font-size: 1.15rem;
       color: var(--text-muted);
-      margin-bottom: 2rem;
+      margin: 0 auto 2rem auto;
       line-height: 1.6;
+      max-width: 800px;
     }
 
     .hero-actions {
       display: flex;
       gap: 1rem;
       margin-bottom: 1.5rem;
+      justify-content: center;
       flex-wrap: wrap;
     }
 
@@ -199,57 +213,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .btn-secondary:hover {
       border-color: var(--accent-blue);
       background: rgba(56,189,248,0.05);
-    }
-
-    .signup-card {
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-
-    .signup-card h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .signup-card > p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 1.2rem;
-    }
-
-    .signup-card form {
-      display: grid;
-      gap: 0.8rem;
-    }
-
-    input, select, textarea {
-      background: #050505;
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 0.75rem 0.9rem;
-      border-radius: 8px;
-      color: var(--text-main);
-      font-size: 0.9rem;
-      font-family: var(--font-main);
-      transition: border-color 0.2s;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-    }
-
-    textarea {
-      height: 100px;
-      resize: none;
-    }
-
-    select option {
-      background: #111;
-      color: var(--text-main);
     }
 
     /* GRID SYSTEM */
@@ -295,6 +258,57 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-size: 0.95rem;
       line-height: 1.5;
       margin: 0;
+    }
+
+    .fee {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.4rem;
+      color: #fff;
+      margin: 1.25rem 0 0 0;
+    }
+
+    /* INTELLIGENCE BENCHMARKS */
+    .benchmarks {
+      background: #020617;
+      padding: 3rem 2rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin: 4rem 0;
+      border-radius: 12px;
+    }
+    .benchmarks h2 {
+      color: var(--accent-blue);
+      margin-top: 0;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .data-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .data-point {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .data-point strong {
+      color: #fff;
+      display: block;
+      font-size: 1.2rem;
+    }
+
+    /* ABOUT SECTION */
+    .about-professional {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 4rem;
+      margin-top: 4rem;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
     }
 
     /* ECOSYSTEM NETWORK SECTION */
@@ -391,15 +405,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* MOBILE BREAKPOINTS */
     @media (max-width: 960px) {
-      .hero {
+      .about-professional {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2rem;
       }
-      
-      .hero h1 {
-        font-size: 2.4rem;
-      }
-
       nav {
         display: none;
       }
@@ -414,26 +423,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         font-size: 2rem;
       }
 
-      .signup-card, #contact {
+      .about-professional, #contact {
         padding: 1.25rem;
       }
     }
 
     footer {
       text-align: center;
-      padding: 1.5rem;
+      padding: 2rem;
       background: rgba(0,0,0,0.85);
       color: var(--text-muted);
       font-size: 0.85rem;
       border-top: 1px solid rgba(255,255,255,0.08);
     }
   </style>
-
-  <script>
-    function scrollToEnquiry() {
-      document.getElementById("assessmentForm").scrollIntoView({ behavior: "smooth" });
-    }
-  </script>
 </head>
 
 <body>
@@ -441,6 +444,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNRWPP3M"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+<div class="top-nav">
+  <div><strong>BUSINESS ANALYTICA</strong> // ENGLAND & WALES</div>
+  <div>📍 TELFORD HQ | ✉️ info@business-analytica.com | 📞 +44 (0) 20 7946 0900</div>
+</div>
 
 <header>
   <div class="nav-container">
@@ -450,8 +458,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <nav>
       <ul>
-        <li><a href="#research">Research</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="#benchmarks">Benchmarks</a></li>
+        <li><a href="#about">Policy</a></li>
         <li><a href="#ecosystem">Ecosystem</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -463,101 +472,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- HERO -->
 <section class="hero">
-  <div>
-    <h1>Structured Data Research &<br><span>Market Intelligence</span></h1>
-    <p class="hero-subtitle">
-      Business Analytica delivers rigorous data analysis across corporate registries, financial filings, property data, and complex market intelligence frameworks.
-    </p>
-
-    <div class="hero-actions">
-      <a href="#services" class="btn-primary">View Frameworks</a>
-      <button class="btn-secondary" onclick="scrollToEnquiry()">Request Research</button>
-    </div>
-  </div>
-
-  <div class="signup-card">
-    <h2>Request Data Analysis</h2>
-    <p>Submit your parameters to coordinate with our research and data analytics desk.</p>
-
-    <form id="assessmentForm">
-      <input type="text" name="name" placeholder="Name" required />
-      <input type="text" name="company" placeholder="Company" />
-      <input type="tel" name="phone" placeholder="Phone" />
-      <input type="email" name="email" placeholder="Email" required />
-
-      <textarea name="enquiry" placeholder="Outline your data parameters, filing scope, or analytical requirements" required></textarea>
-
-      <select name="interest">
-        <option value="">Research Focus</option>
-        <option>Corporate Filings & Registry Analysis</option>
-        <option>Property & Asset Mapping</option>
-        <option>Market Intelligence & Trend Frameworks</option>
-        <option>Bespoke Data Processing</option>
-        <option>Other</option>
-      </select>
-
-      <button class="btn-primary" type="submit" style="width: 100%; border-radius: 8px; margin-top: 0.2rem;">Submit Inquiry</button>
-    </form>
-  </div>
-</section>
-
-<!-- RESEARCH DOMAINS -->
-<section id="research">
-  <h2>Data Research & Analysis</h2>
-  <p>
-    Comprehensive extraction, correlation, and structuring of complex business and asset data.
+  <h1>Strategic <span>Business OSINT</span> & Due Diligence</h1>
+  <p class="hero-subtitle">
+    Providing mid-sized law firms, investors, and entrepreneurs with high-fidelity corporate intelligence. We map the hidden networks that standard due diligence misses across England and Wales.
   </p>
-
-  <div class="grid-3">
-    <div class="card">
-      <h3>Corporate Filings</h3>
-      <p>Deep-dive structuring and validation across historical company records, registry entries, and ownership trails.</p>
-    </div>
-
-    <div class="card">
-      <h3>Asset Mapping</h3>
-      <p>Correlating property registries, commercial footprints, and physical infrastructure asset portfolios.</p>
-    </div>
-
-    <div class="card">
-      <h3>Market Frameworks</h3>
-      <p>Building tailored analytical pipelines to surface macro trends, sector data anomalies, and risk signals.</p>
-    </div>
+  <div class="hero-actions">
+    <a href="mailto:info@business-analytica.com" class="btn-primary">Request Investigative Consultation</a>
+    <a href="#services" class="btn-secondary">View Frameworks</a>
   </div>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
-  <h2>Analytical Services</h2>
+  <h2>Specialist Intelligence Services</h2>
   <p>
-    Specialized intelligence gathering and structured information audits tailored for strategic decision-making.
+    Targeted advisory and technical assessment built on deep corporate registry and asset tracing frameworks.
   </p>
 
-  <div class="grid-4">
+  <div class="grid-3">
     <div class="card">
-      <h3>Registry Audits</h3>
-      <p>Detailed verification of legal entities, corporate hierarchies, and directorship records.</p>
+      <h3>Forensic Asset Tracing</h3>
+      <p>Uncovering concealed residential and commercial properties, corporate interests, and high-value assets across England and Wales for debt recovery and litigation.</p>
+      <div class="fee">£750 - £1,500 <span style="font-size: 0.8rem; color: var(--text-muted);">/ REPORT</span></div>
     </div>
 
     <div class="card">
-      <h3>Intelligence Retainers</h3>
-      <p>Continuous monitoring of target corporate structures, registry updates, and filings.</p>
+      <h3>Corporate Due Diligence</h3>
+      <p>Mitigating risk under regulatory frameworks. Mapping circular ownership, undisclosed affiliations, and professional intermediary networks.</p>
+      <div class="fee">£500 - £2,500 <span style="font-size: 0.8rem; color: var(--text-muted);">/ PROJECT</span></div>
     </div>
 
     <div class="card">
-      <h3>Bespoke Datasets</h3>
-      <p>Custom data extraction and cleaning tailored to unique research and compliance scopes.</p>
-    </div>
-
-    <div class="card">
-      <h3>Due Diligence Support</h3>
-      <p>Fact-checking and foundational background research for institutional transactions.</p>
+      <h3>Market Intelligence</h3>
+      <p>Proactive monitoring of competitor activities, market density analysis, and identifying "stressed asset" opportunities before they hit the open market.</p>
+      <div class="fee">£350+ <span style="font-size: 0.8rem; color: var(--text-muted);">/ LIST</span></div>
     </div>
   </div>
 </section>
 
+<!-- BENCHMARKS -->
+<section id="benchmarks" class="benchmarks">
+  <h2>Active Intelligence Benchmarks</h2>
+  <div class="data-points">
+    <div class="data-point"><strong>14.1M+ Nodes</strong>Corporate Entity Graph</div>
+    <div class="data-point"><strong>3.6M+ Profiles</strong>Directors & PSCs</div>
+    <div class="data-point"><strong>13.6M+ Titles</strong>Land & Property Registry</div>
+    <div class="data-point"><strong>England & Wales</strong>Primary Jurisdiction</div>
+  </div>
+</section>
+
+<!-- ABOUT / POLICY -->
+<section id="about" class="about-professional">
+  <div>
+    <h2>The "Gold Standard" Policy</h2>
+    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+      Our methodology combines high-scale data collection with human-driven, context-aware analysis. In an era of AI disinformation, we provide verified, audit-ready intelligence that stands up to professional scrutiny.
+    </p>
+    <p style="color: var(--text-muted); line-height: 1.6; margin: 0;">
+      Based in Telford, we offer direct, face-to-face consultancy for firms in the West Midlands, ensuring your team has the strategic clarity needed to make informed, high-stakes decisions.
+    </p>
+  </div>
+  <div style="text-align: left;">
+    <p style="color: var(--accent-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Sectors Served</p>
+    <ul style="list-style: none; padding: 0; color: var(--text-muted); line-height: 1.8;">
+      <li>• Legal Counsel & Solicitors</li>
+      <li>• Private Equity & Investors</li>
+      <li>• Startups & Entrepreneurs</li>
+      <li>• Insolvency Practitioners</li>
+    </ul>
+  </div>
+</section>
+
 <!-- ECOSYSTEM NETWORK -->
-<section id="ecosystem">
+<section id="ecosystem" style="margin-top: 4rem;">
   <h2>Ecosystem Network</h2>
   <p>
     Business Analytica operates in close coordination with specialized threat intelligence groups, security auditors, and AI research labs.
@@ -597,14 +584,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="contact">
   <h2>Contact Operations</h2>
   <p>
-    General Inquiries: <a href="mailto:info@business-analytica.com">info@business-analytica.com</a>
+    Email: <a href="mailto:info@business-analytica.com">info@business-analytica.com</a><br>
+    Phone: <a href="tel:+442079460900">+44 (0) 20 7946 0900</a><br>
+    Secure Channels: Signal / Telegram / WhatsApp via direct dispatch.
   </p>
 </section>
 
 </main>
 
 <footer>
-  Business Analytica © 2026 · Structured Data Research & Intelligence
+  &copy; 2026 Business Analytica. All services conducted in compliance with UK GDPR and the Data Protection Act 2018.<br>
+  Independent. Professional. Accurate.
 </footer>
 
 </body>
