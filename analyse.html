@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cypher Analysis Terminal | Business Analytica</title>
+    <title>Analysis Terminal | Business Analytica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
@@ -30,7 +30,6 @@
         body { font-family: 'Inter', sans-serif; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Custom scrollbar for summary and containers */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #0B0F17; }
         ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 3px; }
@@ -57,7 +56,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <span class="text-xl font-bold tracking-tight text-white">Business <span class="text-blue-500">Analytica</span></span>
-                <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded font-mono">Analysis GUI v2.6</span>
+                <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded font-mono">Analysis GUI v2.7</span>
             </div>
             <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-brand-textMuted">
                 <a href="https://github.com/mbeds/business-analytica/blob/main/CARDIFF.csv" target="_blank" class="hover:text-white transition-colors">Cardiff Dataset[cite: 1]</a>
@@ -66,11 +65,11 @@
             </nav>
             <div class="flex items-center gap-3">
                 <label for="csvUpload" class="cursor-pointer bg-brand-dark hover:bg-brand-border border border-brand-border text-xs text-slate-300 px-3 py-1.5 rounded-lg transition-colors font-mono">
-                    Upload CSV
+                    Upload Spreadsheet (CSV)
                 </label>
                 <input type="file" id="csvUpload" accept=".csv" class="hidden">
                 <span class="text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-lg font-medium flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Database Connected
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Data Source Active
                 </span>
             </div>
         </div>
@@ -84,7 +83,7 @@
             <div class="flex flex-wrap items-center gap-4">
                 <div>
                     <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">Select Analysis Module</label>
-                    <select class="bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500">
+                    <select id="analysisModule" class="bg-brand-dark border border-brand-border text-slate-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-blue-500">
                         <option>Perfect Storm (High Priority)</option>
                         <option>Terminal Distress & High Equity</option>
                         <option>Succession Targets (Age 68+)</option>
@@ -100,24 +99,15 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">Source Target Source</label>
-                    <input type="text" value="CARDIFF.csv[cite: 1]" readonly class="bg-brand-dark/50 border border-brand-border text-brand-textMuted text-sm rounded-lg px-3 py-2 font-mono w-44">
+                    <label class="block text-xs font-medium text-brand-textMuted uppercase tracking-wider mb-1">Active Data Source</label>
+                    <input type="text" id="activeSourceLabel" value="CARDIFF.csv[cite: 1]" readonly class="bg-brand-dark/50 border border-brand-border text-brand-textMuted text-sm rounded-lg px-3 py-2 font-mono w-44">
                 </div>
             </div>
             <div class="flex items-center gap-3 self-end lg:self-auto">
-                <button class="bg-brand-dark hover:bg-brand-border border border-brand-border text-xs font-medium px-4 py-2.5 rounded-lg transition-colors text-slate-300 font-mono">
-                    View Query Statement
-                </button>
-                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-blue-500/20">
-                    Execute Query
+                <button id="runAnalysisBtn" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-blue-500/20 font-mono">
+                    Run Analysis Filter
                 </button>
             </div>
-        </div>
-
-        <!-- Cypher Code Preview Drawer -->
-        <div class="bg-brand-dark border border-brand-border rounded-xl p-4 font-mono text-xs text-blue-300 overflow-x-auto shadow-inner">
-            <div class="text-brand-textMuted mb-1 text-[10px] uppercase tracking-wider">// Active Execution Statement (Linked to Cardiff Entity Graph)</div>
-            <code>MATCH (p:Property)&lt;-[rel_title:HOLDS_TITLE]-(c:Company)&lt;-[rel_role]-(d:Person) WHERE toLower(COALESCE(c.RegAddress_County, '')) CONTAINS 'cardiff' RETURN c.CompanyName AS Company_Name, c.Industry AS SIC, c.CompanyStatus AS Status, collect(p.Property_Address) AS Properties</code>
         </div>
 
         <!-- Top Section: Interactive Visual Map & Inspector Sidebar -->
@@ -236,8 +226,8 @@
 
             <!-- Terminal Pagination footer -->
             <div class="px-6 py-4 border-t border-brand-border bg-brand-dark/20 flex items-center justify-between text-xs text-brand-textMuted">
-                <span>Analysis Engine v5.15 • Datasource: CARDIFF.csv[cite: 1]</span>
-                <span class="text-blue-400 font-mono">Ready for execution</span>
+                <span id="footerSourceInfo">Analysis Engine v5.15 • Datasource: CARDIFF.csv[cite: 1]</span>
+                <span class="text-blue-400 font-mono">Spreadsheet Parsed Successfully</span>
             </div>
         </div>
 
@@ -248,7 +238,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-textMuted">
             <p>&copy; 2026 Business Analytica. Data Workspace.</p>
             <div class="flex space-x-6">
-                <a href="https://github.com/mbeds/business-analytica/blob/main/CARDIFF.csv" target="_blank" class="hover:text-white transition-colors">Cardiff Repository[cite: 1]</a>
+                <a href="https://github.com/mbeds/business-analytica/blob/main/CARDIFF.csv" target="_blank" class="hover:text-white transition-colors">Repository[cite: 1]</a>
                 <a href="https://www.business-analytica.com" class="hover:text-white transition-colors">API Access</a>
             </div>
         </div>
@@ -264,6 +254,10 @@
 
         // Automatically load default CARDIFF dataset on startup if available or handle upload
         window.addEventListener("DOMContentLoaded", () => {
+            loadDefaultDataset();
+        });
+
+        function loadDefaultDataset() {
             const defaultUrl = "https://raw.githubusercontent.com/mbeds/business-analytica/main/CARDIFF.csv";
             Papa.parse(defaultUrl, {
                 download: true,
@@ -272,32 +266,45 @@
                 complete: function(results) {
                     if(results.data && results.data.length > 0) {
                         dataset = results.data;
-                        renderSummaryTable();
-                        populateCompanyFilter();
-                        renderMainVisual();
-                        updateGlobalMetrics();
+                        processDatasetLoaded("CARDIFF.csv");
                     }
                 },
                 error: function(err) {
                     console.log("Auto-load note: Upload CSV manually if CORS restricts direct fetch.", err);
                 }
             });
-        });
+        }
 
-        /* CSV LOAD */
+        /* CSV UPLOAD HANDLER */
         document.getElementById("csvUpload").addEventListener("change", function(e) {
-            if(!e.target.files[0]) return;
-            Papa.parse(e.target.files[0], {
+            const file = e.target.files[0];
+            if(!file) return;
+            
+            document.getElementById("activeSourceLabel").value = file.name;
+            document.getElementById("footerSourceInfo").textContent = `Analysis Engine v5.15 • Datasource: ${file.name}`;
+
+            Papa.parse(file, {
                 header: true,
                 skipEmptyLines: true,
                 complete: function(results) {
-                    dataset = results.data;
-                    renderSummaryTable();
-                    populateCompanyFilter();
-                    renderMainVisual();
-                    updateGlobalMetrics();
+                    if(results.data && results.data.length > 0) {
+                        dataset = results.data;
+                        processDatasetLoaded(file.name);
+                    }
                 }
             });
+        });
+
+        function processDatasetLoaded(sourceName) {
+            renderSummaryTable();
+            populateCompanyFilter();
+            renderMainVisual();
+            updateGlobalMetrics();
+        }
+
+        document.getElementById("runAnalysisBtn").addEventListener("click", () => {
+            const selectedCompany = document.getElementById("companyFilter").value;
+            renderMainVisual(selectedCompany);
         });
 
         /* COMPANY FILTER */
