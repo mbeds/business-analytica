@@ -19,9 +19,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
-  <title>Analyse Engine – Business Analytica OSINT Platform</title>
+  <title>Business Analytica – Strategic OSINT & Structured Market Intelligence</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="canonical" href="https://www.business-analytica.com/analyse.html" />
+  <link rel="canonical" href="https://www.business-analytica.com" />
 
   <!-- HubSpot Tracking Code (EU) -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/148894722.js"></script>
@@ -73,8 +73,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: 0.95rem;
-      color: var(--text-main);
-      text-decoration: none;
     }
 
     .logo-mark {
@@ -141,113 +139,120 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       max-width: 800px;
     }
 
-    /* ENGINE CARD / INTERFACE WRAPPER */
-    .engine-wrapper {
-      background: var(--card-bg);
+    /* REVOLVING HERO SLIDER */
+    .hero-slider {
+      position: relative;
+      background: radial-gradient(at top, #1e293b, #0f172a);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 16px;
-      padding: 2.5rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      backdrop-filter: blur(12px);
+      overflow: hidden;
       margin-bottom: 4rem;
+      padding: 4rem 1rem;
+      text-align: center;
     }
 
-    .engine-header {
+    .hero-slides-container {
+      position: relative;
+      min-height: 280px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding-bottom: 1.5rem;
+      justify-content: center;
     }
 
-    .engine-header h1 {
-      font-size: 2rem;
-      margin: 0;
-      letter-spacing: -0.02em;
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      visibility: visible;
+      position: relative;
+    }
+
+    .hero-slide h1 {
+      font-size: 2.75rem;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-slide h1 span {
       background: linear-gradient(135deg, #fff 30%, var(--accent-soft));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(56,189,248,0.1);
-      border: 1px solid var(--border-soft);
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      color: var(--accent-soft);
-      font-weight: 500;
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin: 0 auto 2rem auto;
+      line-height: 1.6;
+      max-width: 800px;
     }
 
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--accent-blue);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--accent-blue);
-    }
-
-    /* FORM STYLING */
-    .analysis-form {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .form-group {
+    .hero-actions {
       display: flex;
-      flex-direction: column;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Slider Dots / Controls */
+    .hero-dots {
+      display: flex;
       gap: 0.5rem;
+      justify-content: center;
+      margin-top: 2rem;
     }
 
-    label {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-main);
-      letter-spacing: 0.02em;
+    .hero-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
     }
 
-    input[type="text"],
-    select,
-    textarea {
-      background: #050505;
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 0.9rem 1rem;
-      border-radius: 10px;
-      color: var(--text-main);
-      font-size: 0.95rem;
-      font-family: var(--font-main);
-      transition: border-color 0.2s, box-shadow 0.2s;
+    .hero-dot.active {
+      background: var(--accent-blue);
+      transform: scale(1.2);
     }
 
-    input[type="text"]:focus,
-    select:focus,
-    textarea:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 15px rgba(56,189,248,0.2);
-    }
-
-    .btn-primary {
-      padding: 0.9rem 2rem;
+    .btn-primary,
+    .btn-secondary {
+      padding: 0.8rem 1.8rem;
       border-radius: 999px;
       font-size: 0.95rem;
-      font-weight: 600;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.2s ease;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-soft));
-      border: none;
-      color: #0f172a;
-      box-shadow: 0 0 20px rgba(56,189,248,0.4);
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: fit-content;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-soft));
+      border: none;
+      color: #0f172a;
+      font-weight: 600;
+      box-shadow: 0 0 20px rgba(56,189,248,0.4);
     }
 
     .btn-primary:hover {
@@ -256,28 +261,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       box-shadow: 0 0 25px rgba(56,189,248,0.6);
     }
 
-    /* RESULTS OUTPUT AREA */
-    .results-container {
-      margin-top: 2rem;
-      background: #020617;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 1.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      min-height: 150px;
-      max-height: 400px;
-      overflow-y: auto;
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border-soft);
+      color: var(--text-main);
     }
 
-    .results-container pre {
-      margin: 0;
-      white-space: pre-wrap;
-      word-wrap: break-word;
+    .btn-secondary:hover {
+      border-color: var(--accent-blue);
+      background: rgba(56,189,248,0.05);
     }
 
-    /* GRID SYSTEM FOR QUICK FEEDS */
+    /* GRID SYSTEM */
     .grid-3 {
       display: grid;
       gap: 1.5rem;
@@ -314,6 +309,98 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       margin: 0;
     }
 
+    .fee {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.3rem;
+      color: #fff;
+      margin: 1.25rem 0 0 0;
+    }
+
+    /* INTELLIGENCE BENCHMARKS */
+    .benchmarks {
+      background: #020617;
+      padding: 2.5rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin: 4rem 0;
+      border-radius: 12px;
+    }
+    .benchmarks h2 {
+      color: var(--accent-blue);
+      margin-top: 0;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .data-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .data-point {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .data-point strong {
+      color: #fff;
+      display: block;
+      font-size: 1.2rem;
+    }
+
+    /* ABOUT SECTION */
+    .about-professional {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 3rem;
+      margin-top: 4rem;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ECOSYSTEM NETWORK SECTION */
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .ecosystem-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 1.75rem;
+      border-radius: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ecosystem-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+      opacity: 0.4;
+      transition: opacity 0.25s ease;
+    }
+
+    .ecosystem-card:hover {
+      border-color: var(--border-soft);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(56,189,248,0.15);
+    }
+
     .ecosystem-tag {
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -323,7 +410,80 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-weight: 600;
     }
 
-    /* RESPONSIVE BREAKPOINTS */
+    .ecosystem-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--accent-soft);
+      margin-top: 1.25rem;
+      font-weight: 500;
+      transition: gap 0.2s ease;
+    }
+
+    .ecosystem-card:hover .ecosystem-link {
+      gap: 0.6rem;
+    }
+
+    /* DIRECT CONTACT CARD */
+    .contact-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      margin-top: 4rem;
+    }
+
+    .contact-channels {
+      display: grid;
+      gap: 0.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #050505;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+    }
+
+    .channel-item:hover {
+      border-color: var(--accent-blue);
+      background: rgba(56,189,248,0.05);
+      transform: translateY(-1px);
+    }
+
+    .channel-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .channel-value {
+      font-size: 0.9rem;
+      color: var(--accent-soft);
+      font-weight: 500;
+    }
+
+    /* RESPONSIVE BREAKPOINTS & MOBILE OPTIMISATION */
+    @media (max-width: 960px) {
+      .about-professional {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.75rem;
+      }
+    }
+
     @media (max-width: 768px) {
       .mobile-menu-toggle {
         display: block;
@@ -351,8 +511,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         text-align: center;
       }
 
-      .engine-wrapper {
-        padding: 1.5rem;
+      .hero-slider {
+        padding: 3rem 1rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero-slide h1 {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.95rem;
+      }
+
+      section h2 {
+        font-size: 1.6rem;
+      }
+
+      .contact-card, .benchmarks {
+        padding: 1.5rem 1rem;
       }
     }
 
@@ -376,20 +553,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header>
   <div class="nav-container">
-    <a href="/" class="logo">
+    <div class="logo">
       <div class="logo-mark"></div>
       Business Analytica
-    </a>
+    </div>
     <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
     <nav id="mainNav">
       <ul>
-        <li><a href="/analyse.html" style="color: var(--accent-soft);">Analyse</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#benchmarks">Benchmarks</a></li>
-        <li><a href="/#insights">Insights</a></li>
-        <li><a href="/#about">Policy</a></li>
-        <li><a href="/#ecosystem">Ecosystem</a></li>
-        <li><a href="/#contact">Contact</a></li>
+        <li><a href="/analyse.html">Analyse</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#benchmarks">Benchmarks</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#about">Policy</a></li>
+        <li><a href="#ecosystem">Ecosystem</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -397,83 +574,226 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main>
 
-  <!-- ANALYSE PLATFORM CORE INTERFACE -->
-  <div class="engine-wrapper">
-    <div class="engine-header">
-      <div>
-        <h1>Structured OSINT & Entity Analysis</h1>
-        <p style="color: var(--text-muted); margin: 0.5rem 0 0 0; font-size: 0.95rem;">
-          Query corporate registries, trace directorship networks, and verify asset footprints across England & Wales.
-        </p>
-      </div>
-      <div class="status-badge">
-        <span class="status-dot"></span> Graph Engine Online
+<!-- REVOLVING HERO SLIDER SECTION -->
+<section class="hero-slider">
+  <div class="hero-slides-container" id="heroSliderContainer">
+    
+    <!-- Slide 1: Strategic OSINT -->
+    <div class="hero-slide active">
+      <h1>Strategic <span>Business OSINT</span> & Due Diligence</h1>
+      <p class="hero-subtitle">
+        Providing mid-sized law firms, investors, and entrepreneurs with high-fidelity corporate intelligence across England & Wales, powered by structured analysis via <a href="/analyse.html" style="color: var(--accent-soft); text-decoration: underline;">analyse.html</a>.
+      </p>
+      <div class="hero-actions">
+        <a href="mailto:info@business-analytica.com" class="btn-primary">Request Consultation</a>
+        <a href="#services" class="btn-secondary">View Frameworks</a>
       </div>
     </div>
 
-    <form class="analysis-form" id="analysisForm" onsubmit="handleAnalysis(event)">
-      <div class="grid-3" style="grid-template-columns: 2fr 1fr;">
-        <div class="form-group">
-          <label for="targetQuery">Target Entity, Company Name, or Director</label>
-          <input type="text" id="targetQuery" placeholder="e.g., Acme Holdings Ltd or Registration Number" required />
-        </div>
-        <div class="form-group">
-          <label for="analysisType">Analysis Module</label>
-          <select id="analysisType">
-            <option value="ubo">UBO & Ownership Graph</option>
-            <option value="assets">Asset & Property Footprint</option>
-            <option value="solvency">Pre-Action Solvency Dossier</option>
-            <option value="network">Directorship Network Anomaly</option>
-          </select>
-        </div>
+    <!-- Slide 2: Forensic Asset Tracing -->
+    <div class="hero-slide">
+      <h1>Forensic <span>Asset Tracing</span> & Recovery</h1>
+      <p class="hero-subtitle">
+        Uncover concealed residential properties, commercial assets, and complex multi-layered corporate holdings before litigation or debt recovery proceedings.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Explore Asset Tracing</a>
+        <a href="tel:+447986903415" class="btn-secondary">Call Secure Desk</a>
       </div>
-
-      <div class="form-group">
-        <label for="additionalContext">Operational Parameters & Scope Notes (Optional)</label>
-        <textarea id="additionalContext" rows="3" placeholder="Specify historical range, specific nominee entities, or geographic constraints..."></textarea>
-      </div>
-
-      <button type="submit" class="btn-primary">Execute Structured Analysis</button>
-    </form>
-
-    <div class="results-container" id="resultsContainer">
-      <pre><code>// Awaiting query input... 
-// System ready for secure corporate graph traversal across England & Wales registry indices.</code></pre>
     </div>
+
+    <!-- Slide 3: Distressed Land & Assets -->
+    <div class="hero-slide">
+      <h1>Distressed Land & <span>Off-Market Portfolios</span></h1>
+      <p class="hero-subtitle">
+        Proactive tracking of distressed land opportunities, administrative filings, and corporate restructuring portfolios ahead of public exposure.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Inquire About Land Lists</a>
+        <a href="#insights" class="btn-secondary">Read Research Briefs</a>
+      </div>
+    </div>
+
   </div>
 
-  <!-- SUPPORTING CAPABILITIES -->
-  <section>
-    <h2>Integrated Pipeline Protocols</h2>
-    <p>The analysis engine leverages multi-tier verification frameworks to ensure audit-ready intelligence outputs.</p>
+  <!-- Slider Dots Navigation -->
+  <div class="hero-dots" id="heroDots">
+    <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+  </div>
+</section>
 
-    <div class="grid-3">
-      <div class="card">
-        <div class="ecosystem-tag">Node Traversal</div>
-        <h3>Circular Ownership Detection</h3>
-        <p>Automated identification of looping corporate shareholdings designed to obscure ultimate beneficial ownership (UBO).</p>
-      </div>
-      <div class="card">
-        <div class="ecosystem-tag">Registry Cross-Check</div>
-        <h3>HM Land Registry Integration</h3>
-        <p>Direct cross-referencing of corporate title deeds against known registered office addresses and beneficial portfolios.</p>
-      </div>
-      <div class="card">
-        <div class="ecosystem-tag">Compliance Ready</div>
-        <h3>ECCTA Audit Trails</h3>
-        <p>Strict adherence to the Economic Crime and Corporate Transparency Act standards for verified entity documentation.</p>
-      </div>
+<!-- SERVICES -->
+<section id="services">
+  <h2>Specialist Intelligence Services</h2>
+  <p>
+    Targeted advisory and technical assessment built on deep corporate registry, asset tracing, and distressed property frameworks.
+  </p>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>Forensic Asset Tracing</h3>
+      <p>Uncovering concealed residential and commercial properties, corporate interests, and high-value assets across England and Wales for debt recovery and litigation.</p>
+      <div class="fee">£750 - £1,500 <span style="font-size: 0.8rem; color: var(--text-muted);">/ REPORT</span></div>
     </div>
-  </section>
+
+    <div class="card">
+      <h3>Corporate Due Diligence</h3>
+      <p>Mitigating risk under regulatory frameworks. Mapping circular ownership, undisclosed affiliations, and professional intermediary networks.</p>
+      <div class="fee">£500 - £2,500 <span style="font-size: 0.8rem; color: var(--text-muted);">/ PROJECT</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Distressed Land & Assets</h3>
+      <p>Proactive tracking of distressed land opportunities, administrative filings, and off-market corporate portfolios before public exposure.</p>
+      <div class="fee">£350+ <span style="font-size: 0.8rem; color: var(--text-muted);">/ LIST</span></div>
+    </div>
+
+    <div class="card">
+      <h3>UBO & Beneficial Ownership Mapping</h3>
+      <p>Unmasking complex multi-layered offshore vehicles, nominee structures, and ultimate beneficial owners behind corporate entities.</p>
+      <div class="fee">£600 - £2,000 <span style="font-size: 0.8rem; color: var(--text-muted);">/ REPORT</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Litigation & Pre-Action Support</h3>
+      <p>Comprehensive background dossiers, debtor solvency profiling, and target asset verification to support legal counsel prior to filing.</p>
+      <div class="fee">£850+ <span style="font-size: 0.8rem; color: var(--text-muted);">/ DOSSIER</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Custom API & Data Feeds</h3>
+      <p>Tailored intelligence feeds, real-time registry alerts, and automated graph database analysis tailored to internal risk pipelines.</p>
+      <div class="fee">Custom <span style="font-size: 0.8rem; color: var(--text-muted);">/ SUBSCRIPTION</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENCHMARKS -->
+<section id="benchmarks" class="benchmarks">
+  <h2>Active Intelligence Benchmarks</h2>
+  <div class="data-points">
+    <div class="data-point"><strong>14.1M+ Nodes</strong>Corporate Entity Graph</div>
+    <div class="data-point"><strong>3.6M+ Profiles</strong>Directors & PSCs</div>
+    <div class="data-point"><strong>13.6M+ Titles</strong>Land & Property Registry</div>
+    <div class="data-point"><strong>England & Wales</strong>Primary Jurisdiction</div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section id="insights">
+  <h2>Industrial Use Cases</h2>
+  <p>Discover how structured corporate intelligence and OSINT frameworks drive high-stakes decision-making across core industries.</p>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="ecosystem-tag">Legal & Litigation</div>
+      <h3>Pre-Action Solvency & Asset Profiling</h3>
+      <p>Equipping solicitors and legal counsel with verified debtor asset maps and background intelligence prior to issuing statutory demands or court proceedings.</p>
+    </div>
+    <div class="card">
+      <div class="ecosystem-tag">Private Equity & M&A</div>
+      <h3>Deep Corporate Due Diligence & UBO Screening</h3>
+      <p>Uncovering hidden liabilities, complex cross-border ownership networks, and undisclosed directorship links to protect transactions from regulatory exposure.</p>
+    </div>
+    <div class="card">
+      <div class="ecosystem-tag">Property & Restructuring</div>
+      <h3>Off-Market Distressed Land & Asset Acquisition</h3>
+      <p>Identifying administrative filings, corporate restructuring triggers, and unlisted real estate portfolios ahead of mainstream market exposure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / POLICY -->
+<section id="about" class="about-professional">
+  <div>
+    <h2>The "Gold Standard" Policy</h2>
+    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+      Our methodology combines high-scale data collection with human-driven, context-aware analysis. In an era of AI disinformation, we provide verified, audit-ready intelligence that stands up to professional scrutiny.
+    </p>
+    <p style="color: var(--text-muted); line-height: 1.6; margin: 0;">
+      Based in Telford, we offer direct, face-to-face consultancy for firms in the West Midlands, ensuring your team has the strategic clarity needed to make informed, high-stakes decisions.
+    </p>
+  </div>
+  <div style="text-align: left;">
+    <p style="color: var(--accent-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Sectors Served</p>
+    <ul style="list-style: none; padding: 0; color: var(--text-muted); line-height: 1.8;">
+      <li>• Legal Counsel & Solicitors</li>
+      <li>• Private Equity & Investors</li>
+      <li>• Startups & Entrepreneurs</li>
+      <li>• Insolvency Practitioners</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ECOSYSTEM NETWORK -->
+<section id="ecosystem" style="margin-top: 4rem;">
+  <h2>Ecosystem Network</h2>
+  <p>
+    Operating in close coordination with specialized threat intelligence groups, security auditors, and AI research labs.
+  </p>
+
+  <div class="ecosystem-grid">
+    <a href="https://www.red-dragon-security.com" target="_blank" class="ecosystem-card">
+      <div>
+        <div class="ecosystem-tag">Threat Intelligence</div>
+        <h3>Red Dragon Security</h3>
+        <p>Advanced cyber defense, tactical intelligence, and adversary simulation operations.</p>
+      </div>
+      <span class="ecosystem-link">Explore Operations &rarr;</span>
+    </a>
+
+    <a href="https://ukcybersecuritytesting.co.uk/" target="_blank" class="ecosystem-card">
+      <div>
+        <div class="ecosystem-tag">Auditing & Compliance</div>
+        <h3>UK Cybersecurity Testing</h3>
+        <p>Independent security auditing, vulnerability assessments, and regulatory compliance checks.</p>
+      </div>
+      <span class="ecosystem-link">View Audits &rarr;</span>
+    </a>
+
+    <a href="https://www.marchlandlabs.online" target="_blank" class="ecosystem-card">
+      <div>
+        <div class="ecosystem-tag">AI Research & Intelligence</div>
+        <h3>Marchland Labs</h3>
+        <p>Advanced graph RAG systems, cognitive memory architecture, and complex anomaly pattern analysis models.</p>
+      </div>
+      <span class="ecosystem-link">Explore Labs &rarr;</span>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-card">
+  <h2>Contact Operations</h2>
+  <p>Connect directly with our advisory and technical response team through secure channels, or join our official broadcast and messaging streams.</p>
+
+  <div class="contact-channels">
+    <a href="mailto:info@business-analytica.com" class="channel-item">
+      <span class="channel-label">Email</span>
+      <span class="channel-value">info@business-analytica.com</span>
+    </a>
+    <a href="tel:+447986903415" class="channel-item">
+      <span class="channel-label">Phone</span>
+      <span class="channel-value">+44 7986 903415</span>
+    </a>
+    <a href="https://whatsapp.com/channel/0029VbDFkZd4yltIK9n4ZT3m." target="_blank" class="channel-item">
+      <span class="channel-label">WhatsApp Channel</span>
+      <span class="channel-value">Free to Join</span>
+    </a>
+    
+  </div>
+</section>
 
 </main>
 
 <footer>
   &copy; 2026 Business Analytica. All services conducted in compliance with UK GDPR and the Data Protection Act 2018.<br>
-  Independent. Professional. Accurate. Structured processing via analyse.html interface.
+  Independent. Professional. Accurate. Structured processing via <a href="/analyse.html" style="color: var(--text-muted); text-decoration: underline;">analyse.html</a>.
 </footer>
 
-<!-- SCRIPT FOR MOBILE MENU & MOCK ENGINE EXECUTION -->
+<!-- SCRIPT FOR MOBILE MENU & REVOLVING HERO SLIDER -->
 <script>
   // Mobile Navigation Toggle
   const menuToggle = document.getElementById('menuToggle');
@@ -483,31 +803,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     mainNav.classList.toggle('open');
   });
 
+  // Close mobile menu when a nav link is clicked
   document.querySelectorAll('#mainNav a').forEach(link => {
     link.addEventListener('click', () => {
       mainNav.classList.remove('open');
     });
   });
 
-  // Mock Analysis Execution Logic
-  function handleAnalysis(event) {
-    event.preventDefault();
-    const query = document.getElementById('targetQuery').value;
-    const type = document.getElementById('analysisType').value;
-    const resultsContainer = document.getElementById('resultsContainer');
+  // Revolving Hero Slider Logic
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  let currentSlide = 0;
+  const slideIntervalTime = 6000; // 6 seconds per slide
 
-    resultsContainer.innerHTML = `<pre><code>[INFO] Initializing secure graph node search for: "${query}"...
-[INFO] Selected Module: ${type.toUpperCase()}
-[CONNECT] Querying Companies House registry indices (England & Wales)...
-[CONNECT] Scanning HM Land Registry title mappings...
-[PROCESSING] Constructing multi-layered relationship matrix...
-[SUCCESS] Analysis complete. 
---------------------------------------------------
-Target: ${query}
-Status: Verified Active / Standard Risk Threshold
-Nodes Mapped: 14 entities, 3 active directors, 2 property titles.
-Recommendation: Full dossier available for formal consultation request via info@business-analytica.com.</code></pre>`;
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+      dots[i].classList.toggle('active', i === index);
+    });
+    currentSlide = index;
   }
+
+  function nextSlide() {
+    let nextIndex = (currentSlide + 1) % slides.length;
+    showSlide(nextIndex);
+  }
+
+  let slideTimer = setInterval(nextSlide, slideIntervalTime);
+
+  // Allow dot navigation click
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      clearInterval(slideTimer);
+      const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+      showSlide(slideIndex);
+      slideTimer = setInterval(nextSlide, slideIntervalTime);
+    });
+  });
 </script>
 
 </body>
