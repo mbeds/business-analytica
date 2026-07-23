@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -7,7 +7,8 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NNRWPP3M');</script>
-  <!-- Google tag (gtag.js) -->
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LRQGY8MY8L"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -20,6 +21,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta charset="UTF-8" />
   <title>Business Analytica – Data Research & Deal Analysis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://www.business-analytica.com" />
 
   <!-- HubSpot Tracking Code (EU) -->
   <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/148894722.js"></script>
@@ -41,6 +43,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       background: var(--bg-gradient);
       color: var(--text-main);
       font-family: var(--font-main);
+      background-attachment: fixed;
     }
 
     header {
@@ -55,7 +58,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .nav-container {
       max-width: 1200px;
       margin: auto;
-      padding: 1rem;
+      padding: 1rem 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -68,6 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      font-size: 0.95rem;
     }
 
     .logo-mark {
@@ -101,29 +105,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     main {
       max-width: 1200px;
       margin: auto;
-      padding: 2rem 1.25rem;
+      padding: 2.5rem 1.25rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    section > p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      max-width: 800px;
     }
 
     /* HERO */
     .hero {
       display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      gap: 2rem;
-      margin-bottom: 3rem;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 2.5rem;
       align-items: center;
+      margin-bottom: 5rem;
     }
 
     .hero h1 {
-      font-size: 2.8rem;
-      line-height: 1.2;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #fff 30%, var(--accent-soft));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero-subtitle {
       font-size: 1.15rem;
       color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      max-width: 600px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
     }
 
     .hero-actions {
@@ -135,83 +163,174 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     .btn-primary,
     .btn-secondary {
-      padding: 0.8rem 1.6rem;
+      padding: 0.8rem 1.8rem;
       border-radius: 999px;
-      font-size: 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
       cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-red), var(--accent-soft));
       border: none;
       color: #fff;
-      box-shadow: 0 0 18px rgba(255,0,60,0.6);
+      box-shadow: 0 0 20px rgba(255,0,60,0.5);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 0 25px rgba(255,0,60,0.7);
     }
 
     .btn-secondary {
       background: transparent;
       border: 1px solid var(--border-soft);
-      color: var(--accent-soft);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-red);
+      background: rgba(255,0,60,0.05);
     }
 
     .signup-card {
       background: var(--card-bg);
-      padding: 1.5rem;
+      padding: 2rem;
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .signup-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .signup-card > p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
     }
 
     .signup-card form {
       display: grid;
       gap: 0.8rem;
-      margin-top: 1rem;
     }
 
     input, select, textarea {
       background: #050505;
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 0.6rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.75rem 0.9rem;
       border-radius: 8px;
       color: var(--text-main);
       font-size: 0.9rem;
+      font-family: var(--font-main);
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-red);
     }
 
     textarea {
-      height: 120px;
+      height: 100px;
       resize: none;
     }
 
-    /* GRID SYSTEM — MOBILE OPTIMISED */
+    select option {
+      background: #111;
+      color: var(--text-main);
+    }
+
+    /* GRID SYSTEM */
     .grid-3,
     .grid-4 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.5rem;
-      margin-top: 1rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 
     .card {
       background: var(--card-bg);
-      padding: 1rem;
+      padding: 1.75rem;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.06);
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
     }
 
     .card:hover {
       transform: translateY(-3px);
       border-color: var(--border-soft);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* CONTACT SECTION */
+    #contact {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 2.5rem;
+      border-radius: 16px;
+    }
+
+    #contact p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    #contact a {
+      color: var(--accent-soft);
+      text-decoration: none;
+    }
+
+    #contact a:hover {
+      text-decoration: underline;
     }
 
     /* MOBILE BREAKPOINTS */
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .hero {
         grid-template-columns: 1fr;
-        text-align: left;
+        gap: 3rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.4rem;
       }
 
-      .signup-card {
-        margin-top: 2rem;
+      nav {
+        display: none; /* Can be expanded with a mobile menu toggle if needed */
       }
     }
 
@@ -221,17 +340,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       }
 
       .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
 
-      nav ul {
-        gap: 1rem;
+      .signup-card, #contact {
+        padding: 1.25rem;
       }
     }
 
     footer {
       text-align: center;
-      padding: 1rem;
+      padding: 1.5rem;
       background: rgba(0,0,0,0.85);
       color: var(--text-muted);
       font-size: 0.85rem;
@@ -244,7 +363,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       document.getElementById("enquiryForm").scrollIntoView({ behavior: "smooth" });
     }
   </script>
-
 </head>
 
 <body>
@@ -252,6 +370,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNRWPP3M"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
 <header>
   <div class="nav-container">
     <div class="logo">
@@ -280,7 +399,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
 
     <div class="hero-actions">
-      <button class="btn-primary">View Services</button>
+      <a href="#services" class="btn-primary">View Services</a>
       <button class="btn-secondary" onclick="scrollToEnquiry()">Make an Enquiry</button>
     </div>
   </div>
@@ -312,7 +431,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <option>Other</option>
       </select>
 
-      <button class="btn-primary" type="submit">Submit Enquiry</button>
+      <button class="btn-primary" type="submit" style="width: 100%; border-radius: 8px; margin-top: 0.2rem;">Submit Enquiry</button>
     </form>
   </div>
 </section>
@@ -350,9 +469,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </p>
 
   <div class="grid-3">
-    <div class="card"><h3>Technical Deal Assessments</h3><p>Breakdowns of signal origin, risk factors, behavioural indicators, and contextual relevance.</p></div>
-    <div class="card"><h3>Regional & Sector Metrics</h3><p>County‑level distress scoring and sector pressure indicators.</p></div>
-    <div class="card"><h3>Demand Signals</h3><p>Categorised investor requirements mapped against regional supply and behavioural patterns.</p></div>
+    <div class="card">
+      <h3>Technical Deal Assessments</h3>
+      <p>Breakdowns of signal origin, risk factors, behavioural indicators, and contextual relevance.</p>
+    </div>
+    <div class="card">
+      <h3>Regional & Sector Metrics</h3>
+      <p>County‑level distress scoring and sector pressure indicators.</p>
+    </div>
+    <div class="card">
+      <h3>Demand Signals</h3>
+      <p>Categorised investor requirements mapped against regional supply and behavioural patterns.</p>
+    </div>
   </div>
 </section>
 
@@ -364,7 +492,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </p>
 
   <div class="grid-4">
-
     <div class="card">
       <h3>Fee‑Based Reports</h3>
       <p>One‑off structured analytical reports covering company behaviour, property signals, sector trends, and regional pressure points.</p>
@@ -384,7 +511,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h3>Bespoke Consultation & Research</h3>
       <p>One‑to‑one analytical support for investor strategy, sourcer strategy, market positioning, deal evaluation, and data interpretation.</p>
     </div>
-
   </div>
 </section>
 
