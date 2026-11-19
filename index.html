@@ -1,9 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Business Analytica | Corporate, Property &amp; Real-Asset Intelligence</title>
+  <title>Business Analytica | UK Corporate, Property &amp; Real-Asset Intelligence</title>
+  <meta name="description" content="Business Analytica provides actionable UK corporate, property, and real-asset intelligence across property, mining, agriculture, energy, and commercial sectors. Delivered within 24 hours." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://business-analytica.com/" />
+  <link rel="icon" type="image/png" href="./business.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Business Analytica" />
+  <meta property="og:title" content="Business Analytica | UK Corporate, Property &amp; Real-Asset Intelligence" />
+  <meta property="og:description" content="Actionable UK corporate and asset intelligence across property, mining, agriculture, energy, and commercial sectors." />
+  <meta property="og:url" content="https://business-analytica.com/" />
+  <meta property="og:image" content="https://business-analytica.com/business.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Business Analytica",
+    "url": "https://business-analytica.com",
+    "logo": "https://business-analytica.com/business.png",
+    "description": "UK corporate, property, and real-asset intelligence consultancy serving property, mining, agriculture, energy, and commercial acquisition teams.",
+    "areaServed": "United Kingdom",
+    "telephone": "+447986903415",
+    "email": "info@business-analytica.com",
+    "sameAs": [
+      "https://www.linkedin.com/company/136176605",
+      "https://www.facebook.com/profile.php?id=61592039171569"
+    ]
+  }
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,12 +54,14 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-5 h-16 flex items-center justify-between gap-2">
       <a href="./index.html" class="flex items-center gap-2.5 min-w-0">
         <img src="./business.png"
-             alt="Business Analytica"
+             alt="Business Analytica logo"
+             width="36"
+             height="36"
              onerror="this.onerror=null;this.src='business.png';"
              class="w-9 h-9 shrink-0 object-contain" />
         <span class="font-bold tracking-wider text-xs sm:text-sm uppercase truncate">Business Analytica</span>
       </a>
-      <nav class="hidden md:flex items-center gap-7 text-xs font-semibold tracking-wide text-slate-300">
+      <nav aria-label="Primary Navigation" class="hidden md:flex items-center gap-7 text-xs font-semibold tracking-wide text-slate-300">
         <a href="#sectors" class="hover:text-white transition">Sectors</a>
         <a href="#methodology" class="hover:text-white transition">Methodology</a>
         <a href="#sample" class="hover:text-white transition">Sample Report</a>
@@ -38,7 +72,7 @@
         <a href="./indicators.html" class="md:hidden text-xs font-semibold text-[#D4AF37] px-2 py-1.5">
           Signals
         </a>
-        <a href="https://wa.me/447986903415" target="_blank"
+        <a href="https://wa.me/447986903415" target="_blank" rel="noopener noreferrer"
            class="bg-[#D4AF37] text-[#0B192C] font-bold px-3.5 sm:px-4 py-2 rounded text-xs hover:bg-amber-400 transition">
           WhatsApp
         </a>
@@ -49,23 +83,41 @@
   <!-- 2. BANNER -->
   <div class="bg-[#12243D] text-slate-200 border-b border-slate-700/70">
     <div class="max-w-5xl mx-auto px-4 sm:px-5 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs">
-      <span>Actionable Corporate, Land &amp; Asset Intelligence &mdash; Property, Mining, Agriculture, Energy &amp; Industrial Sectors</span>
+      <span>Actionable UK Corporate, Land &amp; Asset Intelligence &mdash; Property, Mining, Agriculture, Energy &amp; Industrial Sectors</span>
       <a href="#sample" class="font-semibold text-[#D4AF37] hover:underline shrink-0">Inspect Sample Report &rarr;</a>
     </div>
   </div>
 
-  <!-- 3. HERO -->
-  <section class="bg-[#0B192C] text-white border-b border-slate-800">
-    <div class="max-w-5xl mx-auto px-4 sm:px-5 py-12 sm:py-20 space-y-8 sm:space-y-10">
+  <!-- 3. HERO (LARGE VIDEO AT TOP) -->
+  <section aria-labelledby="hero-heading" class="bg-[#0B192C] text-white border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-5 py-10 sm:py-14 space-y-8">
+
+      <!-- Large Primary Video At Top Of Hero -->
+      <div class="bg-[#10223B] border border-slate-700/80 rounded-lg p-3 sm:p-5 shadow-2xl space-y-3">
+        <div class="flex items-center justify-between gap-2 text-xs">
+          <span class="font-bold uppercase tracking-wider text-[#D4AF37]">
+            Featured Market Overview
+          </span>
+          <button type="button" onclick="loadRandomPromo(true)"
+                  class="text-slate-200 hover:text-white font-semibold border border-slate-600 px-3 py-1.5 rounded transition shrink-0">
+            Watch Another Video &#8635;
+          </button>
+        </div>
+        <div class="w-full aspect-video max-h-[72vh] bg-black rounded overflow-hidden border border-slate-800">
+          <video id="randomPromoPlayer" class="w-full h-full object-contain bg-black" controls playsinline preload="metadata"></video>
+        </div>
+      </div>
+
+      <!-- Headline & Actions -->
       <div class="max-w-3xl space-y-4 sm:space-y-5">
         <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4AF37]">
-          Actionable Intelligence
+          Actionable UK Corporate &amp; Asset Intelligence
         </p>
-        <h1 class="font-editorial text-3xl sm:text-5xl md:text-6xl font-semibold text-white leading-[1.1] tracking-tight">
+        <h1 id="hero-heading" class="font-editorial text-3xl sm:text-5xl md:text-6xl font-semibold text-white leading-[1.1] tracking-tight">
           We provide actionable intelligence on distressed operators, funded acquirers, and off-market assets.
         </h1>
         <p class="text-slate-300 text-sm sm:text-lg leading-relaxed max-w-2xl">
-          Business Analytica connects company filings, debt charges, land registries, and operational asset records across <strong>property, mining, agriculture, energy, and commercial sectors</strong>—delivering clear intelligence dossiers and datasets within 24 hours.
+          Business Analytica connects company filings, debt charges, land registries, and operational asset records across <strong>property, mining, agriculture, energy, and commercial sectors</strong>—delivering clear intelligence reports and datasets within 24 hours.
         </p>
         <div class="pt-1 flex flex-col sm:flex-row gap-3">
           <a href="#sample" class="bg-[#D4AF37] text-[#0B192C] font-bold px-6 py-3.5 rounded text-sm text-center hover:bg-amber-400 transition">
@@ -77,21 +129,6 @@
         </div>
       </div>
 
-      <!-- Full-Width Random Promo Video -->
-      <div class="bg-[#10223B] border border-slate-700/80 rounded-lg p-3.5 sm:p-6 space-y-3">
-        <div class="flex items-center justify-between gap-2 text-xs">
-          <span id="promoBadge" class="font-bold uppercase tracking-wider text-[#D4AF37]">
-            Featured Briefing
-          </span>
-          <button onclick="loadRandomPromo(true)"
-                  class="text-slate-300 hover:text-white font-semibold border border-slate-600 px-3 py-1 rounded transition shrink-0">
-            Load Another Briefing &#8635;
-          </button>
-        </div>
-        <div class="aspect-video bg-black rounded overflow-hidden border border-slate-800">
-          <video id="randomPromoPlayer" class="w-full h-full object-cover" controls playsinline preload="metadata"></video>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -99,10 +136,10 @@
   <main class="max-w-5xl mx-auto px-4 sm:px-5 py-12 sm:py-16 space-y-16 sm:space-y-20">
 
     <!-- Sectors Covered -->
-    <section id="sectors" class="space-y-6 sm:space-y-8">
+    <section id="sectors" aria-labelledby="sectors-heading" class="space-y-6 sm:space-y-8">
       <div class="border-b border-stone-300 pb-5 max-w-3xl space-y-2">
         <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#8C6D1F]">Sector Coverage</p>
-        <h2 class="font-editorial text-2xl sm:text-4xl font-semibold text-[#141A21] leading-tight">
+        <h2 id="sectors-heading" class="font-editorial text-2xl sm:text-4xl font-semibold text-[#141A21] leading-tight">
           Company and asset intelligence beyond standard property portals.
         </h2>
         <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
@@ -111,61 +148,61 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        <div class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
+        <article class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
           <div class="text-xs font-bold uppercase tracking-wider text-[#8C6D1F]">01</div>
           <h3 class="font-bold text-base sm:text-lg text-[#141A21]">Commercial &amp; Residential Property</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
             Multi-asset corporate landlords, unencumbered holdings, bridging refinance pressure, and active regional portfolio buyers.
           </p>
-        </div>
+        </article>
 
-        <div class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
+        <article class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
           <div class="text-xs font-bold uppercase tracking-wider text-[#8C6D1F]">02</div>
           <h3 class="font-bold text-base sm:text-lg text-[#141A21]">Mining &amp; Extractive Operators</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
             Quarry, mineral, and resource companies—tracking site holdings, equipment and security charges, director networks, and joint-venture targets.
           </p>
-        </div>
+        </article>
 
-        <div class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
+        <article class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
           <div class="text-xs font-bold uppercase tracking-wider text-[#8C6D1F]">03</div>
           <h3 class="font-bold text-base sm:text-lg text-[#141A21]">Agriculture &amp; Rural Estates</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
             Corporate farming enterprises, agricultural landholdings, succession transitions, and expanding agribusiness groups.
           </p>
-        </div>
+        </article>
 
-        <div class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
+        <article class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
           <div class="text-xs font-bold uppercase tracking-wider text-[#8C6D1F]">04</div>
           <h3 class="font-bold text-base sm:text-lg text-[#141A21]">Energy &amp; Renewables</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
             Solar, battery storage, grid-adjacent landholders, and conventional energy operators requiring capital partners or restructuring.
           </p>
-        </div>
+        </article>
 
-        <div class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
+        <article class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
           <div class="text-xs font-bold uppercase tracking-wider text-[#8C6D1F]">05</div>
           <h3 class="font-bold text-base sm:text-lg text-[#141A21]">Industrial &amp; Logistics</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
             Warehousing, haulage yards, manufacturing sites, and owner-occupied industrial facilities under working-capital strain.
           </p>
-        </div>
+        </article>
 
-        <div class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
+        <article class="bg-white border border-stone-300 rounded-lg p-5 sm:p-6 space-y-2">
           <div class="text-xs font-bold uppercase tracking-wider text-[#8C6D1F]">06</div>
           <h3 class="font-bold text-base sm:text-lg text-[#141A21]">Bespoke SIC &amp; Asset Mandates</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
             Custom sector intelligence filtered by SIC code, balance-sheet leverage, geographic footprint, or specific distress triggers.
           </p>
-        </div>
+        </article>
       </div>
     </section>
 
     <!-- Data Sources, Processing & Time Saved -->
-    <section id="methodology" class="space-y-8 sm:space-y-10">
+    <section id="methodology" aria-labelledby="methodology-heading" class="space-y-8 sm:space-y-10">
       <div class="border-b border-stone-300 pb-6 max-w-3xl space-y-3">
         <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#8C6D1F]">Data &amp; Methodology</p>
-        <h2 class="font-editorial text-2xl sm:text-4xl font-semibold text-[#141A21] leading-tight">
+        <h2 id="methodology-heading" class="font-editorial text-2xl sm:text-4xl font-semibold text-[#141A21] leading-tight">
           We provide actionable intelligence from raw corporate and registry records.
         </h2>
         <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
@@ -198,25 +235,25 @@
         <div class="border-t-2 border-[#0B192C] pt-4 space-y-2">
           <h3 class="font-bold text-base sm:text-lg text-[#141A21]">Deliverables &amp; Who Uses It</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
-            Each brief includes up to <strong>25 executive PDF dossiers</strong> and up to <strong>100 structured CSV records</strong> per side—used by investors, corporate acquisition teams, deal sourcers, sector brokers, restructuring advisors, and private equity.
+            Each report includes up to <strong>25 executive PDF dossiers</strong> and up to <strong>100 structured CSV records</strong> per side—used by investors, corporate acquisition teams, deal sourcers, sector brokers, restructuring advisors, and private equity.
           </p>
         </div>
       </div>
     </section>
 
     <!-- Sample Report -->
-    <section id="sample" class="bg-white border border-stone-300 rounded-lg p-5 sm:p-10 shadow-sm space-y-6 sm:space-y-8">
+    <section id="sample" aria-labelledby="sample-heading" class="bg-white border border-stone-300 rounded-lg p-5 sm:p-10 shadow-sm space-y-6 sm:space-y-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-stone-200 pb-6">
         <div class="space-y-2 max-w-xl">
           <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#8C6D1F]">Sample Deliverable</p>
-          <h2 class="font-editorial text-2xl sm:text-4xl font-semibold text-[#141A21]">
+          <h2 id="sample-heading" class="font-editorial text-2xl sm:text-4xl font-semibold text-[#141A21]">
             Wrekin Regional Intelligence Report
           </h2>
           <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
             An example regional extraction covering Telford, Shrewsbury, and Bridgnorth—demonstrating geographic concentration, matched buyer and seller pairings, active charge exposure, and company portfolio summaries.
           </p>
         </div>
-        <a href="./Samples/Business%20Analytica%20-%20Sample%20Opportunity%20Intelligence%20Report.pdf" target="_blank"
+        <a href="./Samples/Business%20Analytica%20-%20Sample%20Opportunity%20Intelligence%20Report.pdf" target="_blank" rel="noopener noreferrer"
            class="shrink-0 bg-[#0B192C] text-white font-bold px-6 py-3.5 rounded text-sm text-center hover:bg-[#162B47] transition">
           Download Sample PDF
         </a>
@@ -243,15 +280,15 @@
     </section>
 
     <!-- Sample Deal Signals Slider -->
-    <section class="space-y-5 sm:space-y-6">
+    <section aria-labelledby="signals-heading" class="space-y-5 sm:space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-stone-300 pb-4">
         <div>
           <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#8C6D1F]">Example Deal Signals</p>
-          <h2 class="font-editorial text-2xl sm:text-3xl font-semibold text-[#141A21]">
+          <h2 id="signals-heading" class="font-editorial text-2xl sm:text-3xl font-semibold text-[#141A21]">
             A Sample of the Signals We Track
           </h2>
           <p class="text-sm text-stone-600 mt-1">
-            Four examples from our wider library of corporate, financial, and real-asset triggers.
+            Four examples from our wider library of corporate, financial, and real-asset indicators.
           </p>
         </div>
         <div class="flex items-center gap-2">
@@ -259,11 +296,11 @@
              class="text-xs font-bold text-[#0B192C] border border-[#0B192C] px-3.5 sm:px-4 py-2 rounded hover:bg-[#0B192C] hover:text-white transition">
             View All Signals &rarr;
           </a>
-          <button onclick="slideTrack('indicatorTrack', -1)" aria-label="Previous signal"
+          <button type="button" onclick="slideTrack('indicatorTrack', -1)" aria-label="Previous signal"
                   class="w-9 h-9 rounded bg-white border border-stone-300 text-stone-700 hover:border-[#0B192C] transition shrink-0">
             &larr;
           </button>
-          <button onclick="slideTrack('indicatorTrack', 1)" aria-label="Next signal"
+          <button type="button" onclick="slideTrack('indicatorTrack', 1)" aria-label="Next signal"
                   class="w-9 h-9 rounded bg-white border border-stone-300 text-stone-700 hover:border-[#0B192C] transition shrink-0">
             &rarr;
           </button>
@@ -287,7 +324,7 @@
       </div>
 
       <div class="flex flex-col sm:items-end gap-3 text-sm">
-        <a href="https://wa.me/447986903415" target="_blank"
+        <a href="https://wa.me/447986903415" target="_blank" rel="noopener noreferrer"
            class="bg-[#D4AF37] text-[#0B192C] font-bold px-6 py-3 rounded hover:bg-amber-400 transition text-center">
           WhatsApp: +44 7986 903415
         </a>
@@ -296,8 +333,8 @@
         </a>
         <div class="flex flex-wrap gap-4 sm:gap-5 text-xs text-slate-400 pt-1">
           <a href="./indicators.html" class="hover:text-white">All Signals</a>
-          <a href="https://www.linkedin.com/company/136176605" target="_blank" class="hover:text-white">LinkedIn</a>
-          <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" class="hover:text-white">Facebook</a>
+          <a href="https://www.linkedin.com/company/136176605" target="_blank" rel="noopener noreferrer" class="hover:text-white">LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" rel="noopener noreferrer" class="hover:text-white">Facebook</a>
           <span>&copy; 2026 Business Analytica</span>
         </div>
       </div>
@@ -316,7 +353,6 @@
       currentPromo = next;
 
       const id = pad3(currentPromo);
-      document.getElementById('promoBadge').textContent = `Briefing #${id}`;
       const player = document.getElementById('randomPromoPlayer');
       player.src = `./Videos/Business%20Analytica%20Promos/clip_ba_promo_item_${id}.mp4`;
       player.load();
@@ -335,7 +371,7 @@
       track.innerHTML = featuredIndicators.map((item) => {
         const src = `./Videos/Business%20Analytica%20Indicators/clip_ind2_item_${item.id}.mp4`;
         return `
-          <div class="snap-start shrink-0 w-[88%] sm:w-[47%] bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm flex flex-col justify-between">
+          <article class="snap-start shrink-0 w-[88%] sm:w-[47%] bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm flex flex-col justify-between">
             <div class="aspect-video bg-black">
               <video class="w-full h-full object-cover" controls playsinline preload="none">
                 <source src="${src}" type="video/mp4" />
@@ -343,12 +379,12 @@
             </div>
             <div class="p-4 space-y-1">
               <div class="flex items-center justify-between gap-2">
-                <span class="font-bold text-[#141A21] text-sm">${item.title}</span>
-                <span class="text-[11px] font-bold text-[#8C6D1F] shrink-0">Sample #${item.id}</span>
+                <h3 class="font-bold text-[#141A21] text-sm">${item.title}</h3>
+                <span class="text-[11px] font-bold text-[#8C6D1F] shrink-0">Indicator #${item.id}</span>
               </div>
               <p class="text-xs text-stone-600 leading-relaxed">${item.desc}</p>
             </div>
-          </div>
+          </article>
         `;
       }).join('');
     }

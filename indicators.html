@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Signal Library | Business Analytica</title>
+  <title>Corporate &amp; Asset Indicators | Business Analytica</title>
+  <meta name="description" content="Explore 79 corporate, property, mining, agriculture, and energy market indicators tracked by Business Analytica. Request custom UK company spreadsheets by indicator." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://business-analytica.com/indicators.html" />
+  <link rel="icon" type="image/png" href="./business.png" />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,12 +25,14 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-5 h-16 flex items-center justify-between gap-2">
       <a href="./index.html" class="flex items-center gap-2.5 min-w-0">
         <img src="./business.png"
-             alt="Business Analytica"
+             alt="Business Analytica logo"
+             width="36"
+             height="36"
              onerror="this.onerror=null;this.src='business.png';"
              class="w-9 h-9 shrink-0 object-contain" />
         <span class="font-bold tracking-wider text-xs sm:text-sm uppercase truncate">Business Analytica</span>
       </a>
-      <nav class="hidden md:flex items-center gap-7 text-xs font-semibold tracking-wide text-slate-300">
+      <nav aria-label="Primary Navigation" class="hidden md:flex items-center gap-7 text-xs font-semibold tracking-wide text-slate-300">
         <a href="./index.html" class="hover:text-white transition">Home</a>
         <a href="./index.html#sectors" class="hover:text-white transition">Sectors</a>
         <a href="./index.html#sample" class="hover:text-white transition">Sample Report</a>
@@ -35,7 +42,7 @@
         <a href="./index.html" class="md:hidden text-xs font-semibold text-slate-300 px-2 py-1.5">
           Home
         </a>
-        <a href="https://wa.me/447986903415" target="_blank"
+        <a href="https://wa.me/447986903415" target="_blank" rel="noopener noreferrer"
            class="bg-[#D4AF37] text-[#0B192C] font-bold px-3.5 sm:px-4 py-2 rounded text-xs hover:bg-amber-400 transition">
           WhatsApp
         </a>
@@ -44,11 +51,11 @@
   </header>
 
   <!-- INTRO & FILTER -->
-  <section class="max-w-5xl mx-auto px-4 sm:px-5 pt-10 sm:pt-12 pb-8 border-b border-stone-300">
+  <section aria-labelledby="library-heading" class="max-w-5xl mx-auto px-4 sm:px-5 pt-10 sm:pt-12 pb-8 border-b border-stone-300">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
       <div class="space-y-2 max-w-2xl">
         <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#8C6D1F]">Signal Library</p>
-        <h1 class="font-editorial text-3xl sm:text-4xl font-semibold text-[#141A21]">
+        <h1 id="library-heading" class="font-editorial text-3xl sm:text-4xl font-semibold text-[#141A21]">
           Corporate, Land &amp; Asset Indicators
         </h1>
         <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
@@ -57,6 +64,7 @@
       </div>
 
       <div class="w-full sm:w-64 shrink-0">
+        <label for="signalFilter" class="sr-only">Filter indicators by number</label>
         <input id="signalFilter" type="text" oninput="filterSignals()"
                placeholder="Filter by # (e.g. 079)..."
                class="w-full bg-white border border-stone-300 rounded px-3.5 py-2.5 text-sm text-[#141A21] placeholder-stone-400 focus:outline-none focus:border-[#0B192C]" />
@@ -81,7 +89,7 @@
       </div>
 
       <div class="flex flex-col sm:items-end gap-2.5 text-sm">
-        <a href="https://wa.me/447986903415" target="_blank"
+        <a href="https://wa.me/447986903415" target="_blank" rel="noopener noreferrer"
            class="bg-[#D4AF37] text-[#0B192C] font-bold px-5 py-3 rounded hover:bg-amber-400 transition text-center">
           WhatsApp: +44 7986 903415
         </a>
@@ -90,8 +98,8 @@
         </a>
         <div class="flex flex-wrap gap-4 sm:gap-5 text-xs text-slate-400 pt-1">
           <a href="./index.html" class="hover:text-white">Home</a>
-          <a href="https://www.linkedin.com/company/136176605" target="_blank" class="hover:text-white">LinkedIn</a>
-          <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" class="hover:text-white">Facebook</a>
+          <a href="https://www.linkedin.com/company/136176605" target="_blank" rel="noopener noreferrer" class="hover:text-white">LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" rel="noopener noreferrer" class="hover:text-white">Facebook</a>
           <span>&copy; 2026 Business Analytica</span>
         </div>
       </div>
@@ -119,7 +127,7 @@
         const mailSubj = encodeURIComponent(`Spreadsheet Request: ${label}`);
 
         cards.push(`
-          <div class="bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm flex flex-col justify-between">
+          <article class="bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm flex flex-col justify-between">
             <div>
               <div class="aspect-video bg-black">
                 <video class="w-full h-full object-cover" controls playsinline preload="none">
@@ -128,7 +136,6 @@
               </div>
               <div class="px-4 sm:px-5 pt-4 pb-2 flex items-center justify-between gap-2">
                 <h2 class="font-bold text-[#141A21] text-base">${label}</h2>
-                <span class="text-xs font-semibold text-stone-500 shrink-0">Briefing ${id}</span>
               </div>
             </div>
 
@@ -137,7 +144,7 @@
                 Want a spreadsheet of this indicator?
               </p>
               <div class="flex shrink-0 gap-2">
-                <a href="https://wa.me/447986903415?text=${waText}" target="_blank"
+                <a href="https://wa.me/447986903415?text=${waText}" target="_blank" rel="noopener noreferrer"
                    class="flex-1 sm:flex-initial bg-[#0B192C] text-white font-bold px-3.5 py-2 rounded text-xs text-center hover:bg-[#162B47] transition">
                   WhatsApp
                 </a>
@@ -147,7 +154,7 @@
                 </a>
               </div>
             </div>
-          </div>
+          </article>
         `);
       }
 
