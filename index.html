@@ -20,19 +20,22 @@
   <!-- 1. HEADER -->
   <header class="sticky top-0 z-50 bg-[#0B192C] text-white border-b border-slate-800">
     <div class="max-w-5xl mx-auto px-4 sm:px-5 h-16 flex items-center justify-between gap-2">
-      <a href="index.html" class="flex items-center gap-2.5 min-w-0">
-        <img src="business.png" alt="Business Analytica" class="w-8 h-8 shrink-0 rounded-full object-cover bg-white" />
+      <a href="./index.html" class="flex items-center gap-2.5 min-w-0">
+        <img src="./business.png"
+             alt="Business Analytica"
+             onerror="this.onerror=null;this.src='business.png';"
+             class="w-9 h-9 shrink-0 rounded-full object-contain bg-white ring-1 ring-white/25" />
         <span class="font-bold tracking-wider text-xs sm:text-sm uppercase truncate">Business Analytica</span>
       </a>
       <nav class="hidden md:flex items-center gap-7 text-xs font-semibold tracking-wide text-slate-300">
         <a href="#sectors" class="hover:text-white transition">Sectors</a>
         <a href="#methodology" class="hover:text-white transition">Methodology</a>
         <a href="#sample" class="hover:text-white transition">Sample Report</a>
-        <a href="indicators.html" class="hover:text-[#D4AF37] transition">All Signals</a>
+        <a href="./indicators.html" class="hover:text-[#D4AF37] transition">All Signals</a>
         <a href="#contact" class="hover:text-white transition">Contact</a>
       </nav>
       <div class="flex items-center gap-2 shrink-0">
-        <a href="indicators.html" class="md:hidden text-xs font-semibold text-[#D4AF37] px-2 py-1.5">
+        <a href="./indicators.html" class="md:hidden text-xs font-semibold text-[#D4AF37] px-2 py-1.5">
           Signals
         </a>
         <a href="https://wa.me/447986903415" target="_blank"
@@ -68,7 +71,7 @@
           <a href="#sample" class="bg-[#D4AF37] text-[#0B192C] font-bold px-6 py-3.5 rounded text-sm text-center hover:bg-amber-400 transition">
             Open Sample Report
           </a>
-          <a href="indicators.html" class="border border-slate-600 text-white font-semibold px-6 py-3.5 rounded text-sm text-center hover:border-white transition">
+          <a href="./indicators.html" class="border border-slate-600 text-white font-semibold px-6 py-3.5 rounded text-sm text-center hover:border-white transition">
             Browse Signal Library
           </a>
         </div>
@@ -181,7 +184,7 @@
         <div class="border-t-2 border-[#0B192C] pt-4 space-y-2">
           <h3 class="font-bold text-base sm:text-lg text-[#141A21]">How It Is Processed</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
-            Entities, officers, registered charges, and physical holdings are linked and scored against asset valuations, estimated cash-flow or rent yield, 75% LTV borrowing headroom, historic acquisition intervals, and your custom sector or geographic filters to produce actionable intelligence.
+            Entities, officers, registered charges, and physical holdings are linked and scored against asset valuations, estimated cash-flow or rent yield, 75% LTV borrowing headroom, historic acquisition intervals, and your custom sector or geographic filters to provide actionable intelligence.
           </p>
         </div>
 
@@ -213,7 +216,7 @@
             An example regional extraction covering Telford, Shrewsbury, and Bridgnorth—demonstrating geographic concentration, matched buyer and seller pairings, active charge exposure, and company portfolio summaries.
           </p>
         </div>
-        <a href="Samples/Business%20Analytica%20-%20Sample%20Opportunity%20Intelligence%20Report.pdf" target="_blank"
+        <a href="./Samples/Business%20Analytica%20-%20Sample%20Opportunity%20Intelligence%20Report.pdf" target="_blank"
            class="shrink-0 bg-[#0B192C] text-white font-bold px-6 py-3.5 rounded text-sm text-center hover:bg-[#162B47] transition">
           Download Sample PDF
         </a>
@@ -252,7 +255,7 @@
           </p>
         </div>
         <div class="flex items-center gap-2">
-          <a href="indicators.html"
+          <a href="./indicators.html"
              class="text-xs font-bold text-[#0B192C] border border-[#0B192C] px-3.5 sm:px-4 py-2 rounded hover:bg-[#0B192C] hover:text-white transition">
             View All Signals &rarr;
           </a>
@@ -292,7 +295,7 @@
           info@business-analytica.com
         </a>
         <div class="flex flex-wrap gap-4 sm:gap-5 text-xs text-slate-400 pt-1">
-          <a href="indicators.html" class="hover:text-white">All Signals</a>
+          <a href="./indicators.html" class="hover:text-white">All Signals</a>
           <a href="https://www.linkedin.com/company/136176605" target="_blank" class="hover:text-white">LinkedIn</a>
           <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" class="hover:text-white">Facebook</a>
           <span>&copy; 2026 Business Analytica</span>
@@ -315,7 +318,7 @@
       const id = pad3(currentPromo);
       document.getElementById('promoBadge').textContent = `Briefing #${id}`;
       const player = document.getElementById('randomPromoPlayer');
-      player.src = `Videos/Business%20Analytica%20Promos/clip_ba_promo_item_${id}.mp4`;
+      player.src = `./Videos/Business%20Analytica%20Promos/clip_ba_promo_item_${id}.mp4`;
       player.load();
       if (autoPlay) player.play().catch(() => {});
     }
@@ -330,7 +333,7 @@
     function buildIndicatorTrack() {
       const track = document.getElementById('indicatorTrack');
       track.innerHTML = featuredIndicators.map((item) => {
-        const src = `Videos/Business%20Analytica%20Indicators/clip_ind2_item_${item.id}.mp4`;
+        const src = `./Videos/Business%20Analytica%20Indicators/clip_ind2_item_${item.id}.mp4`;
         return `
           <div class="snap-start shrink-0 w-[88%] sm:w-[47%] bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm flex flex-col justify-between">
             <div class="aspect-video bg-black">
