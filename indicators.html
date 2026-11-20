@@ -12,7 +12,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Corporate &amp; Asset Indicators | Business Analytica</title>
-  <meta name="description" content="Explore 79 corporate, property, mining, agriculture, and energy market indicators tracked by Business Analytica. Request custom UK company spreadsheets by indicator." />
+  <meta name="description" content="Explore corporate, property, mining, agriculture, and energy market indicators tracked by Business Analytica. Contact for pricing and custom company datasets." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://business-analytica.com/indicators.html" />
   <link rel="icon" type="image/png" href="./business.png" />
@@ -60,14 +60,14 @@
           Corporate, Land &amp; Asset Indicators
         </h1>
         <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
-          We provide actionable intelligence across property, mining, agriculture, energy, and commercial sectors. If you want a spreadsheet of companies matching any indicator, contact us directly beneath the clip.
+          We provide actionable intelligence across property, mining, agriculture, energy, and commercial sectors. Contact for pricing on custom company spreadsheets matching any indicator.
         </p>
       </div>
 
       <div class="w-full sm:w-64 shrink-0">
-        <label for="signalFilter" class="sr-only">Filter indicators by number</label>
+        <label for="signalFilter" class="sr-only">Filter indicators by number or name</label>
         <input id="signalFilter" type="text" oninput="filterSignals()"
-               placeholder="Filter by # (e.g. 079)..."
+               placeholder="Filter by # or name..."
                class="w-full bg-white border border-stone-300 rounded px-3.5 py-2.5 text-sm text-[#141A21] placeholder-stone-400 focus:outline-none focus:border-[#0B192C]" />
       </div>
     </div>
@@ -83,9 +83,9 @@
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-6 sm:gap-8">
       <div class="space-y-1.5">
         <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#D4AF37]">Sector &amp; Regional Enquiries</p>
-        <h2 class="font-editorial text-2xl font-semibold text-white">Request a Spreadsheet</h2>
+        <h2 class="font-editorial text-2xl font-semibold text-white">Contact for pricing</h2>
         <p class="text-sm text-slate-300 max-w-md">
-          Up to 100 verified CSV targets or 25 executive PDF dossiers across property, mining, agriculture, energy, or custom SIC mandates.
+          Contact for pricing. Up to 100 verified CSV targets or 25 executive PDF dossiers across property, mining, agriculture, energy, or custom SIC mandates.
         </p>
       </div>
 
@@ -108,6 +108,88 @@
   </footer>
 
   <script>
+    const indicatorNames = {
+      79: 'Ghost Holding Arbitrage',
+      78: 'High-Frequency Debt Stacking',
+      77: 'Contagion & Insolvency Alert',
+      76: 'Subsidiary Distress Leads',
+      75: 'Unencumbered Asset Equity',
+      74: 'Refinance Wall Exposure',
+      73: 'Director Resignation Cascade',
+      72: 'Late Accounts Filing Trigger',
+      71: 'Overdue Confirmation Statement',
+      70: 'Compulsory Strike-Off Notice',
+      69: 'Gazette Insolvency Warning',
+      68: 'Fixed & Floating Charge Cluster',
+      67: 'Negative Charge Release Signal',
+      66: 'Multiple Lender Concentration',
+      65: 'Short-Term Bridging Debt Signal',
+      64: 'Parent Guarantee Exposure',
+      63: 'Cross-Company Director Overlap',
+      62: 'Rapid Portfolio Accumulation',
+      61: 'Long-Hold Seller Readiness',
+      60: 'Dormant Title Holder',
+      59: 'SIC Sector Pivot Signal',
+      58: 'Registered Office Relocation',
+      57: 'Share Capital Reduction / Split',
+      56: 'Micro-Entity Balance Compression',
+      55: 'Audit Exemption Shift',
+      54: 'Charge Satisfaction Velocity',
+      53: 'Single-Asset SPV Concentration',
+      52: 'Multi-Site Operator Footprint',
+      51: 'Mineral & Extraction Site Hold',
+      50: 'Quarry & Aggregate Charge Load',
+      49: 'Agricultural Acreage Consolidation',
+      48: 'Rural Estate Succession Window',
+      47: 'Energy & Grid Asset Holding',
+      46: 'Renewable Project Debt Structure',
+      45: 'Industrial & Logistics Yard Hold',
+      44: 'Owner-Occupied Warehouse Strain',
+      43: 'Commercial Leasehold Turnover',
+      42: 'Regional Acquisition Velocity',
+      41: 'Funded Buyer Headroom Signal',
+      40: 'Cash-Rich Acquirer Profile',
+      39: 'Serial Property Buyer Pattern',
+      38: 'Off-Market Parcel Clustering',
+      37: 'High-Value Deed Outlier',
+      36: 'Below-Trend Acquisition Entry',
+      35: 'Title Split & Subdivision Activity',
+      34: 'Crown & Statutory Charge Flag',
+      33: 'Debenture Holder Pressure',
+      32: 'Repeat Charge Amendment',
+      31: 'Officer Appointment Surge',
+      30: 'Foreign Corporate Parent Link',
+      29: 'Overseas Entity Register Match',
+      28: 'Holding Company Cash Buffer',
+      27: 'Operating Subsidiary Leverage',
+      26: 'Working Capital Squeeze Signal',
+      25: 'Asset-Rich Low-Liquidity Flag',
+      24: 'Legacy Debt Maturity Window',
+      23: 'New Bank Facility Registration',
+      22: 'Alternative Lender Shift',
+      21: 'Private Credit Charge Entry',
+      20: 'Equipment Lease & Chattel Load',
+      19: 'Fleet & Machinery Charge Signal',
+      18: 'Landbank Hold Duration Alert',
+      17: 'Development Site Stagnation',
+      16: 'Portfolio Rebalancing Indicator',
+      15: 'Divestment Candidate Profile',
+      14: 'Roll-Up Consolidation Target',
+      13: 'Bolt-On Acquisition Fit',
+      12: 'Distressed Sale Timing Window',
+      11: 'Creditor Petition Risk Signal',
+      10: 'Administration Proximity Flag',
+      9:  'Liquidation Contagion Link',
+      8:  'Group Restructuring Signal',
+      7:  'Shareholder Exit Readiness',
+      6:  'Management Buyout Candidate',
+      5:  'Cross-Border Asset Holding',
+      4:  'High-Density Postcode Cluster',
+      3:  'County-Wide Market Leader',
+      2:  'Under-Leveraged Expansionist',
+      1:  'Baseline Corporate & Asset Match'
+    };
+
     function pad3(n) {
       return String(n).padStart(3, '0');
     }
@@ -119,13 +201,14 @@
 
       for (let i = 79; i >= 1; i--) {
         const id = pad3(i);
-        const label = `Indicator #${id}`;
+        const name = indicatorNames[i] || `Market Indicator ${id}`;
+        const fullTitle = `Indicator #${id} — ${name}`;
 
-        if (q && !label.toLowerCase().includes(q) && !id.includes(q)) continue;
+        if (q && !fullTitle.toLowerCase().includes(q) && !id.includes(q)) continue;
 
         const src = `./Videos/Business%20Analytica%20Indicators/clip_ind2_item_${id}.mp4`;
-        const waText = encodeURIComponent(`Hi, I'd like a spreadsheet of companies matching ${label}.`);
-        const mailSubj = encodeURIComponent(`Spreadsheet Request: ${label}`);
+        const waText = encodeURIComponent(`Hi, I'd like pricing and a spreadsheet of companies matching ${fullTitle}.`);
+        const mailSubj = encodeURIComponent(`Pricing & Spreadsheet Request: ${fullTitle}`);
 
         cards.push(`
           <article class="bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm flex flex-col justify-between">
@@ -135,14 +218,15 @@
                   <source src="${src}" type="video/mp4" />
                 </video>
               </div>
-              <div class="px-4 sm:px-5 pt-4 pb-2 flex items-center justify-between gap-2">
-                <h2 class="font-bold text-[#141A21] text-base">${label}</h2>
+              <div class="px-4 sm:px-5 pt-4 pb-2 space-y-0.5">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-[#8C6D1F]">Indicator #${id}</div>
+                <h2 class="font-bold text-[#141A21] text-base">${name}</h2>
               </div>
             </div>
 
             <div class="mx-4 sm:mx-5 mb-4 sm:mb-5 mt-2 p-3.5 rounded bg-[#F7F6F2] border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <p class="text-xs text-stone-700 font-medium">
-                Want a spreadsheet of this indicator?
+                Contact for pricing &amp; dataset.
               </p>
               <div class="flex shrink-0 gap-2">
                 <a href="https://wa.me/447986903415?text=${waText}" target="_blank" rel="noopener noreferrer"
