@@ -108,86 +108,86 @@
   </footer>
 
   <script>
-    const indicatorNames = {
-      1: "Ghost Holding Arbitrage",
-      2: "The Contagion Alert",
-      3: "Institutional Liquidation Leads",
-      4: "High-Frequency Debt Stacking",
-      5: "Stagnant Micro-Portfolios",
-      6: "The Relocation Sell-Off Signal",
-      7: "The Non-Core Divestment Signal",
-      8: "Development Deadlock",
-      9: "The Director Vacuum Trigger",
-      10: "Micro-Entity Asset Overload",
-      11: "High-Value Liquidation",
-      12: "Postcode Disjunction",
-      13: "The Silent Admin Neglect",
-      14: "Offshore Shell Redirection",
-      15: "Rapid Equity Stripping",
-      16: "The Nominee Director Pattern",
-      17: "Circular Ownership",
-      18: "The Phoenix Asset Transfer",
-      19: "High-Value Dormant Holdings",
-      20: "Post-Insolvency Director Resilience",
-      21: "High-Frequency Director Rotation",
-      22: "The Micro-Loan Layering Pattern",
-      23: "Cross-Border Ghost Proxies",
-      24: "Multi-Sector Shell Clusters",
-      25: "The Stagnant Charge Red Flag",
-      26: "Residential Assets in Commercial Shells",
-      27: "The Sudden Influx Debt Signal",
-      28: "The Straw Man Asset Shuffle",
-      29: "Beneficial Ownership Black Hole",
-      30: "The Lender of Last Resort Red Flag",
-      31: "Smurfing Through Property Postcodes",
-      32: "The Dormant Asset Escalator",
-      33: "High-Turnover Care Shells",
-      34: "The Bona Vacantia Asset Shield",
-      35: "Critical Proximity Acquisition",
-      36: "Dual-Use Procurement Shells",
-      37: "The Telecoms Energy Land-Grab",
-      38: "Influence Philanthropy Shells",
-      39: "Sovereign Wealth Fronts",
-      40: "The Student Academic Proxy",
-      41: "Dormant Security Buffer",
-      42: "Shadow Supply Chain",
-      43: "High-Security Postcode Clustering",
-      44: "Agricultural Dual-Use Land",
-      45: "Intellectual Property Vacuum Companies",
-      46: "The Ex-Diplomat Director Pivot",
-      47: "Dark Data Center Shells",
-      48: "Maritime Logistics Fronts",
-      49: "Critical Mineral Resource Anchoring",
-      50: "Proxy Recruitment Hubs",
-      51: "High-Precision Logistics Shadowing",
-      52: "Dark Utility Interception",
-      53: "Academic Research Shells with No IP",
-      54: "Sovereign Debt Entrapment",
-      55: "The Satellite Office Signal",
-      56: "The Stalled Quarry Arbitrage",
-      57: "Extractive Distress",
-      58: "The Mineral Rights Succession",
-      59: "Restoration Bond Neglect",
-      60: "The Resource Domino Effect",
-      61: "The Coal Tip Reclamation Leads",
-      62: "Dormant Mineral Rights",
-      63: "The Aggregates Cash-Out",
-      64: "Abandoned Option Agreements",
-      65: "The Silica Industrial Play",
-      66: "Restoration Liability Arbitrage",
-      67: "Lithium Exploration Sleeping Licenses",
-      68: "Coal Tip Methane Secondary Recovery",
-      69: "Distressed Oil Gas Service Hubs",
-      70: "The Stranded Asset Gas Flare",
-      71: "Geothermal Retrofit Legacy Mine Voids",
-      72: "Dark Mineral Sovereignty",
-      73: "Refinery Midstream Distress",
-      74: "The Chemical Legacy Succession",
-      75: "Dark Midstream Storage Offshore Control",
-      76: "Stalled Renewable Conversion HMRC Pressure",
-      77: "The Fertilizer Food Security Gap",
-      78: "Industrial Utility Arbitrage High Price Paid",
-      79: "Phoenixing in the Supply Chain"
+    const indicatorsData = {
+      1: { name: "Ghost Holding Arbitrage", desc: "You can check Companies House for dormant or micro-entity statuses holding 5+ property assets with zero registered charges on the charges register." },
+      2: { name: "The Contagion Alert", desc: "You can trace director cross-appointments on Companies House to find active companies whose directors experienced a sister company enter liquidation in the past 60 days." },
+      3: { name: "Institutional Liquidation Leads", desc: "You can search Companies House for subsidiaries of large PLCs showing late filing pressure and HMRC notices." },
+      4: { name: "High-Frequency Debt Stacking", desc: "You can pull the charges register on Companies House to track companies that have registered 5+ new charges within a single calendar year." },
+      5: { name: "Stagnant Micro-Portfolios", desc: "You can check Companies House filing history to find entities holding 3+ properties that have remained classified as micro-entities for 7+ years." },
+      6: { name: "The Relocation Sell-Off Signal", desc: "You can track registered office address change logs on Companies House to find companies that moved out of county while holding local property." },
+      7: { name: "The Non-Core Divestment Signal", desc: "You can cross-reference Companies House primary SIC codes against Land Registry property types to find retail or tech firms holding land or care sites." },
+      8: { name: "Development Deadlock", desc: "You can check Land Registry ownership dates exceeding 4 years on land or plot addresses combined with zero mortgage charges on Companies House." },
+      9: { name: "The Director Vacuum Trigger", desc: "You can review director resignation history on Companies House to find heavily mortgaged companies (3+ mortgages) where only one director remains." },
+      10: { name: "Micro-Entity Asset Overload", desc: "You can match Companies House micro-entity accounts against Land Registry transaction prices to find basic structures holding assets exceeding £500k." },
+      11: { name: "High-Value Liquidation", desc: "You can filter Companies House formal liquidation and administration notices by cross-referencing Land Registry purchase prices exceeding standard thresholds." },
+      12: { name: "Postcode Disjunction", desc: "You can map Land Registry property address postcodes on companies holding 3+ assets to check if they span across 3 or more distinct postcodes." },
+      13: { name: "The Silent Admin Neglect", desc: "You can check Companies House for active trading companies showing overdue confirmation statements alongside 3+ registered charges." },
+      14: { name: "Offshore Shell Redirection", desc: "You can check Companies House director residential country codes to find foreign tax haven jurisdictions holding major UK property assets." },
+      15: { name: "Rapid Equity Stripping", desc: "You can pull the charges register on Companies House to track companies registering 10+ new mortgages in 6 months without matching property acquisitions on the Land Registry." },
+      16: { name: "The Nominee Director Pattern", desc: "You can search Companies House director ID profiles to identify individuals holding 20+ active directorships across unrelated SIC codes." },
+      17: { name: "Circular Ownership", desc: "You can check Persons with Significant Control (PSC) registers on Companies House where control is listed as a corporate entity sharing the same registered office." },
+      18: { name: "The Phoenix Asset Transfer", desc: "You can track Companies House dissolution filings followed by newly incorporated entities in the same region acquiring historical land titles." },
+      19: { name: "High-Value Dormant Holdings", desc: "You can filter Companies House dormant accounts for entities holding Land Registry titles with purchase prices exceeding £1M." },
+      20: { name: "Post-Insolvency Director Resilience", desc: "You can track historical liquidation records on Companies House to identify directors who have presided over 3+ failures while incorporating new mortgaged entities." },
+      21: { name: "High-Frequency Director Rotation", desc: "You can check officer change logs on Companies House to track asset-holding companies experiencing multiple director resignations and appointments within 12 months." },
+      22: { name: "The Micro-Loan Layering Pattern", desc: "You can cross-reference Companies House charge registers showing 10+ mortgages against Land Registry property prices under £100k." },
+      23: { name: "Cross-Border Ghost Proxies", desc: "You can check Companies House PSC registers where UK land-owning companies are controlled by foreign firms registered in overseas jurisdictions." },
+      24: { name: "Multi-Sector Shell Clusters", desc: "You can query Companies House registered office addresses controlling 5+ companies spanning completely unrelated industries." },
+      25: { name: "The Stagnant Charge Red Flag", desc: "You can check Companies House charge registers for mortgages outstanding for 15+ years with zero satisfaction filings during periods of HMRC pressure." },
+      26: { name: "Residential Assets in Commercial Shells", desc: "You can cross-reference Companies House commercial SIC codes against Land Registry residential property address postcodes." },
+      27: { name: "The Sudden Influx Debt Signal", desc: "You can check Companies House filing logs for debt-free firms suddenly registering 3+ mortgages in 90 days alongside late accounts." },
+      28: { name: "The Straw Man Asset Shuffle", desc: "You can track company name changes and registered office updates on Companies House occurring 2+ times in 24 months on properties over £500k." },
+      29: { name: "Beneficial Ownership Black Hole", desc: "You can check Companies House PSC registers for foreign legal entities controlling assets with no individual human PSC listed." },
+      30: { name: "The Lender of Last Resort Red Flag", desc: "You can pull Companies House charge registers to check if 5+ mortgages are held by private limited companies rather than regulated banks." },
+      31: { name: "Smurfing Through Property Postcodes", desc: "You can map Companies House director networks controlling 10+ companies holding single low-value properties (<£150k) across varied postcodes." },
+      32: { name: "The Dormant Asset Escalator", desc: "You can check Companies House dormant company accounts inactive for 3+ years that suddenly show recent Land Registry property acquisition dates." },
+      33: { name: "High-Turnover Care Shells", desc: "You can track care home operator profiles (SIC 87100) on Companies House for complete director changes occurring within 6 months of a large mortgage registration." },
+      34: { name: "The Bona Vacantia Asset Shield", desc: "You can search Companies House historical logs for companies that dissolved while holding land and were subsequently restored to the register 12+ months later." },
+      35: { name: "Critical Proximity Acquisition", desc: "You can cross-reference Land Registry property coordinates near sensitive government, military, or infrastructure sites with Companies House director residence data to identify foreign nationals acquiring strategic land." },
+      36: { name: "Dual-Use Procurement Shells", desc: "You can filter Companies House for recently incorporated entities with high-tech, aerospace, or defense SIC codes showing zero mortgages and foreign national control." },
+      37: { name: "The Telecoms Energy Land-Grab", desc: "You can search Land Registry address data for small plots near power grids or cable lines held by real estate companies controlled by foreign entities." },
+      38: { name: "Influence Philanthropy Shells", desc: "You can check Companies House for social or educational non-profit entities showing heavy mortgage counts held through single foreign-owned private lenders." },
+      39: { name: "Sovereign Wealth Fronts", desc: "You can inspect Companies House Persons with Significant Control registers to find non-human entities, legal persons, or government bodies holding bulk land titles." },
+      40: { name: "The Student Academic Proxy", desc: "You can scan Companies House for companies registered at university campus addresses controlled by foreign nationals on short-term visas aged under 30." },
+      41: { name: "Dormant Security Buffer", desc: "You can screen Companies House dormant shell accounts incorporated 5+ years ago that suddenly register land title acquisitions near major logistics hubs." },
+      42: { name: "Shadow Supply Chain", desc: "You can cross-reference Land Registry warehouse and depot listings near railway junctions or motorways with Companies House foreign control flags." },
+      43: { name: "High-Security Postcode Clustering", desc: "You can query Companies House postcodes inside sensitive sectors (such as GCHQ or MOD outposts) to spot clusters of 3+ foreign-owned entities sharing registered addresses." },
+      44: { name: "Agricultural Dual-Use Land", desc: "You can filter Land Registry records for large rural and agricultural plots holding zero farming mortgages while under non-EU or foreign control." },
+      45: { name: "Intellectual Property Vacuum Companies", desc: "You can check Companies House R&D or consultancy firms lacking property titles but featuring foreign firm control structures." },
+      46: { name: "The Ex-Diplomat Director Pivot", desc: "You can cross-reference Land Registry history showing previous local government or institutional ownership against foreign-controlled company directors." },
+      47: { name: "Dark Data Center Shells", desc: "You can screen dormant Companies House real estate entities holding industrial units featuring high utility footprints without public-facing commercial profiles." },
+      48: { name: "Maritime Logistics Fronts", desc: "You can search Land Registry titles near port infrastructure held by companies controlled via flag-of-convenience shipping jurisdictions." },
+      49: { name: "Critical Mineral Resource Anchoring", desc: "You can inspect Land Registry titles in mineral-rich geological zones showing zero mortgage activity under foreign corporate ownership." },
+      50: { name: "Proxy Recruitment Hubs", desc: "You can screen Companies House language schools, travel agencies, and cultural centers located near government headquarters that feature foreign control." },
+      51: { name: "High-Precision Logistics Shadowing", desc: "You can check Land Registry plots sitting adjacent to high-security defense contractor depots held by foreign-controlled entities." },
+      52: { name: "Dark Utility Interception", desc: "You can check Companies House electricity and water generation SIC codes for recently incorporated foreign shells lacking public grid-export agreements." },
+      53: { name: "Academic Research Shells with No IP", desc: "You can cross-reference research SIC companies holding multiple property titles against patent registries to identify entities lacking IP output." },
+      54: { name: "Sovereign Debt Entrapment", desc: "You can pull Companies House charge registers on local SMEs to find entities carrying 5+ mortgages issued by foreign state-owned banks." },
+      55: { name: "The Satellite Office Signal", desc: "You can check Companies House registered office updates against Land Registry property addresses to find administrative offices separated from secure operational sites." },
+      56: { name: "The Stalled Quarry Arbitrage", desc: "You can filter Companies House mining and quarrying entities holding unencumbered land for over 10 years with zero outstanding mortgages." },
+      57: { name: "Extractive Distress", desc: "You can check Companies House formal insolvency notices on mineral extraction entities holding pit and land assets." },
+      58: { name: "The Mineral Rights Succession", desc: "You can query Companies House director dates of birth to locate mining and quarry operators aged 70+ managing legacy aggregate sites." },
+      59: { name: "Restoration Bond Neglect", desc: "You can cross-reference Companies House accounts filing defaults against mining and quarry entities holding environmental permits." },
+      60: { name: "The Resource Domino Effect", desc: "You can track director cross-appointments on Companies House where one mining entity is in liquidation while another remains active." },
+      61: { name: "The Coal Tip Reclamation Leads", desc: "You can search Land Registry data for colliery tips and hard coal extraction titles across historical mining postcode clusters." },
+      62: { name: "Dormant Mineral Rights", desc: "You can scan Companies House dormant entity accounts holding rural or agricultural land titles located in known mineral belts." },
+      63: { name: "The Aggregates Cash-Out", desc: "You can check Companies House charge registers for sand and gravel operators carrying 3+ outstanding mortgages against minimal satisfied charges." },
+      64: { name: "Abandoned Option Agreements", desc: "You can check Companies House strike-off warnings and late accounts on mining entities holding option-bound land titles." },
+      65: { name: "The Silica Industrial Play", desc: "You can cross-reference Companies House silica extraction records with aging director profiles to find specialized mineral succession opportunities." },
+      66: { name: "Restoration Liability Arbitrage", desc: "You can filter Companies House administration and receivership notices on pit and quarry assets burdened by heavy environmental liabilities." },
+      67: { name: "Lithium Exploration Sleeping Licenses", desc: "You can scan Land Registry rural titles in lithium-belt counties held by debt-free mining shells with older directors." },
+      68: { name: "Coal Tip Methane Secondary Recovery", desc: "You can check Companies House filing defaults and liquidation notices on historical colliery spoil heap titleholders." },
+      69: { name: "Distressed Oil Gas Service Hubs", desc: "You can query Companies House petroleum and natural gas service depots carrying 3+ outstanding mortgage charges." },
+      70: { name: "The Stranded Asset Gas Flare", desc: "You can check Companies House charge registers for wellhead and gas extraction shells hitting a Zombie Index of 5+ charges." },
+      71: { name: "Geothermal Retrofit Legacy Mine Voids", desc: "You can screen Companies House administration and strike-off notices on entities holding flooded mine shaft properties." },
+      72: { name: "Dark Mineral Sovereignty", desc: "You can inspect Companies House PSC records for foreign nominees holding high-value mineral land inside dormant shell companies." },
+      73: { name: "Refinery Midstream Distress", desc: "You can pull Companies House charge registers on mineral oil refining and processing plants carrying 5+ outstanding mortgages." },
+      74: { name: "The Chemical Legacy Succession", desc: "You can query Companies House director ages on basic chemical and processing plants to find retiring owners managing complex industrial sites." },
+      75: { name: "Dark Midstream Storage Offshore Control", desc: "You can check Companies House micro and dormant entity records for tank farm and terminal storage assets under foreign tax haven control." },
+      76: { name: "Stalled Renewable Conversion HMRC Pressure", desc: "You can screen Companies House late accounts filings on heavy industrial processing and smelting sites earmarked for green transition." },
+      77: { name: "The Fertilizer Food Security Gap", desc: "You can check Companies House strike-off warnings and mortgage counts on essential nitrogen and fertilizer processing facilities." },
+      78: { name: "Industrial Utility Arbitrage High Price Paid", desc: "You can cross-reference Land Registry purchase prices exceeding £1M on processing works against Companies House holding structures." },
+      79: { name: "Phoenixing in the Supply Chain", desc: "You can trace Companies House liquidation notices followed by new company incorporations at identical postcodes within the refining sector." }
     };
 
     function pad3(n) {
@@ -201,10 +201,10 @@
 
       for (let i = 79; i >= 1; i--) {
         const id = pad3(i);
-        const name = indicatorNames[i] || `Market Indicator ${id}`;
-        const fullTitle = `Indicator #${id} — ${name}`;
+        const item = indicatorsData[i] || { name: `Market Indicator ${id}`, desc: "" };
+        const fullTitle = `Indicator #${id} — ${item.name}`;
 
-        if (q && !fullTitle.toLowerCase().includes(q) && !id.includes(q)) continue;
+        if (q && !fullTitle.toLowerCase().includes(q) && !item.desc.toLowerCase().includes(q) && !id.includes(q)) continue;
 
         const src = `./Videos/Business%20Analytica%20Indicators/clip_ind2_item_${id}.mp4`;
         const waText = encodeURIComponent(`Hi, I'd like pricing and a spreadsheet of companies matching ${fullTitle}.`);
@@ -218,13 +218,14 @@
                   <source src="${src}" type="video/mp4" />
                 </video>
               </div>
-              <div class="px-4 sm:px-5 pt-4 pb-2 space-y-0.5">
+              <div class="px-4 sm:px-5 pt-4 pb-2 space-y-1">
                 <div class="text-[11px] font-bold uppercase tracking-wider text-[#8C6D1F]">Indicator #${id}</div>
-                <h2 class="font-bold text-[#141A21] text-base">${name}</h2>
+                <h2 class="font-bold text-[#141A21] text-base">${item.name}</h2>
+                <p class="text-xs text-stone-600 leading-relaxed pt-0.5">${item.desc}</p>
               </div>
             </div>
 
-            <div class="mx-4 sm:mx-5 mb-4 sm:mb-5 mt-2 p-3.5 rounded bg-[#F7F6F2] border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="mx-4 sm:mx-5 mb-4 sm:mb-5 mt-3 p-3.5 rounded bg-[#F7F6F2] border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <p class="text-xs text-stone-700 font-medium">
                 Contact for pricing &amp; dataset.
               </p>
