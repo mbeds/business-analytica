@@ -12,8 +12,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Business Analytica | UK Corporate, Property &amp; Real-Asset Intelligence</title>
-  <meta name="description" content="Business Analytica provides actionable UK corporate, property, and real-asset intelligence across property, mining, agriculture, energy, and commercial sectors. Delivered within 24 hours." />
-  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Business Analytica provides actionable UK corporate, property, and real-asset intelligence across property, mining, agriculture, energy, and commercial sectors. Contact for pricing." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://business-analytica.com/" />
   <link rel="icon" type="image/png" href="./business.png" />
 
@@ -21,25 +21,52 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Business Analytica" />
   <meta property="og:title" content="Business Analytica | UK Corporate, Property &amp; Real-Asset Intelligence" />
-  <meta property="og:description" content="Actionable UK corporate and asset intelligence across property, mining, agriculture, energy, and commercial sectors." />
+  <meta property="og:description" content="Actionable UK corporate and asset intelligence across property, mining, agriculture, energy, and commercial sectors. Contact for pricing." />
   <meta property="og:url" content="https://business-analytica.com/" />
   <meta property="og:image" content="https://business-analytica.com/business.png" />
 
-  <!-- Structured Data -->
+  <!-- Structured Data (SEO + AIO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Business Analytica",
-    "url": "https://business-analytica.com",
-    "logo": "https://business-analytica.com/business.png",
-    "description": "UK corporate, property, and real-asset intelligence consultancy serving property, mining, agriculture, energy, and commercial acquisition teams.",
-    "areaServed": "United Kingdom",
-    "telephone": "+447986903415",
-    "email": "info@business-analytica.com",
-    "sameAs": [
-      "https://www.linkedin.com/company/136176605",
-      "https://www.facebook.com/profile.php?id=61592039171569"
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://business-analytica.com/#organization",
+        "name": "Business Analytica",
+        "url": "https://business-analytica.com/",
+        "logo": "https://business-analytica.com/business.png",
+        "description": "UK corporate, property, and real-asset intelligence consultancy serving property, mining, agriculture, energy, and commercial acquisition teams.",
+        "areaServed": "United Kingdom",
+        "telephone": "+447986903415",
+        "email": "info@business-analytica.com",
+        "sameAs": [
+          "https://www.linkedin.com/company/136176605",
+          "https://www.facebook.com/profile.php?id=61592039171569"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://business-analytica.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does Business Analytica provide?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Business Analytica provides actionable intelligence on distressed operators, funded acquirers, and off-market assets across property, mining, agriculture, energy, and commercial sectors by linking corporate filings, registered charges, and land registry records."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What deliverables are included and how is pricing handled?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Deliverables include executive PDF intelligence dossiers and structured CSV datasets tailored to target sectors, indicators, and regions. Contact for pricing."
+            }
+          }
+        ]
+      }
     ]
   }
   </script>
@@ -82,7 +109,7 @@
 
   <!-- 2. HERO (DIRECTLY UNDER MAIN HEADER) -->
   <section aria-labelledby="hero-heading" class="bg-[#0B192C] text-white border-b border-slate-800">
-    <div class="max-w-5xl mx-auto px-4 sm:px-5 py-12 sm:py-16 space-y-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-5 py-10 sm:py-16 space-y-8 sm:space-y-10">
 
       <!-- Centered Hero Text -->
       <div class="max-w-3xl mx-auto text-center space-y-4 sm:space-y-5">
@@ -93,7 +120,7 @@
           We provide actionable intelligence on distressed operators, funded acquirers, and off-market assets.
         </h1>
         <p class="text-slate-300 text-sm sm:text-lg leading-relaxed max-w-2xl mx-auto">
-          Business Analytica connects company filings, debt charges, land registries, and operational asset records across <strong>property, mining, agriculture, energy, and commercial sectors</strong>—delivering clear intelligence reports and datasets within 24 hours.
+          Business Analytica connects company filings, debt charges, land registries, and operational asset records across <strong>property, mining, agriculture, energy, and commercial sectors</strong>—delivering clear intelligence reports and datasets within 24 hours. Contact for pricing.
         </p>
         <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href="#sample" class="w-full sm:w-auto bg-[#D4AF37] text-[#0B192C] font-bold px-6 py-3.5 rounded text-sm text-center hover:bg-amber-400 transition">
@@ -288,7 +315,7 @@
             A Sample of the Signals We Track
           </h2>
           <p class="text-sm text-stone-600 mt-1">
-            Four examples from our wider library of corporate, financial, and real-asset indicators. Contact for pricing.
+            Four examples from our 79 categorized corporate, financial, and real-asset indicators. Contact for pricing.
           </p>
         </div>
         <div class="flex items-center gap-2">
@@ -360,10 +387,10 @@
     }
 
     const featuredIndicators = [
-      { id: '001', title: 'Ghost Holding Arbitrage', desc: 'Dormant or micro-entity companies holding multiple property assets with zero registered charges.' },
+      { id: '001', title: 'Ghost Holding Arbitrage', desc: 'Dormant or micro-entity companies holding 5+ property assets with zero registered charges.' },
       { id: '002', title: 'The Contagion Alert', desc: 'Active companies whose directors experienced a sister company liquidation within 60 days.' },
-      { id: '003', title: 'Institutional Liquidation Leads', desc: 'Subsidiaries of large groups showing late filing pressure and HMRC or insolvency notices.' },
-      { id: '004', title: 'High-Frequency Debt Stacking', desc: 'Companies registering multiple new charges within a single calendar year.' }
+      { id: '003', title: 'Institutional Liquidation Leads', desc: 'Subsidiaries of large PLCs showing late filing pressure and HMRC notices.' },
+      { id: '004', title: 'High-Frequency Debt Stacking', desc: 'Companies registering 5+ new charges within a single calendar year.' }
     ];
 
     function buildIndicatorTrack() {
