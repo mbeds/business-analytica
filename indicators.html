@@ -11,8 +11,8 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Indicator Categories | Business Analytica</title>
-  <meta name="description" content="Filter 79 corporate, property, mining, energy, and industrial indicators using category buttons by signal type, buyer/seller side, and industry. Contact for pricing." />
+  <title>Indicator Categories by Industry | Business Analytica</title>
+  <meta name="description" content="Filter 79 corporate and asset indicators across Property, Mining, Commercial, Industrial, Energy, Logistics, and Agriculture, plus Buyer and Seller sides. Contact for pricing." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://business-analytica.com/indicators.html" />
   <link rel="icon" type="image/png" href="./business.png" />
@@ -20,8 +20,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Business Analytica" />
-  <meta property="og:title" content="Indicator Categories | Business Analytica" />
-  <meta property="og:description" content="Browse 79 UK corporate and asset indicators by category buttons: Signal Category, Buyer/Seller, and Industry. Contact for pricing." />
+  <meta property="og:title" content="Indicator Categories by Industry | Business Analytica" />
+  <meta property="og:description" content="Browse 79 UK corporate and real-asset indicators by Industry (Property, Mining, Commercial, Industrial, Energy, Logistics, Agriculture) and Buyer/Seller side." />
   <meta property="og:url" content="https://business-analytica.com/indicators.html" />
   <meta property="og:image" content="https://business-analytica.com/business.png" />
 
@@ -32,7 +32,7 @@
     "@type": "CollectionPage",
     "name": "Business Analytica Signal Library",
     "url": "https://business-analytica.com/indicators.html",
-    "description": "79 corporate, property, distress, strategic cross-border, and mining/energy/industrial indicators.",
+    "description": "79 corporate and asset indicators categorized across Property, Mining, Commercial, Industrial, Energy, Logistics, and Agriculture.",
     "provider": {
       "@type": "ProfessionalService",
       "name": "Business Analytica",
@@ -86,7 +86,7 @@
           Corporate, Land &amp; Asset Indicators
         </h1>
         <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
-          Select category buttons below to filter by <strong>Signal Category</strong>, <strong>Buyer / Seller</strong>, or <strong>Industry</strong>. Contact for pricing on any indicator dataset.
+          Filter all 79 indicators by <strong>Industry</strong>, <strong>Buyer / Seller</strong>, or <strong>Signal Category</strong>. Contact for pricing on any indicator dataset.
         </p>
       </div>
 
@@ -101,22 +101,22 @@
     <!-- Button Category Groups -->
     <div class="bg-white border border-stone-300 rounded-lg p-4 sm:p-5 space-y-4 shadow-sm">
 
-      <!-- Category Buttons: Signal Type -->
+      <!-- Separated Industry Buttons -->
       <div class="space-y-2">
-        <div class="text-[11px] font-bold uppercase tracking-wider text-stone-500">Category Buttons</div>
-        <div id="catButtons" class="grid grid-cols-2 sm:grid-cols-4 gap-2"></div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-stone-500">Industry Buttons</div>
+        <div id="industryButtons" class="grid grid-cols-2 sm:grid-cols-4 gap-2"></div>
       </div>
 
-      <!-- Category Buttons: Buyer / Seller -->
+      <!-- Buyer / Seller Buttons -->
       <div class="space-y-2">
         <div class="text-[11px] font-bold uppercase tracking-wider text-stone-500">Buyer / Seller Buttons</div>
         <div id="roleButtons" class="grid grid-cols-2 sm:grid-cols-4 gap-2"></div>
       </div>
 
-      <!-- Category Buttons: Industry -->
+      <!-- Signal Category Buttons -->
       <div class="space-y-2">
-        <div class="text-[11px] font-bold uppercase tracking-wider text-stone-500">Industry Buttons</div>
-        <div id="industryButtons" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-stone-500">Category Buttons</div>
+        <div id="catButtons" class="grid grid-cols-2 sm:grid-cols-4 gap-2"></div>
       </div>
 
       <div class="pt-1 flex flex-wrap items-center justify-between gap-2 border-t border-stone-200 text-xs">
@@ -141,7 +141,7 @@
         <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#D4AF37]">Sector &amp; Regional Enquiries</p>
         <h2 class="font-editorial text-2xl font-semibold text-white">Contact for pricing</h2>
         <p class="text-sm text-slate-300 max-w-md">
-          Contact for pricing. Up to 100 verified CSV targets or 25 executive PDF dossiers across property, mining, agriculture, energy, or custom SIC mandates.
+          Contact for pricing. Up to 100 verified CSV targets or 25 executive PDF dossiers across Property, Mining, Commercial, Industrial, Energy, Logistics, Agriculture, or custom SIC mandates.
         </p>
       </div>
 
@@ -164,11 +164,15 @@
   </footer>
 
   <script>
-    const signalCategories = [
+    const industryOptions = [
       "All",
-      "Ownership & Structure",
-      "Distress & Debt",
-      "Strategic & Sector Asset"
+      "Property",
+      "Mining",
+      "Commercial",
+      "Industrial",
+      "Energy",
+      "Logistics",
+      "Agriculture"
     ];
 
     const buyerSellerOptions = [
@@ -178,100 +182,98 @@
       "Dual"
     ];
 
-    const industryOptions = [
+    const signalCategories = [
       "All",
-      "Property & Real Estate",
-      "Mining & Extractive",
-      "Energy & Utilities",
-      "Industrial & Logistics",
-      "Agriculture & Rural"
+      "Ownership & Structure",
+      "Distress & Debt",
+      "Strategic & Sector Asset"
     ];
 
     const indicatorsData = {
-      1: { role: "Buyer", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Ghost Holding Arbitrage", desc: "You can check Companies House for dormant or micro-entity statuses holding 5+ property assets with zero registered charges on the charges register." },
-      2: { role: "Seller", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "The Contagion Alert", desc: "You can trace director cross-appointments on Companies House to find active companies whose directors experienced a sister company enter liquidation in the past 60 days." },
-      3: { role: "Seller", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "Institutional Liquidation Leads", desc: "You can search Companies House for subsidiaries of large PLCs showing late filing pressure and HMRC notices." },
-      4: { role: "Dual", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "High-Frequency Debt Stacking", desc: "You can pull the charges register on Companies House to track companies that have registered 5+ new charges within a single calendar year." },
-      5: { role: "Dual", industry: "Industrial & Logistics", signalCat: "Ownership & Structure", name: "Stagnant Micro-Portfolios", desc: "You can check Companies House filing history to find entities holding 3+ properties that have remained classified as micro-entities for 7+ years." },
-      6: { role: "Seller", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "The Relocation Sell-Off Signal", desc: "You can track registered office address change logs on Companies House to find companies that moved out of county while holding local property." },
-      7: { role: "Seller", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "The Non-Core Divestment Signal", desc: "You can cross-reference Companies House primary SIC codes against Land Registry property types to find retail or tech firms holding land or care sites." },
-      8: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Development Deadlock", desc: "You can check Land Registry ownership dates exceeding 4 years on land or plot addresses combined with zero mortgage charges on Companies House." },
-      9: { role: "Seller", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "The Director Vacuum Trigger", desc: "You can review director resignation history on Companies House to find heavily mortgaged companies (3+ mortgages) where only one director remains." },
-      10: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Micro-Entity Asset Overload", desc: "You can match Companies House micro-entity accounts against Land Registry transaction prices to find basic structures holding assets exceeding £500k." },
-      11: { role: "Seller", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "High-Value Liquidation", desc: "You can filter Companies House formal liquidation and administration notices by cross-referencing Land Registry purchase prices exceeding standard thresholds." },
-      12: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Postcode Disjunction", desc: "You can map Land Registry property address postcodes on companies holding 3+ assets to check if they span across 3 or more distinct postcodes." },
-      13: { role: "Seller", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "The Silent Admin Neglect", desc: "You can check Companies House for active trading companies showing overdue confirmation statements alongside 3+ registered charges." },
-      14: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Offshore Shell Redirection", desc: "You can check Companies House director residential country codes to find foreign tax haven jurisdictions holding major UK property assets." },
-      15: { role: "Buyer", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "Rapid Equity Stripping", desc: "You can pull the charges register on Companies House to track companies registering 10+ new mortgages in 6 months without matching property acquisitions on the Land Registry." },
-      16: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "The Nominee Director Pattern", desc: "You can search Companies House director ID profiles to identify individuals holding 20+ active directorships across unrelated SIC codes." },
-      17: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Circular Ownership", desc: "You can check Persons with Significant Control (PSC) registers on Companies House where control is listed as a corporate entity sharing the same registered office." },
-      18: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "The Phoenix Asset Transfer", desc: "You can track Companies House dissolution filings followed by newly incorporated entities in the same region acquiring historical land titles." },
-      19: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "High-Value Dormant Holdings", desc: "You can filter Companies House dormant accounts for entities holding Land Registry titles with purchase prices exceeding £1M." },
-      20: { role: "Seller", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "Post-Insolvency Director Resilience", desc: "You can track historical liquidation records on Companies House to identify directors who have presided over 3+ failures while incorporating new mortgaged entities." },
-      21: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "High-Frequency Director Rotation", desc: "You can check officer change logs on Companies House to track asset-holding companies experiencing multiple director resignations and appointments within 12 months." },
-      22: { role: "Dual", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "The Micro-Loan Layering Pattern", desc: "You can cross-reference Companies House charge registers showing 10+ mortgages against Land Registry property prices under £100k." },
-      23: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Cross-Border Ghost Proxies", desc: "You can check Companies House PSC registers where UK land-owning companies are controlled by foreign firms registered in overseas jurisdictions." },
-      24: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Multi-Sector Shell Clusters", desc: "You can query Companies House registered office addresses controlling 5+ companies spanning completely unrelated industries." },
-      25: { role: "Seller", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "The Stagnant Charge Red Flag", desc: "You can check Companies House charge registers for mortgages outstanding for 15+ years with zero satisfaction filings during periods of HMRC pressure." },
-      26: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Residential Assets in Commercial Shells", desc: "You can cross-reference Companies House commercial SIC codes against Land Registry residential property address postcodes." },
-      27: { role: "Seller", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "The Sudden Influx Debt Signal", desc: "You can check Companies House filing logs for debt-free firms suddenly registering 3+ mortgages in 90 days alongside late accounts." },
-      28: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "The Straw Man Asset Shuffle", desc: "You can track company name changes and registered office updates on Companies House occurring 2+ times in 24 months on properties over £500k." },
-      29: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Beneficial Ownership Black Hole", desc: "You can check Companies House PSC registers for foreign legal entities controlling assets with no individual human PSC listed." },
-      30: { role: "Seller", industry: "Property & Real Estate", signalCat: "Distress & Debt", name: "The Lender of Last Resort Red Flag", desc: "You can pull Companies House charge registers to check if 5+ mortgages are held by private limited companies rather than regulated banks." },
-      31: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "Smurfing Through Property Postcodes", desc: "You can map Companies House director networks controlling 10+ companies holding single low-value properties (<£150k) across varied postcodes." },
-      32: { role: "Buyer", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "The Dormant Asset Escalator", desc: "You can check Companies House dormant company accounts inactive for 3+ years that suddenly show recent Land Registry property acquisition dates." },
-      33: { role: "Dual", industry: "Industrial & Logistics", signalCat: "Distress & Debt", name: "High-Turnover Care Shells", desc: "You can track care home operator profiles (SIC 87100) on Companies House for complete director changes occurring within 6 months of a large mortgage registration." },
-      34: { role: "Dual", industry: "Property & Real Estate", signalCat: "Ownership & Structure", name: "The Bona Vacantia Asset Shield", desc: "You can search Companies House historical logs for companies that dissolved while holding land and were subsequently restored to the register 12+ months later." },
-      35: { role: "Buyer", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "Critical Proximity Acquisition", desc: "You can cross-reference Land Registry property coordinates near sensitive government, military, or infrastructure sites with Companies House director residence data to identify foreign nationals acquiring strategic land." },
-      36: { role: "Dual", industry: "Industrial & Logistics", signalCat: "Strategic & Sector Asset", name: "Dual-Use Procurement Shells", desc: "You can filter Companies House for recently incorporated entities with high-tech, aerospace, or defense SIC codes showing zero mortgages and foreign national control." },
-      37: { role: "Buyer", industry: "Energy & Utilities", signalCat: "Strategic & Sector Asset", name: "The Telecoms Energy Land-Grab", desc: "You can search Land Registry address data for small plots near power grids or cable lines held by real estate companies controlled by foreign entities." },
-      38: { role: "Dual", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "Influence Philanthropy Shells", desc: "You can check Companies House for social or educational non-profit entities showing heavy mortgage counts held through single foreign-owned private lenders." },
-      39: { role: "Dual", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "Sovereign Wealth Fronts", desc: "You can inspect Companies House Persons with Significant Control registers to find non-human entities, legal persons, or government bodies holding bulk land titles." },
-      40: { role: "Dual", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "The Student Academic Proxy", desc: "You can scan Companies House for companies registered at university campus addresses controlled by foreign nationals on short-term visas aged under 30." },
-      41: { role: "Buyer", industry: "Industrial & Logistics", signalCat: "Strategic & Sector Asset", name: "Dormant Security Buffer", desc: "You can screen Companies House dormant shell accounts incorporated 5+ years ago that suddenly register land title acquisitions near major logistics hubs." },
-      42: { role: "Dual", industry: "Industrial & Logistics", signalCat: "Strategic & Sector Asset", name: "Shadow Supply Chain", desc: "You can cross-reference Land Registry warehouse and depot listings near railway junctions or motorways with Companies House foreign control flags." },
-      43: { role: "Dual", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "High-Security Postcode Clustering", desc: "You can query Companies House postcodes inside sensitive sectors (such as GCHQ or MOD outposts) to spot clusters of 3+ foreign-owned entities sharing registered addresses." },
-      44: { role: "Dual", industry: "Agriculture & Rural", signalCat: "Strategic & Sector Asset", name: "Agricultural Dual-Use Land", desc: "You can filter Land Registry records for large rural and agricultural plots holding zero farming mortgages while under non-EU or foreign control." },
-      45: { role: "Dual", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "Intellectual Property Vacuum Companies", desc: "You can check Companies House R&D or consultancy firms lacking property titles but featuring foreign firm control structures." },
-      46: { role: "Dual", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "The Ex-Diplomat Director Pivot", desc: "You can cross-reference Land Registry history showing previous local government or institutional ownership against foreign-controlled company directors." },
-      47: { role: "Dual", industry: "Energy & Utilities", signalCat: "Strategic & Sector Asset", name: "Dark Data Center Shells", desc: "You can screen dormant Companies House real estate entities holding industrial units featuring high utility footprints without public-facing commercial profiles." },
-      48: { role: "Dual", industry: "Industrial & Logistics", signalCat: "Strategic & Sector Asset", name: "Maritime Logistics Fronts", desc: "You can search Land Registry titles near port infrastructure held by companies controlled via flag-of-convenience shipping jurisdictions." },
-      49: { role: "Buyer", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "Critical Mineral Resource Anchoring", desc: "You can inspect Land Registry titles in mineral-rich geological zones showing zero mortgage activity under foreign corporate ownership." },
-      50: { role: "Dual", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "Proxy Recruitment Hubs", desc: "You can screen Companies House language schools, travel agencies, and cultural centers located near government headquarters that feature foreign control." },
-      51: { role: "Dual", industry: "Industrial & Logistics", signalCat: "Strategic & Sector Asset", name: "High-Precision Logistics Shadowing", desc: "You can check Land Registry plots sitting adjacent to high-security defense contractor depots held by foreign-controlled entities." },
-      52: { role: "Dual", industry: "Energy & Utilities", signalCat: "Strategic & Sector Asset", name: "Dark Utility Interception", desc: "You can check Companies House electricity and water generation SIC codes for recently incorporated foreign shells lacking public grid-export agreements." },
-      53: { role: "Dual", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "Academic Research Shells with No IP", desc: "You can cross-reference research SIC companies holding multiple property titles against patent registries to identify entities lacking IP output." },
-      54: { role: "Dual", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "Sovereign Debt Entrapment", desc: "You can pull Companies House charge registers on local SMEs to find entities carrying 5+ mortgages issued by foreign state-owned banks." },
-      55: { role: "Dual", industry: "Property & Real Estate", signalCat: "Strategic & Sector Asset", name: "The Satellite Office Signal", desc: "You can check Companies House registered office updates against Land Registry property addresses to find administrative offices separated from secure operational sites." },
-      56: { role: "Buyer", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "The Stalled Quarry Arbitrage", desc: "You can filter Companies House mining and quarrying entities holding unencumbered land for over 10 years with zero outstanding mortgages." },
-      57: { role: "Seller", industry: "Mining & Extractive", signalCat: "Distress & Debt", name: "Extractive Distress", desc: "You can check Companies House formal insolvency notices on mineral extraction entities holding pit and land assets." },
-      58: { role: "Seller", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "The Mineral Rights Succession", desc: "You can query Companies House director dates of birth to locate mining and quarry operators aged 70+ managing legacy aggregate sites." },
-      59: { role: "Seller", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "Restoration Bond Neglect", desc: "You can cross-reference Companies House accounts filing defaults against mining and quarry entities holding environmental permits." },
-      60: { role: "Dual", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "The Resource Domino Effect", desc: "You can track director cross-appointments on Companies House where one mining entity is in liquidation while another remains active." },
-      61: { role: "Buyer", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "The Coal Tip Reclamation Leads", desc: "You can search Land Registry data for colliery tips and hard coal extraction titles across historical mining postcode clusters." },
-      62: { role: "Dual", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "Dormant Mineral Rights", desc: "You can scan Companies House dormant entity accounts holding rural or agricultural land titles located in known mineral belts." },
-      63: { role: "Dual", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "The Aggregates Cash-Out", desc: "You can check Companies House charge registers for sand and gravel operators carrying 3+ outstanding mortgages against minimal satisfied charges." },
-      64: { role: "Seller", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "Abandoned Option Agreements", desc: "You can check Companies House strike-off warnings and late accounts on mining entities holding option-bound land titles." },
-      65: { role: "Seller", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "The Silica Industrial Play", desc: "You can cross-reference Companies House silica extraction records with aging director profiles to find specialized mineral succession opportunities." },
-      66: { role: "Seller", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "Restoration Liability Arbitrage", desc: "You can filter Companies House administration and receivership notices on pit and quarry assets burdened by heavy environmental liabilities." },
-      67: { role: "Buyer", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "Lithium Exploration Sleeping Licenses", desc: "You can scan Land Registry rural titles in lithium-belt counties held by debt-free mining shells with older directors." },
-      68: { role: "Seller", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "Coal Tip Methane Secondary Recovery", desc: "You can check Companies House filing defaults and liquidation notices on historical colliery spoil heap titleholders." },
-      69: { role: "Dual", industry: "Energy & Utilities", signalCat: "Strategic & Sector Asset", name: "Distressed Oil Gas Service Hubs", desc: "You can query Companies House petroleum and natural gas service depots carrying 3+ outstanding mortgage charges." },
-      70: { role: "Dual", industry: "Energy & Utilities", signalCat: "Strategic & Sector Asset", name: "The Stranded Asset Gas Flare", desc: "You can check Companies House charge registers for wellhead and gas extraction shells hitting a Zombie Index of 5+ charges." },
-      71: { role: "Buyer", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "Geothermal Retrofit Legacy Mine Voids", desc: "You can screen Companies House administration and strike-off notices on entities holding flooded mine shaft properties." },
-      72: { role: "Dual", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "Dark Mineral Sovereignty", desc: "You can inspect Companies House PSC records for foreign nominees holding high-value mineral land inside dormant shell companies." },
-      73: { role: "Dual", industry: "Mining & Extractive", signalCat: "Strategic & Sector Asset", name: "Refinery Midstream Distress", desc: "You can pull Companies House charge registers on mineral oil refining and processing plants carrying 5+ outstanding mortgages." },
-      74: { role: "Seller", industry: "Industrial & Logistics", signalCat: "Strategic & Sector Asset", name: "The Chemical Legacy Succession", desc: "You can query Companies House director ages on basic chemical and processing plants to find retiring owners managing complex industrial sites." },
-      75: { role: "Dual", industry: "Energy & Utilities", signalCat: "Strategic & Sector Asset", name: "Dark Midstream Storage Offshore Control", desc: "You can check Companies House micro and dormant entity records for tank farm and terminal storage assets under foreign tax haven control." },
-      76: { role: "Dual", industry: "Energy & Utilities", signalCat: "Strategic & Sector Asset", name: "Stalled Renewable Conversion HMRC Pressure", desc: "You can screen Companies House late accounts filings on heavy industrial processing and smelting sites earmarked for green transition." },
-      77: { role: "Dual", industry: "Industrial & Logistics", signalCat: "Strategic & Sector Asset", name: "The Fertilizer Food Security Gap", desc: "You can check Companies House strike-off warnings and mortgage counts on essential nitrogen and fertilizer processing facilities." },
-      78: { role: "Buyer", industry: "Energy & Utilities", signalCat: "Strategic & Sector Asset", name: "Industrial Utility Arbitrage High Price Paid", desc: "You can cross-reference Land Registry purchase prices exceeding £1M on processing works against Companies House holding structures." },
-      79: { role: "Seller", industry: "Industrial & Logistics", signalCat: "Distress & Debt", name: "Phoenixing in the Supply Chain", desc: "You can trace Companies House liquidation notices followed by new company incorporations at identical postcodes within the refining sector." }
+      1: { role: "Buyer", industry: "Property", signalCat: "Ownership & Structure", name: "Ghost Holding Arbitrage", desc: "You can check Companies House for dormant or micro-entity statuses holding 5+ property assets with zero registered charges on the charges register." },
+      2: { role: "Seller", industry: "Property", signalCat: "Distress & Debt", name: "The Contagion Alert", desc: "You can trace director cross-appointments on Companies House to find active companies whose directors experienced a sister company enter liquidation in the past 60 days." },
+      3: { role: "Seller", industry: "Property", signalCat: "Distress & Debt", name: "Institutional Liquidation Leads", desc: "You can search Companies House for subsidiaries of large PLCs showing late filing pressure and HMRC notices." },
+      4: { role: "Dual", industry: "Property", signalCat: "Distress & Debt", name: "High-Frequency Debt Stacking", desc: "You can pull the charges register on Companies House to track companies that have registered 5+ new charges within a single calendar year." },
+      5: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "Stagnant Micro-Portfolios", desc: "You can check Companies House filing history to find entities holding 3+ properties that have remained classified as micro-entities for 7+ years." },
+      6: { role: "Seller", industry: "Property", signalCat: "Ownership & Structure", name: "The Relocation Sell-Off Signal", desc: "You can track registered office address change logs on Companies House to find companies that moved out of county while holding local property." },
+      7: { role: "Seller", industry: "Commercial", signalCat: "Ownership & Structure", name: "The Non-Core Divestment Signal", desc: "You can cross-reference Companies House primary SIC codes against Land Registry property types to find retail or tech firms holding land or care sites." },
+      8: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "Development Deadlock", desc: "You can check Land Registry ownership dates exceeding 4 years on land or plot addresses combined with zero mortgage charges on Companies House." },
+      9: { role: "Seller", industry: "Property", signalCat: "Distress & Debt", name: "The Director Vacuum Trigger", desc: "You can review director resignation history on Companies House to find heavily mortgaged companies (3+ mortgages) where only one director remains." },
+      10: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "Micro-Entity Asset Overload", desc: "You can match Companies House micro-entity accounts against Land Registry transaction prices to find basic structures holding assets exceeding £500k." },
+      11: { role: "Seller", industry: "Property", signalCat: "Distress & Debt", name: "High-Value Liquidation", desc: "You can filter Companies House formal liquidation and administration notices by cross-referencing Land Registry purchase prices exceeding standard thresholds." },
+      12: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "Postcode Disjunction", desc: "You can map Land Registry property address postcodes on companies holding 3+ assets to check if they span across 3 or more distinct postcodes." },
+      13: { role: "Seller", industry: "Property", signalCat: "Distress & Debt", name: "The Silent Admin Neglect", desc: "You can check Companies House for active trading companies showing overdue confirmation statements alongside 3+ registered charges." },
+      14: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "Offshore Shell Redirection", desc: "You can check Companies House director residential country codes to find foreign tax haven jurisdictions holding major UK property assets." },
+      15: { role: "Buyer", industry: "Property", signalCat: "Distress & Debt", name: "Rapid Equity Stripping", desc: "You can pull the charges register on Companies House to track companies registering 10+ new mortgages in 6 months without matching property acquisitions on the Land Registry." },
+      16: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "The Nominee Director Pattern", desc: "You can search Companies House director ID profiles to identify individuals holding 20+ active directorships across unrelated SIC codes." },
+      17: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "Circular Ownership", desc: "You can check Persons with Significant Control (PSC) registers on Companies House where control is listed as a corporate entity sharing the same registered office." },
+      18: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "The Phoenix Asset Transfer", desc: "You can track Companies House dissolution filings followed by newly incorporated entities in the same region acquiring historical land titles." },
+      19: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "High-Value Dormant Holdings", desc: "You can filter Companies House dormant accounts for entities holding Land Registry titles with purchase prices exceeding £1M." },
+      20: { role: "Seller", industry: "Property", signalCat: "Distress & Debt", name: "Post-Insolvency Director Resilience", desc: "You can track historical liquidation records on Companies House to identify directors who have presided over 3+ failures while incorporating new mortgaged entities." },
+      21: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "High-Frequency Director Rotation", desc: "You can check officer change logs on Companies House to track asset-holding companies experiencing multiple director resignations and appointments within 12 months." },
+      22: { role: "Dual", industry: "Property", signalCat: "Distress & Debt", name: "The Micro-Loan Layering Pattern", desc: "You can cross-reference Companies House charge registers showing 10+ mortgages against Land Registry property prices under £100k." },
+      23: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "Cross-Border Ghost Proxies", desc: "You can check Companies House PSC registers where UK land-owning companies are controlled by foreign firms registered in overseas jurisdictions." },
+      24: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "Multi-Sector Shell Clusters", desc: "You can query Companies House registered office addresses controlling 5+ companies spanning completely unrelated industries." },
+      25: { role: "Seller", industry: "Property", signalCat: "Distress & Debt", name: "The Stagnant Charge Red Flag", desc: "You can check Companies House charge registers for mortgages outstanding for 15+ years with zero satisfaction filings during periods of HMRC pressure." },
+      26: { role: "Dual", industry: "Commercial", signalCat: "Ownership & Structure", name: "Residential Assets in Commercial Shells", desc: "You can cross-reference Companies House commercial SIC codes against Land Registry residential property address postcodes." },
+      27: { role: "Seller", industry: "Property", signalCat: "Distress & Debt", name: "The Sudden Influx Debt Signal", desc: "You can check Companies House filing logs for debt-free firms suddenly registering 3+ mortgages in 90 days alongside late accounts." },
+      28: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "The Straw Man Asset Shuffle", desc: "You can track company name changes and registered office updates on Companies House occurring 2+ times in 24 months on properties over £500k." },
+      29: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "Beneficial Ownership Black Hole", desc: "You can check Companies House PSC registers for foreign legal entities controlling assets with no individual human PSC listed." },
+      30: { role: "Seller", industry: "Property", signalCat: "Distress & Debt", name: "The Lender of Last Resort Red Flag", desc: "You can pull Companies House charge registers to check if 5+ mortgages are held by private limited companies rather than regulated banks." },
+      31: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "Smurfing Through Property Postcodes", desc: "You can map Companies House director networks controlling 10+ companies holding single low-value properties (<£150k) across varied postcodes." },
+      32: { role: "Buyer", industry: "Property", signalCat: "Ownership & Structure", name: "The Dormant Asset Escalator", desc: "You can check Companies House dormant company accounts inactive for 3+ years that suddenly show recent Land Registry property acquisition dates." },
+      33: { role: "Dual", industry: "Commercial", signalCat: "Distress & Debt", name: "High-Turnover Care Shells", desc: "You can track care home operator profiles (SIC 87100) on Companies House for complete director changes occurring within 6 months of a large mortgage registration." },
+      34: { role: "Dual", industry: "Property", signalCat: "Ownership & Structure", name: "The Bona Vacantia Asset Shield", desc: "You can search Companies House historical logs for companies that dissolved while holding land and were subsequently restored to the register 12+ months later." },
+      35: { role: "Buyer", industry: "Property", signalCat: "Strategic & Sector Asset", name: "Critical Proximity Acquisition", desc: "You can cross-reference Land Registry property coordinates near sensitive government, military, or infrastructure sites with Companies House director residence data to identify foreign nationals acquiring strategic land." },
+      36: { role: "Dual", industry: "Industrial", signalCat: "Strategic & Sector Asset", name: "Dual-Use Procurement Shells", desc: "You can filter Companies House for recently incorporated entities with high-tech, aerospace, or defense SIC codes showing zero mortgages and foreign national control." },
+      37: { role: "Buyer", industry: "Energy", signalCat: "Strategic & Sector Asset", name: "The Telecoms Energy Land-Grab", desc: "You can search Land Registry address data for small plots near power grids or cable lines held by real estate companies controlled by foreign entities." },
+      38: { role: "Dual", industry: "Commercial", signalCat: "Strategic & Sector Asset", name: "Influence Philanthropy Shells", desc: "You can check Companies House for social or educational non-profit entities showing heavy mortgage counts held through single foreign-owned private lenders." },
+      39: { role: "Dual", industry: "Property", signalCat: "Strategic & Sector Asset", name: "Sovereign Wealth Fronts", desc: "You can inspect Companies House Persons with Significant Control registers to find non-human entities, legal persons, or government bodies holding bulk land titles." },
+      40: { role: "Dual", industry: "Commercial", signalCat: "Strategic & Sector Asset", name: "The Student Academic Proxy", desc: "You can scan Companies House for companies registered at university campus addresses controlled by foreign nationals on short-term visas aged under 30." },
+      41: { role: "Buyer", industry: "Logistics", signalCat: "Strategic & Sector Asset", name: "Dormant Security Buffer", desc: "You can screen Companies House dormant shell accounts incorporated 5+ years ago that suddenly register land title acquisitions near major logistics hubs." },
+      42: { role: "Dual", industry: "Logistics", signalCat: "Strategic & Sector Asset", name: "Shadow Supply Chain", desc: "You can cross-reference Land Registry warehouse and depot listings near railway junctions or motorways with Companies House foreign control flags." },
+      43: { role: "Dual", industry: "Property", signalCat: "Strategic & Sector Asset", name: "High-Security Postcode Clustering", desc: "You can query Companies House postcodes inside sensitive sectors (such as GCHQ or MOD outposts) to spot clusters of 3+ foreign-owned entities sharing registered addresses." },
+      44: { role: "Dual", industry: "Agriculture", signalCat: "Strategic & Sector Asset", name: "Agricultural Dual-Use Land", desc: "You can filter Land Registry records for large rural and agricultural plots holding zero farming mortgages while under non-EU or foreign control." },
+      45: { role: "Dual", industry: "Commercial", signalCat: "Strategic & Sector Asset", name: "Intellectual Property Vacuum Companies", desc: "You can check Companies House R&D or consultancy firms lacking property titles but featuring foreign firm control structures." },
+      46: { role: "Dual", industry: "Property", signalCat: "Strategic & Sector Asset", name: "The Ex-Diplomat Director Pivot", desc: "You can cross-reference Land Registry history showing previous local government or institutional ownership against foreign-controlled company directors." },
+      47: { role: "Dual", industry: "Industrial", signalCat: "Strategic & Sector Asset", name: "Dark Data Center Shells", desc: "You can screen dormant Companies House real estate entities holding industrial units featuring high utility footprints without public-facing commercial profiles." },
+      48: { role: "Dual", industry: "Logistics", signalCat: "Strategic & Sector Asset", name: "Maritime Logistics Fronts", desc: "You can search Land Registry titles near port infrastructure held by companies controlled via flag-of-convenience shipping jurisdictions." },
+      49: { role: "Buyer", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "Critical Mineral Resource Anchoring", desc: "You can inspect Land Registry titles in mineral-rich geological zones showing zero mortgage activity under foreign corporate ownership." },
+      50: { role: "Dual", industry: "Commercial", signalCat: "Strategic & Sector Asset", name: "Proxy Recruitment Hubs", desc: "You can screen Companies House language schools, travel agencies, and cultural centers located near government headquarters that feature foreign control." },
+      51: { role: "Dual", industry: "Logistics", signalCat: "Strategic & Sector Asset", name: "High-Precision Logistics Shadowing", desc: "You can check Land Registry plots sitting adjacent to high-security defense contractor depots held by foreign-controlled entities." },
+      52: { role: "Dual", industry: "Energy", signalCat: "Strategic & Sector Asset", name: "Dark Utility Interception", desc: "You can check Companies House electricity and water generation SIC codes for recently incorporated foreign shells lacking public grid-export agreements." },
+      53: { role: "Dual", industry: "Commercial", signalCat: "Strategic & Sector Asset", name: "Academic Research Shells with No IP", desc: "You can cross-reference research SIC companies holding multiple property titles against patent registries to identify entities lacking IP output." },
+      54: { role: "Dual", industry: "Commercial", signalCat: "Strategic & Sector Asset", name: "Sovereign Debt Entrapment", desc: "You can pull Companies House charge registers on local SMEs to find entities carrying 5+ mortgages issued by foreign state-owned banks." },
+      55: { role: "Dual", industry: "Property", signalCat: "Strategic & Sector Asset", name: "The Satellite Office Signal", desc: "You can check Companies House registered office updates against Land Registry property addresses to find administrative offices separated from secure operational sites." },
+      56: { role: "Buyer", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "The Stalled Quarry Arbitrage", desc: "You can filter Companies House mining and quarrying entities holding unencumbered land for over 10 years with zero outstanding mortgages." },
+      57: { role: "Seller", industry: "Mining", signalCat: "Distress & Debt", name: "Extractive Distress", desc: "You can check Companies House formal insolvency notices on mineral extraction entities holding pit and land assets." },
+      58: { role: "Seller", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "The Mineral Rights Succession", desc: "You can query Companies House director dates of birth to locate mining and quarry operators aged 70+ managing legacy aggregate sites." },
+      59: { role: "Seller", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "Restoration Bond Neglect", desc: "You can cross-reference Companies House accounts filing defaults against mining and quarry entities holding environmental permits." },
+      60: { role: "Seller", industry: "Mining", signalCat: "Distress & Debt", name: "The Resource Domino Effect", desc: "You can track director cross-appointments on Companies House where one mining entity is in liquidation while another remains active." },
+      61: { role: "Buyer", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "The Coal Tip Reclamation Leads", desc: "You can search Land Registry data for colliery tips and hard coal extraction titles across historical mining postcode clusters." },
+      62: { role: "Dual", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "Dormant Mineral Rights", desc: "You can scan Companies House dormant entity accounts holding rural or agricultural land titles located in known mineral belts." },
+      63: { role: "Dual", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "The Aggregates Cash-Out", desc: "You can check Companies House charge registers for sand and gravel operators carrying 3+ outstanding mortgages against minimal satisfied charges." },
+      64: { role: "Seller", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "Abandoned Option Agreements", desc: "You can check Companies House strike-off warnings and late accounts on mining entities holding option-bound land titles." },
+      65: { role: "Seller", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "The Silica Industrial Play", desc: "You can cross-reference Companies House silica extraction records with aging director profiles to find specialized mineral succession opportunities." },
+      66: { role: "Seller", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "Restoration Liability Arbitrage", desc: "You can filter Companies House administration and receivership notices on pit and quarry assets burdened by heavy environmental liabilities." },
+      67: { role: "Buyer", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "Lithium Exploration Sleeping Licenses", desc: "You can scan Land Registry rural titles in lithium-belt counties held by debt-free mining shells with older directors." },
+      68: { role: "Seller", industry: "Mining", signalCat: "Distress & Debt", name: "Coal Tip Methane Secondary Recovery", desc: "You can check Companies House filing defaults and liquidation notices on historical colliery spoil heap titleholders." },
+      69: { role: "Dual", industry: "Energy", signalCat: "Distress & Debt", name: "Distressed Oil Gas Service Hubs", desc: "You can query Companies House petroleum and natural gas service depots carrying 3+ outstanding mortgage charges." },
+      70: { role: "Dual", industry: "Energy", signalCat: "Strategic & Sector Asset", name: "The Stranded Asset Gas Flare", desc: "You can check Companies House charge registers for wellhead and gas extraction shells hitting a Zombie Index of 5+ charges." },
+      71: { role: "Buyer", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "Geothermal Retrofit Legacy Mine Voids", desc: "You can screen Companies House administration and strike-off notices on entities holding flooded mine shaft properties." },
+      72: { role: "Dual", industry: "Mining", signalCat: "Strategic & Sector Asset", name: "Dark Mineral Sovereignty", desc: "You can inspect Companies House PSC records for foreign nominees holding high-value mineral land inside dormant shell companies." },
+      73: { role: "Dual", industry: "Industrial", signalCat: "Distress & Debt", name: "Refinery Midstream Distress", desc: "You can pull Companies House charge registers on mineral oil refining and processing plants carrying 5+ outstanding mortgages." },
+      74: { role: "Seller", industry: "Industrial", signalCat: "Strategic & Sector Asset", name: "The Chemical Legacy Succession", desc: "You can query Companies House director ages on basic chemical and processing plants to find retiring owners managing complex industrial sites." },
+      75: { role: "Dual", industry: "Energy", signalCat: "Strategic & Sector Asset", name: "Dark Midstream Storage Offshore Control", desc: "You can check Companies House micro and dormant entity records for tank farm and terminal storage assets under foreign tax haven control." },
+      76: { role: "Dual", industry: "Industrial", signalCat: "Strategic & Sector Asset", name: "Stalled Renewable Conversion HMRC Pressure", desc: "You can screen Companies House late accounts filings on heavy industrial processing and smelting sites earmarked for green transition." },
+      77: { role: "Dual", industry: "Industrial", signalCat: "Strategic & Sector Asset", name: "The Fertilizer Food Security Gap", desc: "You can check Companies House strike-off warnings and mortgage counts on essential nitrogen and fertilizer processing facilities." },
+      78: { role: "Buyer", industry: "Industrial", signalCat: "Strategic & Sector Asset", name: "Industrial Utility Arbitrage High Price Paid", desc: "You can cross-reference Land Registry purchase prices exceeding £1M on processing works against Companies House holding structures." },
+      79: { role: "Seller", industry: "Logistics", signalCat: "Distress & Debt", name: "Phoenixing in the Supply Chain", desc: "You can trace Companies House liquidation notices followed by new company incorporations at identical postcodes within the refining sector." }
     };
 
-    let selectedCat = "All";
-    let selectedRole = "All";
     let selectedIndustry = "All";
+    let selectedRole = "All";
+    let selectedCat = "All";
 
     function pad3(n) {
       return String(n).padStart(3, '0');
@@ -292,13 +294,13 @@
     }
 
     function renderCategoryButtons() {
-      const catBox = document.getElementById('catButtons');
-      catBox.innerHTML = signalCategories.map((c) => {
-        const count = c === "All" ? 79 : countBy(d => d.signalCat === c);
+      const indBox = document.getElementById('industryButtons');
+      indBox.innerHTML = industryOptions.map((ind) => {
+        const count = ind === "All" ? 79 : countBy(d => d.industry === ind);
         return `
-          <button type="button" onclick="setCat('${escapeJs(c)}')" aria-pressed="${selectedCat === c}"
-                  class="px-3 py-2 rounded border text-xs font-semibold text-left flex items-center justify-between gap-1.5 transition ${btnStyle(selectedCat === c)}">
-            <span class="truncate">${c}</span>
+          <button type="button" onclick="setIndustry('${escapeJs(ind)}')" aria-pressed="${selectedIndustry === ind}"
+                  class="px-3 py-2 rounded border text-xs font-semibold text-left flex items-center justify-between gap-1.5 transition ${btnStyle(selectedIndustry === ind)}">
+            <span class="truncate">${ind}</span>
             <span class="text-[11px] opacity-75 shrink-0">${count}</span>
           </button>
         `;
@@ -317,21 +319,21 @@
         `;
       }).join('');
 
-      const indBox = document.getElementById('industryButtons');
-      indBox.innerHTML = industryOptions.map((ind) => {
-        const count = ind === "All" ? 79 : countBy(d => d.industry === ind);
+      const catBox = document.getElementById('catButtons');
+      catBox.innerHTML = signalCategories.map((c) => {
+        const count = c === "All" ? 79 : countBy(d => d.signalCat === c);
         return `
-          <button type="button" onclick="setIndustry('${escapeJs(ind)}')" aria-pressed="${selectedIndustry === ind}"
-                  class="px-3 py-2 rounded border text-xs font-semibold text-left flex items-center justify-between gap-1.5 transition ${btnStyle(selectedIndustry === ind)}">
-            <span class="truncate">${ind}</span>
+          <button type="button" onclick="setCat('${escapeJs(c)}')" aria-pressed="${selectedCat === c}"
+                  class="px-3 py-2 rounded border text-xs font-semibold text-left flex items-center justify-between gap-1.5 transition ${btnStyle(selectedCat === c)}">
+            <span class="truncate">${c}</span>
             <span class="text-[11px] opacity-75 shrink-0">${count}</span>
           </button>
         `;
       }).join('');
     }
 
-    function setCat(c) {
-      selectedCat = c;
+    function setIndustry(ind) {
+      selectedIndustry = ind;
       renderCategoryButtons();
       applyFilters();
     }
@@ -342,16 +344,16 @@
       applyFilters();
     }
 
-    function setIndustry(ind) {
-      selectedIndustry = ind;
+    function setCat(c) {
+      selectedCat = c;
       renderCategoryButtons();
       applyFilters();
     }
 
     function resetFilters() {
-      selectedCat = "All";
-      selectedRole = "All";
       selectedIndustry = "All";
+      selectedRole = "All";
+      selectedCat = "All";
       document.getElementById('signalFilter').value = "";
       renderCategoryButtons();
       applyFilters();
@@ -374,9 +376,9 @@
         const item = indicatorsData[i];
         if (!item) continue;
 
-        if (selectedCat !== "All" && item.signalCat !== selectedCat) continue;
-        if (selectedRole !== "All" && item.role !== selectedRole) continue;
         if (selectedIndustry !== "All" && item.industry !== selectedIndustry) continue;
+        if (selectedRole !== "All" && item.role !== selectedRole) continue;
+        if (selectedCat !== "All" && item.signalCat !== selectedCat) continue;
 
         const roleLabel = item.role === "Dual" ? "Buyer / Seller" : item.role;
         const fullTitle = `Indicator #${id} — ${item.name}`;
@@ -391,7 +393,7 @@
         if (!matchesQuery) continue;
 
         const src = `./Videos/Business%20Analytica%20Indicators/clip_ind2_item_${id}.mp4`;
-        const waText = encodeURIComponent(`Hi, I'd like pricing and a spreadsheet for ${fullTitle} | ${roleLabel} | ${item.industry}.`);
+        const waText = encodeURIComponent(`Hi, I'd like pricing and a spreadsheet for ${fullTitle} | ${item.industry} | ${roleLabel}.`);
         const mailSubj = encodeURIComponent(`Pricing & Dataset Request: ${fullTitle}`);
 
         cards.push(`
