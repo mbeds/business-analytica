@@ -359,10 +359,10 @@
 
   <script>
     const featuredIndicators = [
-      { id: '001', title: 'Ghost Holding Arbitrage', desc: 'Dormant or micro-entity companies holding 5+ property assets with zero registered charges.' },
-      { id: '002', title: 'The Contagion Alert', desc: 'Active companies whose directors experienced a sister company liquidation within 60 days.' },
-      { id: '003', title: 'Institutional Liquidation Leads', desc: 'Subsidiaries of large PLCs showing late filing pressure and HMRC notices.' },
-      { id: '004', title: 'High-Frequency Debt Stacking', desc: 'Companies registering 5+ new charges within a single calendar year.' }
+      { id: '001', title: 'Ghost Holding Arbitrage', desc: 'Unlisted UK property portfolios sitting quietly inside debt-free holding structures ready for a direct approach.' },
+      { id: '002', title: 'The Contagion Alert', desc: 'Motivated UK property sellers surfaced early when financial trouble hits a linked group company.' },
+      { id: '003', title: 'Institutional Liquidation Leads', desc: 'Corporate group subsidiaries showing compliance and tax pressure—highlighting non-core assets before public disposal.' },
+      { id: '004', title: 'High-Frequency Debt Stacking', desc: 'Rapid borrowing accumulation across property-holding entities—pinpointing aggressive expansion or mounting refinancing pressure.' }
     ];
 
     function buildIndicatorTrack() {
@@ -378,8 +378,8 @@
             </div>
             <div class="p-4 space-y-1">
               <div class="flex items-center justify-between gap-2">
-                <h3 class="font-bold text-[#141A21] text-sm">${item.title}</h3>
-                <span class="text-[11px] font-bold text-[#8C6D1F] shrink-0">Indicator #${item.id}</span>
+                <a href="./indicators.html#indicator-${item.id}" class="font-bold text-[#141A21] text-sm hover:text-[#8C6D1F] transition">${item.title}</a>
+                <a href="./indicators.html#indicator-${item.id}" class="text-[11px] font-bold text-[#8C6D1F] hover:underline shrink-0">Indicator #${item.id}</a>
               </div>
               <p class="text-xs text-stone-600 leading-relaxed">${item.desc}</p>
             </div>
