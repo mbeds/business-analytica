@@ -253,7 +253,8 @@
         signalCat: "Ownership & Structure",
         name: "Ghost Holding Arbitrage",
         desc: "You can check Companies House for dormant or micro-entity statuses holding 5+ property assets with zero registered charges on the charges register.",
-        plain: "Finds quiet, inactive companies sitting on 5 or more properties with no bank loans against them—often ripe for off-market approaches."
+        finds: "Debt-free 5+ property portfolios in dormant or micro firms.",
+        plain: "Quiet, debt-free companies sitting on 5 or more properties—often unmarketed portfolios where a direct approach can work."
       },
       2: {
         role: "Seller",
@@ -261,7 +262,8 @@
         signalCat: "Distress & Debt",
         name: "The Contagion Alert",
         desc: "You can trace director cross-appointments on Companies House to find active companies whose directors experienced a sister company enter liquidation in the past 60 days.",
-        plain: "Spots active property owners whose fellow directors just saw a linked company go bust—meaning cash pressure may soon force a sale."
+        finds: "Active property firms linked to a recent sister liquidation.",
+        plain: "Active property owners whose directors just had a linked company go bust—early warning of cash pressure that may force a sale."
       },
       3: {
         role: "Seller",
@@ -269,7 +271,8 @@
         signalCat: "Distress & Debt",
         name: "Institutional Liquidation Leads",
         desc: "You can search Companies House for subsidiaries of large PLCs showing late filing pressure and HMRC notices.",
-        plain: "Flags smaller arms of big corporations that are falling behind on filings or facing tax pressure and may offload property."
+        finds: "PLC subsidiaries with late filings or HMRC notices.",
+        plain: "Smaller arms of big listed companies falling behind on filings or facing tax pressure—potential non-core property disposals."
       },
       4: {
         role: "Dual",
@@ -277,7 +280,8 @@
         signalCat: "Distress & Debt",
         name: "High-Frequency Debt Stacking",
         desc: "You can pull the charges register on Companies House to track companies that have registered 5+ new charges within a single calendar year.",
-        plain: "Shows companies taking out loan after loan in a single year—a sign of fast expansion or mounting debt strain."
+        finds: "Firms registering 5+ new charges in a single year.",
+        plain: "Companies taking on 5 or more loans in one year—either scaling fast or piling up debt under pressure."
       },
       5: {
         role: "Dual",
@@ -285,7 +289,8 @@
         signalCat: "Ownership & Structure",
         name: "Stagnant Micro-Portfolios",
         desc: "You can check Companies House filing history to find entities holding 3+ properties that have remained classified as micro-entities for 7+ years.",
-        plain: "Uncovers small, basic companies holding several properties for years without growing or restructuring."
+        finds: "3+ property holdings in micro-entities for 7+ years.",
+        plain: "Small, basic companies holding 3+ properties for years without changing setup—often static family or private pots."
       },
       6: {
         role: "Seller",
@@ -293,7 +298,8 @@
         signalCat: "Ownership & Structure",
         name: "The Relocation Sell-Off Signal",
         desc: "You can track registered office address change logs on Companies House to find companies that moved out of county while holding local property.",
-        plain: "Highlights businesses that moved their base out of the area while still owning local property they may want to cash out."
+        finds: "Firms that moved out of county while keeping local property.",
+        plain: "Businesses that moved away from the area but still own local property they may no longer need."
       },
       7: {
         role: "Seller",
@@ -301,7 +307,8 @@
         signalCat: "Ownership & Structure",
         name: "The Non-Core Divestment Signal",
         desc: "You can cross-reference Companies House primary SIC codes against Land Registry property types to find retail or tech firms holding land or care sites.",
-        plain: "Finds shops, tech firms, or other businesses holding land or care sites outside their main trade that could be sold off."
+        finds: "Non-property firms holding land or care sites.",
+        plain: "Retail, tech, or other trading firms holding land or care sites outside their main business that could be sold off."
       },
       8: {
         role: "Dual",
@@ -309,7 +316,8 @@
         signalCat: "Ownership & Structure",
         name: "Development Deadlock",
         desc: "You can check Land Registry ownership dates exceeding 4 years on land or plot addresses combined with zero mortgage charges on Companies House.",
-        plain: "Spots plots or land held for over 4 years with no development borrowing—often stuck land where owners may welcome an exit."
+        finds: "Land or plots held 4+ years with zero mortgages.",
+        plain: "Land or plots held for 4+ years with no development borrowing—stalled sites where owners may be open to a deal."
       },
       9: {
         role: "Seller",
@@ -317,7 +325,8 @@
         signalCat: "Distress & Debt",
         name: "The Director Vacuum Trigger",
         desc: "You can review director resignation history on Companies House to find heavily mortgaged companies (3+ mortgages) where only one director remains.",
-        plain: "Flags heavily mortgaged firms left with just one director after others stepped down—a frequent trigger for restructuring or sales."
+        finds: "3+ mortgaged firms left with only one director.",
+        plain: "Heavily mortgaged companies left with a lone director after others quit—a common trigger for restructuring or asset sales."
       },
       10: {
         role: "Dual",
@@ -325,7 +334,8 @@
         signalCat: "Ownership & Structure",
         name: "Micro-Entity Asset Overload",
         desc: "You can match Companies House micro-entity accounts against Land Registry transaction prices to find basic structures holding assets exceeding £500k.",
-        plain: "Finds tiny, simple companies holding properties worth over £500k on paper."
+        finds: "Micro-entities holding properties worth over £500k.",
+        plain: "Bare-bones micro-companies holding properties worth over £500k."
       },
       11: {
         role: "Seller",
@@ -333,7 +343,8 @@
         signalCat: "Distress & Debt",
         name: "High-Value Liquidation",
         desc: "You can filter Companies House formal liquidation and administration notices by cross-referencing Land Registry purchase prices exceeding standard thresholds.",
-        plain: "Surfaces higher-value properties tied to companies entering formal insolvency or administration."
+        finds: "Higher-value properties in liquidation or administration.",
+        plain: "Higher-value properties belonging to companies in formal liquidation or administration."
       },
       12: {
         role: "Dual",
@@ -341,7 +352,8 @@
         signalCat: "Ownership & Structure",
         name: "Postcode Disjunction",
         desc: "You can map Land Registry property address postcodes on companies holding 3+ assets to check if they span across 3 or more distinct postcodes.",
-        plain: "Finds multi-property owners whose holdings are spread across 3 or more separate postcodes rather than one patch."
+        finds: "3+ asset owners spanning 3+ distinct postcodes.",
+        plain: "Multi-property owners whose sites are scattered across 3+ different postcodes rather than concentrated locally."
       },
       13: {
         role: "Seller",
@@ -349,7 +361,8 @@
         signalCat: "Distress & Debt",
         name: "The Silent Admin Neglect",
         desc: "You can check Companies House for active trading companies showing overdue confirmation statements alongside 3+ registered charges.",
-        plain: "Spots active firms with multiple loans that are also letting basic company paperwork slip overdue."
+        finds: "Active firms with 3+ charges and overdue filings.",
+        plain: "Active firms with 3+ loans that are also letting basic company filings go overdue—often a sign of stretched management."
       },
       14: {
         role: "Dual",
@@ -357,7 +370,8 @@
         signalCat: "Ownership & Structure",
         name: "Offshore Shell Redirection",
         desc: "You can check Companies House director residential country codes to find foreign tax haven jurisdictions holding major UK property assets.",
-        plain: "Identifies significant UK properties where company control or directors sit in low-tax or offshore jurisdictions."
+        finds: "Major UK property tied to offshore director residences.",
+        plain: "Major UK properties where directors or control link back to offshore or low-tax jurisdictions."
       },
       15: {
         role: "Buyer",
@@ -365,7 +379,8 @@
         signalCat: "Distress & Debt",
         name: "Rapid Equity Stripping",
         desc: "You can pull the charges register on Companies House to track companies registering 10+ new mortgages in 6 months without matching property acquisitions on the Land Registry.",
-        plain: "Finds companies piling on 10 or more mortgages in half a year without buying new properties—often a sign of heavy borrowing against existing assets."
+        finds: "10+ mortgages in 6 months without new property buys.",
+        plain: "Companies taking on 10+ new mortgages in 6 months without buying new property—often borrowing heavily against existing equity."
       },
       16: {
         role: "Dual",
@@ -373,7 +388,8 @@
         signalCat: "Ownership & Structure",
         name: "The Nominee Director Pattern",
         desc: "You can search Companies House director ID profiles to identify individuals holding 20+ active directorships across unrelated SIC codes.",
-        plain: "Spots people sitting on 20+ company boards across unrelated sectors—often professional or nominee directors."
+        finds: "Directors holding 20+ boards across unrelated sectors.",
+        plain: "Individuals sitting on 20+ company boards across unrelated industries—typical of nominee or professional directors."
       },
       17: {
         role: "Dual",
@@ -381,7 +397,8 @@
         signalCat: "Ownership & Structure",
         name: "Circular Ownership",
         desc: "You can check Persons with Significant Control (PSC) registers on Companies House where control is listed as a corporate entity sharing the same registered office.",
-        plain: "Highlights layered corporate setups where one company controls another from the same registered address."
+        finds: "Corporate PSCs sharing the same registered office.",
+        plain: "Companies controlled by another company registered at the exact same address—layered or circular ownership."
       },
       18: {
         role: "Dual",
@@ -389,7 +406,8 @@
         signalCat: "Ownership & Structure",
         name: "The Phoenix Asset Transfer",
         desc: "You can track Companies House dissolution filings followed by newly incorporated entities in the same region acquiring historical land titles.",
-        plain: "Tracks old companies closing down while newly formed ones in the same area pick up familiar land assets."
+        finds: "New local firms taking land after prior dissolutions.",
+        plain: "Old companies closing down while newly formed ones in the same area take over familiar land."
       },
       19: {
         role: "Dual",
@@ -397,7 +415,8 @@
         signalCat: "Ownership & Structure",
         name: "High-Value Dormant Holdings",
         desc: "You can filter Companies House dormant accounts for entities holding Land Registry titles with purchase prices exceeding £1M.",
-        plain: "Finds quiet, non-trading companies holding properties bought for over £1 million."
+        finds: "Dormant firms holding £1M+ property titles.",
+        plain: "Non-trading dormant companies holding properties bought for over £1 million."
       },
       20: {
         role: "Seller",
@@ -405,7 +424,8 @@
         signalCat: "Distress & Debt",
         name: "Post-Insolvency Director Resilience",
         desc: "You can track historical liquidation records on Companies House to identify directors who have presided over 3+ failures while incorporating new mortgaged entities.",
-        plain: "Spots directors with 3 or more past company failures who are now running newly mortgaged property firms."
+        finds: "3+ failure directors running newly mortgaged entities.",
+        plain: "Directors with 3+ past failed companies who are now running newly mortgaged property firms."
       },
       21: {
         role: "Dual",
@@ -413,7 +433,8 @@
         signalCat: "Ownership & Structure",
         name: "High-Frequency Director Rotation",
         desc: "You can check officer change logs on Companies House to track asset-holding companies experiencing multiple director resignations and appointments within 12 months.",
-        plain: "Flags property companies seeing repeated board shake-ups—directors stepping down and new ones coming in—within a single year."
+        finds: "Property firms with repeated director changes in 12 months.",
+        plain: "Property companies with repeated director turnover within a year—often a sign of disputes, restructuring, or behind-the-scenes handovers."
       },
       22: {
         role: "Dual",
@@ -421,7 +442,8 @@
         signalCat: "Distress & Debt",
         name: "The Micro-Loan Layering Pattern",
         desc: "You can cross-reference Companies House charge registers showing 10+ mortgages against Land Registry property prices under £100k.",
-        plain: "Finds lower-value properties (under £100k) tied to companies with 10 or more registered loans or charges."
+        finds: "Sub-£100k properties carrying 10+ registered mortgages.",
+        plain: "Lower-value properties (under £100k) stacked with 10+ loans or charges."
       },
       23: {
         role: "Dual",
@@ -429,7 +451,8 @@
         signalCat: "Ownership & Structure",
         name: "Cross-Border Ghost Proxies",
         desc: "You can check Companies House PSC registers where UK land-owning companies are controlled by foreign firms registered in overseas jurisdictions.",
-        plain: "Shows UK property-owning firms whose controlling owner is an overseas company rather than a local individual."
+        finds: "UK land-owning firms controlled by foreign PSCs.",
+        plain: "UK land-owning companies controlled by foreign corporate entities rather than named local individuals."
       },
       24: {
         role: "Dual",
@@ -437,7 +460,8 @@
         signalCat: "Ownership & Structure",
         name: "Multi-Sector Shell Clusters",
         desc: "You can query Companies House registered office addresses controlling 5+ companies spanning completely unrelated industries.",
-        plain: "Finds single addresses acting as hubs for 5 or more companies across totally different industries."
+        finds: "Addresses hosting 5+ firms across unrelated sectors.",
+        plain: "Addresses hosting 5+ companies across totally unrelated sectors—often shared or nominee setups."
       },
       25: {
         role: "Seller",
@@ -445,7 +469,8 @@
         signalCat: "Distress & Debt",
         name: "The Stagnant Charge Red Flag",
         desc: "You can check Companies House charge registers for mortgages outstanding for 15+ years with zero satisfaction filings during periods of HMRC pressure.",
-        plain: "Spots old mortgages left on the record for 15+ years with no sign of being cleared while tax pressure builds."
+        finds: "15+ year open charges alongside HMRC pressure.",
+        plain: "Old mortgages sitting on file for 15+ years with no sign of repayment alongside tax pressure."
       },
       26: {
         role: "Dual",
@@ -453,7 +478,8 @@
         signalCat: "Ownership & Structure",
         name: "Residential Assets in Commercial Shells",
         desc: "You can cross-reference Companies House commercial SIC codes against Land Registry residential property address postcodes.",
-        plain: "Finds commercial businesses owning residential-style properties."
+        finds: "Commercial-SIC firms holding residential properties.",
+        plain: "Commercial businesses holding residential properties."
       },
       27: {
         role: "Seller",
@@ -461,7 +487,8 @@
         signalCat: "Distress & Debt",
         name: "The Sudden Influx Debt Signal",
         desc: "You can check Companies House filing logs for debt-free firms suddenly registering 3+ mortgages in 90 days alongside late accounts.",
-        plain: "Flags previously debt-free companies that suddenly take on 3+ mortgages in 3 months while filing accounts late."
+        finds: "Debt-free firms taking 3+ mortgages in 90 days late.",
+        plain: "Previously debt-free companies suddenly taking on 3+ mortgages in 3 months while filing accounts late—acute cash strain."
       },
       28: {
         role: "Dual",
@@ -469,7 +496,8 @@
         signalCat: "Ownership & Structure",
         name: "The Straw Man Asset Shuffle",
         desc: "You can track company name changes and registered office updates on Companies House occurring 2+ times in 24 months on properties over £500k.",
-        plain: "Tracks £500k+ property owners repeatedly changing their company name or address every couple of years."
+        finds: "£500k+ owners changing name or office 2+ times in 24m.",
+        plain: "Owners of £500k+ properties repeatedly changing company names or registered addresses every couple of years."
       },
       29: {
         role: "Dual",
@@ -477,7 +505,8 @@
         signalCat: "Ownership & Structure",
         name: "Beneficial Ownership Black Hole",
         desc: "You can check Companies House PSC registers for foreign legal entities controlling assets with no individual human PSC listed.",
-        plain: "Highlights asset-holding firms where control stops at a foreign corporate entity with no named person behind it."
+        finds: "Foreign corporate PSCs with no named human controller.",
+        plain: "Asset-holding companies where control stops at a foreign corporate entity with no individual person named."
       },
       30: {
         role: "Seller",
@@ -485,7 +514,8 @@
         signalCat: "Distress & Debt",
         name: "The Lender of Last Resort Red Flag",
         desc: "You can pull Companies House charge registers to check if 5+ mortgages are held by private limited companies rather than regulated banks.",
-        plain: "Spots borrowers taking 5+ loans from private companies rather than high-street banks—often higher-cost finance."
+        finds: "5+ mortgages held by private limited lenders.",
+        plain: "Borrowers with 5+ mortgages from private companies instead of high-street banks—often expensive or last-resort finance."
       },
       31: {
         role: "Dual",
@@ -493,7 +523,8 @@
         signalCat: "Ownership & Structure",
         name: "Smurfing Through Property Postcodes",
         desc: "You can map Companies House director networks controlling 10+ companies holding single low-value properties (<£150k) across varied postcodes.",
-        plain: "Finds connected directors running 10+ separate companies each holding a lower-value property across different areas."
+        finds: "Linked directors running 10+ sub-£150k property firms.",
+        plain: "Linked directors running 10+ separate companies each holding a single lower-value property (under £150k) across different postcodes."
       },
       32: {
         role: "Buyer",
@@ -501,7 +532,8 @@
         signalCat: "Ownership & Structure",
         name: "The Dormant Asset Escalator",
         desc: "You can check Companies House dormant company accounts inactive for 3+ years that suddenly show recent Land Registry property acquisition dates.",
-        plain: "Catches companies that sat dormant for 3+ years and suddenly started buying property."
+        finds: "Dormant firms (3+ years) suddenly buying property.",
+        plain: "Dormant companies inactive for 3+ years that suddenly start acquiring property."
       },
       33: {
         role: "Dual",
@@ -509,7 +541,8 @@
         signalCat: "Distress & Debt",
         name: "High-Turnover Care Shells",
         desc: "You can track care home operator profiles (SIC 87100) on Companies House for complete director changes occurring within 6 months of a large mortgage registration.",
-        plain: "Spots care home companies swapping out their leadership right around the time a big loan is registered."
+        finds: "Care home firms (87100) changing directors post-loan.",
+        plain: "Care home operators replacing their directors within 6 months of registering a large mortgage."
       },
       34: {
         role: "Dual",
@@ -517,7 +550,8 @@
         signalCat: "Ownership & Structure",
         name: "The Bona Vacantia Asset Shield",
         desc: "You can search Companies House historical logs for companies that dissolved while holding land and were subsequently restored to the register 12+ months later.",
-        plain: "Finds companies that were struck off while holding land and later brought back to life a year or more later."
+        finds: "Land-holding firms dissolved and restored 12+m later.",
+        plain: "Companies that dissolved while holding land and were later restored a year or more later."
       },
       35: {
         role: "Buyer",
@@ -525,7 +559,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Critical Proximity Acquisition",
         desc: "You can cross-reference Land Registry property coordinates near sensitive government, military, or infrastructure sites with Companies House director residence data to identify foreign nationals acquiring strategic land.",
-        plain: "Identifies overseas-linked buyers picking up land or property close to sensitive government, defence, or infrastructure sites."
+        finds: "Foreign-linked buys near defence or infrastructure sites.",
+        plain: "Foreign-linked buyers acquiring land or property near sensitive government, military, or infrastructure sites."
       },
       36: {
         role: "Dual",
@@ -533,7 +568,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Dual-Use Procurement Shells",
         desc: "You can filter Companies House for recently incorporated entities with high-tech, aerospace, or defense SIC codes showing zero mortgages and foreign national control.",
-        plain: "Spots new tech, aerospace, or defence-classified firms with no debt and overseas control."
+        finds: "New tech/aerospace/defence firms with foreign control.",
+        plain: "Newly formed tech, aerospace, or defence-classified companies with no mortgages and foreign control."
       },
       37: {
         role: "Buyer",
@@ -541,7 +577,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Telecoms Energy Land-Grab",
         desc: "You can search Land Registry address data for small plots near power grids or cable lines held by real estate companies controlled by foreign entities.",
-        plain: "Finds small land parcels near power lines or grid links owned by foreign-controlled property firms."
+        finds: "Small plots near grids/cables under foreign control.",
+        plain: "Small land plots near power grids or cable routes owned by foreign-controlled property companies."
       },
       38: {
         role: "Dual",
@@ -549,7 +586,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Influence Philanthropy Shells",
         desc: "You can check Companies House for social or educational non-profit entities showing heavy mortgage counts held through single foreign-owned private lenders.",
-        plain: "Highlights non-profit or educational bodies carrying heavy borrowing through a single foreign private lender."
+        finds: "Non-profits heavily mortgaged to a foreign lender.",
+        plain: "Non-profit or educational entities carrying heavy debt through a single foreign private lender."
       },
       39: {
         role: "Dual",
@@ -557,7 +595,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Sovereign Wealth Fronts",
         desc: "You can inspect Companies House Persons with Significant Control registers to find non-human entities, legal persons, or government bodies holding bulk land titles.",
-        plain: "Finds large land holdings controlled by institutional bodies, state-linked entities, or non-human corporate owners."
+        finds: "Bulk land titles held by institutional/state PSCs.",
+        plain: "Bulk land titles controlled by institutional, state-linked, or non-human corporate bodies."
       },
       40: {
         role: "Dual",
@@ -565,7 +604,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Student Academic Proxy",
         desc: "You can scan Companies House for companies registered at university campus addresses controlled by foreign nationals on short-term visas aged under 30.",
-        plain: "Flags companies tied to university addresses with young overseas controllers."
+        finds: "Campus firms run by under-30 foreign visa holders.",
+        plain: "Companies registered at university addresses controlled by young foreign nationals on short-term visas."
       },
       41: {
         role: "Buyer",
@@ -573,7 +613,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Dormant Security Buffer",
         desc: "You can screen Companies House dormant shell accounts incorporated 5+ years ago that suddenly register land title acquisitions near major logistics hubs.",
-        plain: "Spots older, quiet companies suddenly buying land near major transport and logistics hubs."
+        finds: "5+ year dormant firms buying near logistics hubs.",
+        plain: "Older dormant companies (5+ years) suddenly buying land near major logistics hubs."
       },
       42: {
         role: "Dual",
@@ -581,7 +622,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Shadow Supply Chain",
         desc: "You can cross-reference Land Registry warehouse and depot listings near railway junctions or motorways with Companies House foreign control flags.",
-        plain: "Finds warehouses and depots near rail or motorway links backed by foreign-controlled companies."
+        finds: "Foreign-controlled depots near rail or motorway hubs.",
+        plain: "Warehouses and depots near rail junctions or motorways held by foreign-controlled entities."
       },
       43: {
         role: "Dual",
@@ -589,7 +631,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "High-Security Postcode Clustering",
         desc: "You can query Companies House postcodes inside sensitive sectors (such as GCHQ or MOD outposts) to spot clusters of 3+ foreign-owned entities sharing registered addresses.",
-        plain: "Spots groups of 3 or more foreign-owned firms sharing addresses near high-security or defence locations."
+        finds: "3+ foreign-owned firms sharing sensitive postcodes.",
+        plain: "Clusters of 3+ foreign-owned companies sharing addresses around sensitive defence or intelligence locations."
       },
       44: {
         role: "Dual",
@@ -597,7 +640,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Agricultural Dual-Use Land",
         desc: "You can filter Land Registry records for large rural and agricultural plots holding zero farming mortgages while under non-EU or foreign control.",
-        plain: "Finds large farmland and rural plots with no farm loans held under overseas or non-EU control."
+        finds: "Large debt-free farmland under foreign/non-EU control.",
+        plain: "Large agricultural or rural land plots with no farm mortgages held under foreign or non-EU control."
       },
       45: {
         role: "Dual",
@@ -605,7 +649,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Intellectual Property Vacuum Companies",
         desc: "You can check Companies House R&D or consultancy firms lacking property titles but featuring foreign firm control structures.",
-        plain: "Identifies research or advisory companies with overseas corporate backing and no local property footprint."
+        finds: "Foreign-backed R&D/advisory firms with no property.",
+        plain: "R&D or consultancy firms backed by foreign companies that hold no property titles."
       },
       46: {
         role: "Dual",
@@ -613,7 +658,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Ex-Diplomat Director Pivot",
         desc: "You can cross-reference Land Registry history showing previous local government or institutional ownership against foreign-controlled company directors.",
-        plain: "Tracks former public or institutional sites that later passed into foreign-controlled company hands."
+        finds: "Former public/institutional sites under foreign control.",
+        plain: "Sites previously owned by local government or institutions that now sit under foreign-controlled directors."
       },
       47: {
         role: "Dual",
@@ -621,7 +667,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Dark Data Center Shells",
         desc: "You can screen dormant Companies House real estate entities holding industrial units featuring high utility footprints without public-facing commercial profiles.",
-        plain: "Finds low-profile industrial buildings with heavy power/utility use held by quiet property companies."
+        finds: "Dormant owners of high-utility industrial units.",
+        plain: "Dormant property companies holding industrial units with high power/utility use and a low public profile."
       },
       48: {
         role: "Dual",
@@ -629,7 +676,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Maritime Logistics Fronts",
         desc: "You can search Land Registry titles near port infrastructure held by companies controlled via flag-of-convenience shipping jurisdictions.",
-        plain: "Spots land near ports owned by companies tied to shipping-flag or maritime jurisdictions."
+        finds: "Port land held via flag-of-convenience entities.",
+        plain: "Port-adjacent land held by companies linked to flag-of-convenience shipping jurisdictions."
       },
       49: {
         role: "Buyer",
@@ -637,7 +685,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Critical Mineral Resource Anchoring",
         desc: "You can inspect Land Registry titles in mineral-rich geological zones showing zero mortgage activity under foreign corporate ownership.",
-        plain: "Finds debt-free land in mineral-rich areas held by foreign-owned companies."
+        finds: "Debt-free mineral-zone land under foreign ownership.",
+        plain: "Mortgage-free land in mineral-rich areas owned by foreign companies."
       },
       50: {
         role: "Dual",
@@ -645,7 +694,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Proxy Recruitment Hubs",
         desc: "You can screen Companies House language schools, travel agencies, and cultural centers located near government headquarters that feature foreign control.",
-        plain: "Flags foreign-controlled travel, language, or cultural businesses set up near government centres."
+        finds: "Foreign-run language/travel/cultural firms near hubs.",
+        plain: "Foreign-controlled language schools, travel agencies, or cultural centres near government headquarters."
       },
       51: {
         role: "Dual",
@@ -653,7 +703,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "High-Precision Logistics Shadowing",
         desc: "You can check Land Registry plots sitting adjacent to high-security defense contractor depots held by foreign-controlled entities.",
-        plain: "Finds land plots right next to sensitive defence contractor sites held by foreign-controlled owners."
+        finds: "Foreign-owned plots next to defence depots.",
+        plain: "Land plots bordering high-security defence contractor depots held by foreign-controlled owners."
       },
       52: {
         role: "Dual",
@@ -661,7 +712,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Dark Utility Interception",
         desc: "You can check Companies House electricity and water generation SIC codes for recently incorporated foreign shells lacking public grid-export agreements.",
-        plain: "Spots new foreign-linked power or water firms that do not show normal public grid-supply ties."
+        finds: "New foreign power/water firms without grid ties.",
+        plain: "Recently formed foreign-linked power or water firms without public grid-export agreements."
       },
       53: {
         role: "Dual",
@@ -669,7 +721,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Academic Research Shells with No IP",
         desc: "You can cross-reference research SIC companies holding multiple property titles against patent registries to identify entities lacking IP output.",
-        plain: "Finds research-classified companies holding several properties without visible patents or IP output."
+        finds: "Research property holders with no patent output.",
+        plain: "Research-classified companies holding multiple properties with no patent output."
       },
       54: {
         role: "Dual",
@@ -677,7 +730,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Sovereign Debt Entrapment",
         desc: "You can pull Companies House charge registers on local SMEs to find entities carrying 5+ mortgages issued by foreign state-owned banks.",
-        plain: "Identifies local smaller businesses carrying 5 or more loans from foreign state-backed banks."
+        finds: "Local SMEs with 5+ foreign state-bank mortgages.",
+        plain: "Local SMEs carrying 5+ mortgages backed by foreign state-owned banks."
       },
       55: {
         role: "Dual",
@@ -685,7 +739,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Satellite Office Signal",
         desc: "You can check Companies House registered office updates against Land Registry property addresses to find administrative offices separated from secure operational sites.",
-        plain: "Highlights setups where the registered office is split away from the physical operational site."
+        finds: "Registered offices split from operational sites.",
+        plain: "Companies keeping their registered office separate from their physical property or operational site."
       },
       56: {
         role: "Buyer",
@@ -693,7 +748,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Stalled Quarry Arbitrage",
         desc: "You can filter Companies House mining and quarrying entities holding unencumbered land for over 10 years with zero outstanding mortgages.",
-        plain: "Finds quarry or mining land held debt-free for 10+ years that may be sitting idle for acquisition or restart."
+        finds: "Quarry/mining land held 10+ years with zero debt.",
+        plain: "Quarry or mining land held debt-free for 10+ years—potential dormant or under-worked mineral sites."
       },
       57: {
         role: "Seller",
@@ -701,7 +757,8 @@
         signalCat: "Distress & Debt",
         name: "Extractive Distress",
         desc: "You can check Companies House formal insolvency notices on mineral extraction entities holding pit and land assets.",
-        plain: "Spots quarries, pits, and mining operators entering insolvency—creating distressed land or asset buys."
+        finds: "Insolvent mining/pit firms holding land assets.",
+        plain: "Quarries, pits, and mining firms in insolvency holding land and extraction assets."
       },
       58: {
         role: "Seller",
@@ -709,7 +766,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Mineral Rights Succession",
         desc: "You can query Companies House director dates of birth to locate mining and quarry operators aged 70+ managing legacy aggregate sites.",
-        plain: "Finds older quarry and aggregate owners (70+) where retirement or succession may open up a deal."
+        finds: "Quarry/aggregate operators with directors aged 70+.",
+        plain: "Quarry and aggregate operators aged 70+ running legacy sites—prime succession or sale candidates."
       },
       59: {
         role: "Seller",
@@ -717,7 +775,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Restoration Bond Neglect",
         desc: "You can cross-reference Companies House accounts filing defaults against mining and quarry entities holding environmental permits.",
-        plain: "Flags mining or quarry operators with overdue filings alongside environmental permits—often a sign of strain."
+        finds: "Permitted mining/quarry firms with overdue accounts.",
+        plain: "Mining or quarry operators with overdue accounts that hold environmental permits—sign of compliance or financial strain."
       },
       60: {
         role: "Seller",
@@ -725,7 +784,8 @@
         signalCat: "Distress & Debt",
         name: "The Resource Domino Effect",
         desc: "You can track director cross-appointments on Companies House where one mining entity is in liquidation while another remains active.",
-        plain: "Spots mining operators still active while a sister company sharing the same director goes into liquidation."
+        finds: "Active mining firms sharing a liquidating director.",
+        plain: "Active mining firms sharing a director with another mining company that just entered liquidation."
       },
       61: {
         role: "Buyer",
@@ -733,7 +793,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Coal Tip Reclamation Leads",
         desc: "You can search Land Registry data for colliery tips and hard coal extraction titles across historical mining postcode clusters.",
-        plain: "Locates old coal tips and former mining land in historic coalfield areas for reclamation or reuse."
+        finds: "Colliery tip and coal titles in mining postcodes.",
+        plain: "Colliery tips and former coal sites in historic mining areas suited to land reclamation or redevelopment."
       },
       62: {
         role: "Dual",
@@ -741,7 +802,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Dormant Mineral Rights",
         desc: "You can scan Companies House dormant entity accounts holding rural or agricultural land titles located in known mineral belts.",
-        plain: "Finds quiet companies holding countryside or farmland inside known mineral areas."
+        finds: "Dormant firms holding rural land in mineral belts.",
+        plain: "Dormant companies holding rural or farmland titles inside mineral belts."
       },
       63: {
         role: "Dual",
@@ -749,7 +811,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Aggregates Cash-Out",
         desc: "You can check Companies House charge registers for sand and gravel operators carrying 3+ outstanding mortgages against minimal satisfied charges.",
-        plain: "Highlights sand and gravel firms stacking up 3+ loans without paying off older ones."
+        finds: "Sand/gravel firms with 3+ open mortgages.",
+        plain: "Sand and gravel operators with 3+ active mortgages and very few loans paid off."
       },
       64: {
         role: "Seller",
@@ -757,7 +820,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Abandoned Option Agreements",
         desc: "You can check Companies House strike-off warnings and late accounts on mining entities holding option-bound land titles.",
-        plain: "Spots mining companies facing strike-off or late filings that still hold land or option rights."
+        finds: "Mining firms facing strike-off with option land.",
+        plain: "Mining entities with strike-off warnings or late accounts that still hold option-tied land."
       },
       65: {
         role: "Seller",
@@ -765,7 +829,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Silica Industrial Play",
         desc: "You can cross-reference Companies House silica extraction records with aging director profiles to find specialized mineral succession opportunities.",
-        plain: "Finds silica extraction businesses led by older directors who may look to exit or hand over operations."
+        finds: "Silica extraction operators with older directors.",
+        plain: "Silica extraction businesses led by older directors—niche succession and acquisition leads."
       },
       66: {
         role: "Seller",
@@ -773,7 +838,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Restoration Liability Arbitrage",
         desc: "You can filter Companies House administration and receivership notices on pit and quarry assets burdened by heavy environmental liabilities.",
-        plain: "Identifies pits and quarries in administration or receivership where site clean-up costs shape the deal."
+        finds: "Pits/quarries in administration with restoration debt.",
+        plain: "Pits and quarries in administration or receivership carrying heavy site-restoration obligations."
       },
       67: {
         role: "Buyer",
@@ -781,7 +847,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Lithium Exploration Sleeping Licenses",
         desc: "You can scan Land Registry rural titles in lithium-belt counties held by debt-free mining shells with older directors.",
-        plain: "Finds debt-free rural land in lithium-prospecting areas held by older-led mineral companies."
+        finds: "Debt-free lithium-belt rural land under older shells.",
+        plain: "Debt-free rural land in lithium-belt counties held by older-led mining shells."
       },
       68: {
         role: "Seller",
@@ -789,7 +856,8 @@
         signalCat: "Distress & Debt",
         name: "Coal Tip Methane Secondary Recovery",
         desc: "You can check Companies House filing defaults and liquidation notices on historical colliery spoil heap titleholders.",
-        plain: "Spots troubled or winding-down owners of old coal spoil heaps where gas or site recovery may be possible."
+        finds: "Defaulting/liquidating owners of coal spoil heaps.",
+        plain: "Distressed or liquidating owners of old coal spoil heaps where secondary gas or site recovery may apply."
       },
       69: {
         role: "Dual",
@@ -797,7 +865,8 @@
         signalCat: "Distress & Debt",
         name: "Distressed Oil Gas Service Hubs",
         desc: "You can query Companies House petroleum and natural gas service depots carrying 3+ outstanding mortgage charges.",
-        plain: "Finds oil and gas support yards or depots carrying 3 or more active loans."
+        finds: "Oil/gas service depots with 3+ open mortgages.",
+        plain: "Oil and gas service depots carrying 3+ active mortgages."
       },
       70: {
         role: "Dual",
@@ -805,7 +874,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Stranded Asset Gas Flare",
         desc: "You can check Companies House charge registers for wellhead and gas extraction shells hitting a Zombie Index of 5+ charges.",
-        plain: "Flags wellhead and gas extraction companies weighed down by 5 or more registered charges."
+        finds: "Wellhead/gas extraction shells with 5+ charges.",
+        plain: "Wellhead and gas extraction shells weighed down by 5+ charges."
       },
       71: {
         role: "Buyer",
@@ -813,7 +883,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Geothermal Retrofit Legacy Mine Voids",
         desc: "You can screen Companies House administration and strike-off notices on entities holding flooded mine shaft properties.",
-        plain: "Finds distressed or closing owners of old flooded mine sites that could suit geothermal projects."
+        finds: "Distressed owners of flooded mine shaft sites.",
+        plain: "Flooded mine shaft sites owned by companies in administration or facing strike-off—potential geothermal sites."
       },
       72: {
         role: "Dual",
@@ -821,7 +892,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Dark Mineral Sovereignty",
         desc: "You can inspect Companies House PSC records for foreign nominees holding high-value mineral land inside dormant shell companies.",
-        plain: "Spots valuable mineral land held in quiet companies with foreign or nominee control."
+        finds: "High-value mineral land under foreign nominees.",
+        plain: "High-value mineral land held in dormant companies with foreign nominee control."
       },
       73: {
         role: "Dual",
@@ -829,7 +901,8 @@
         signalCat: "Distress & Debt",
         name: "Refinery Midstream Distress",
         desc: "You can pull Companies House charge registers on mineral oil refining and processing plants carrying 5+ outstanding mortgages.",
-        plain: "Highlights oil refining and processing operators carrying 5 or more loans."
+        finds: "Oil refining/processing plants with 5+ mortgages.",
+        plain: "Mineral oil refining and processing plants carrying 5+ active mortgages."
       },
       74: {
         role: "Seller",
@@ -837,7 +910,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Chemical Legacy Succession",
         desc: "You can query Companies House director ages on basic chemical and processing plants to find retiring owners managing complex industrial sites.",
-        plain: "Finds chemical and processing plant owners reaching retirement age who may be open to a sale."
+        finds: "Chemical plant operators with retiring directors.",
+        plain: "Aging owners of chemical and processing plants where succession or exit may be approaching."
       },
       75: {
         role: "Dual",
@@ -845,7 +919,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Dark Midstream Storage Offshore Control",
         desc: "You can check Companies House micro and dormant entity records for tank farm and terminal storage assets under foreign tax haven control.",
-        plain: "Spots fuel tank farms and storage terminals held by quiet firms linked to offshore tax havens."
+        finds: "Tank farms/terminals under offshore tax-haven firms.",
+        plain: "Fuel tank farms and storage terminals held by micro or dormant firms linked to offshore tax havens."
       },
       76: {
         role: "Dual",
@@ -853,7 +928,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Stalled Renewable Conversion HMRC Pressure",
         desc: "You can screen Companies House late accounts filings on heavy industrial processing and smelting sites earmarked for green transition.",
-        plain: "Finds heavy industrial or smelting sites filing late accounts—potential targets for green redevelopment."
+        finds: "Heavy industrial/smelting sites filing late accounts.",
+        plain: "Heavy industrial or smelting sites filing late accounts—potential green-transition or redevelopment targets."
       },
       77: {
         role: "Dual",
@@ -861,7 +937,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "The Fertilizer Food Security Gap",
         desc: "You can check Companies House strike-off warnings and mortgage counts on essential nitrogen and fertilizer processing facilities.",
-        plain: "Flags fertilizer and nitrogen plants facing strike-off warnings or heavy borrowing."
+        finds: "Fertilizer plants with strike-off warnings or debt.",
+        plain: "Nitrogen and fertilizer processing sites facing strike-off warnings or heavy borrowing."
       },
       78: {
         role: "Buyer",
@@ -869,7 +946,8 @@
         signalCat: "Strategic & Sector Asset",
         name: "Industrial Utility Arbitrage High Price Paid",
         desc: "You can cross-reference Land Registry purchase prices exceeding £1M on processing works against Companies House holding structures.",
-        plain: "Finds industrial processing sites bought for over £1M and shows how their ownership is structured."
+        finds: "£1M+ processing works mapped to holding firms.",
+        plain: "Industrial processing works bought for over £1M—showing the corporate structure behind high-utility sites."
       },
       79: {
         role: "Seller",
@@ -877,7 +955,8 @@
         signalCat: "Distress & Debt",
         name: "Phoenixing in the Supply Chain",
         desc: "You can trace Companies House liquidation notices followed by new company incorporations at identical postcodes within the refining sector.",
-        plain: "Tracks refining and supply-chain firms going into liquidation while new ones register at the exact same postcode."
+        finds: "Refining liquidations with new firms at same postcode.",
+        plain: "Refining-sector companies entering liquidation while new ones incorporate at the exact same postcode."
       }
     };
 
@@ -1064,6 +1143,7 @@
           item.industry.toLowerCase().includes(query) ||
           item.signalCat.toLowerCase().includes(query) ||
           item.desc.toLowerCase().includes(query) ||
+          item.finds.toLowerCase().includes(query) ||
           item.plain.toLowerCase().includes(query) ||
           id.includes(query);
 
@@ -1096,7 +1176,10 @@
                 <h2 class="font-bold text-[#141A21] text-base leading-snug">${item.name}</h2>
                 <div class="text-[11px] font-medium text-stone-500">${item.signalCat}</div>
                 <p class="text-xs text-stone-600 leading-relaxed pt-0.5">${item.desc}</p>
-                <div class="pt-2 border-t border-stone-200">
+                <div class="pt-2 border-t border-stone-200 space-y-1.5">
+                  <p class="text-xs text-[#141A21] leading-relaxed truncate" title="${escapeHtml(item.finds)}">
+                    <span class="font-bold text-[#141A21]">What this finds:</span> ${item.finds}
+                  </p>
                   <p class="text-xs text-[#141A21] leading-relaxed">
                     <span class="font-bold text-[#8C6D1F]">In plain terms:</span> ${item.plain}
                   </p>
