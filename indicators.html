@@ -981,6 +981,90 @@
         .replace(/'/g, "&#39;");
     }
 
+    function getIndicatorShareUrl(anchorId) {
+      const origin = window.location.origin && window.location.origin !== "null"
+        ? window.location.origin
+        : "https://business-analytica.com";
+      const pathname = window.location.pathname && window.location.pathname !== "/"
+        ? window.location.pathname
+        : "/indicators.html";
+      return `${origin}${pathname}#${anchorId}`;
+    }
+
+    function copyIndicatorLink(anchorId, btnEl) {
+      const shareUrl = getIndicatorShareUrl(anchorId);
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${anchorId}`);
+      } else {
+        window.location.hash = `#${anchorId}`;
+      }
+
+      const markCopied = () => {
+        if (!btnEl) return;
+        const prevText = btnEl.textContent;
+        btnEl.textContent = "Copied!";
+        btnEl.classList.add("border-[#0B192C]", "bg-stone-100");
+        setTimeout(() => {
+          btnEl.textContent = prevText;
+          btnEl.classList.remove("border-[#0B192C]", "bg-stone-100");
+        }, 1800);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareUrl).then(markCopied).catch(() => {
+          fallbackCopy(shareUrl);
+          markCopied();
+        });
+      } else {
+        fallbackCopy(shareUrl);
+        markCopied();
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+      } catch (_) {}
+      document.body.removeChild(ta);
+    }
+
+    function focusHashTarget() {
+      const rawHash = (window.location.hash || "").replace(/^#/, "");
+      const match = rawHash.match(/^indicator-(\d{1,3})$/);
+      if (!match) return;
+
+      const num = parseInt(match[1], 10);
+      if (!indicatorsData[num]) return;
+
+      const anchorId = `indicator-${pad3(num)}`;
+      let targetEl = document.getElementById(anchorId);
+
+      if (!targetEl) {
+        selectedIndustry = "All";
+        selectedRole = "All";
+        selectedCat = "All";
+        document.getElementById('signalFilter').value = "";
+        renderCategoryButtons();
+        applyFilters();
+        targetEl = document.getElementById(anchorId);
+      }
+
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        targetEl.classList.add("ring-2", "ring-[#D4AF37]");
+        setTimeout(() => {
+          targetEl.classList.remove("ring-2", "ring-[#D4AF37]");
+        }, 2200);
+      }
+    }
+
     function countBy(predicate) {
       return Object.values(indicatorsData).filter(predicate).length;
     }
@@ -1128,6 +1212,7 @@
 
       for (let i = 79; i >= 1; i--) {
         const id = pad3(i);
+        const anchorId = `indicator-${id}`;
         const item = indicatorsData[i];
         if (!item) continue;
 
@@ -1139,6 +1224,7 @@
         const fullTitle = `Indicator #${id} — ${item.name}`;
         const matchesQuery = !query ||
           fullTitle.toLowerCase().includes(query) ||
+          anchorId.includes(query) ||
           roleLabel.toLowerCase().includes(query) ||
           item.industry.toLowerCase().includes(query) ||
           item.signalCat.toLowerCase().includes(query) ||
@@ -1154,7 +1240,7 @@
         const mailSubj = encodeURIComponent(`Pricing & Dataset Request: ${fullTitle}`);
 
         cards.push(`
-          <article class="bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm flex flex-col justify-between">
+          <article id="${anchorId}" class="scroll-mt-20 bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm flex flex-col justify-between transition">
             <div>
               <div class="aspect-video bg-black">
                 <video class="w-full h-full object-cover" controls playsinline preload="none">
@@ -1167,7 +1253,15 @@
               </div>
               <div class="px-4 sm:px-5 pt-4 pb-2 space-y-2">
                 <div class="flex flex-wrap items-center justify-between gap-1.5">
-                  <span class="text-[11px] font-bold uppercase tracking-wider text-[#8C6D1F]">Indicator #${id}</span>
+                  <div class="flex items-center gap-2">
+                    <a href="#${anchorId}" class="text-[11px] font-bold uppercase tracking-wider text-[#8C6D1F] hover:underline">Indicator #${id}</a>
+                    <button type="button"
+                            onclick="copyIndicatorLink('${anchorId}', this)"
+                            title="Copy direct link to ${anchorId}"
+                            class="text-[10px] font-semibold text-stone-600 hover:text-[#0B192C] bg-[#F7F6F2] border border-stone-300 px-2 py-0.5 rounded transition">
+                      Copy Link
+                    </button>
+                  </div>
                   <div class="flex flex-wrap items-center gap-1.5">
                     <span class="text-[11px] font-bold px-2 py-0.5 rounded border ${roleBadgeClass(item.role)}">${roleLabel}</span>
                     <span class="text-[11px] font-semibold text-stone-700 bg-[#F7F6F2] border border-stone-200 px-2 py-0.5 rounded">${item.industry}</span>
@@ -1212,8 +1306,10 @@
         : `<p class="text-stone-600 text-sm col-span-full">No indicators matched your selected buttons.</p>`;
     }
 
+    window.addEventListener("hashchange", focusHashTarget);
     renderCategoryButtons();
     applyFilters();
+    focusHashTarget();
   </script>
 </body>
 </html>
