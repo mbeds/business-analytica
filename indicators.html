@@ -12,18 +12,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Indicator Categories by Industry | Business Analytica</title>
-  <meta name="description" content="Filter 79 corporate and asset indicators across Property, Mining, Commercial, Industrial, Energy, Logistics, and Agriculture, plus Buyer and Seller sides. Contact for pricing." />
+  <meta name="description" content="Filter 79 UK corporate and real-asset indicators across Property, Mining, Commercial, Industrial, Energy, Logistics, and Agriculture. Contact now." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <link rel="canonical" href="https://business-analytica.com/indicators.html" />
+  <link rel="canonical" href="https://www.business-analytica.com/indicators.html" />
   <link rel="icon" type="image/png" href="./business.png" />
+  <link rel="apple-touch-icon" href="./business.png" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Business Analytica" />
   <meta property="og:title" content="Indicator Categories by Industry | Business Analytica" />
   <meta property="og:description" content="Browse 79 UK corporate and real-asset indicators by Industry (Property, Mining, Commercial, Industrial, Energy, Logistics, Agriculture) and Buyer/Seller side." />
-  <meta property="og:url" content="https://business-analytica.com/indicators.html" />
-  <meta property="og:image" content="https://business-analytica.com/business.png" />
+  <meta property="og:url" content="https://www.business-analytica.com/indicators.html" />
+  <meta property="og:image" content="https://www.business-analytica.com/business.png" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -31,12 +32,12 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Business Analytica Signal Library",
-    "url": "https://business-analytica.com/indicators.html",
+    "url": "https://www.business-analytica.com/indicators.html",
     "description": "79 corporate and asset indicators categorized across Property, Mining, Commercial, Industrial, Energy, Logistics, and Agriculture.",
     "provider": {
       "@type": "ProfessionalService",
       "name": "Business Analytica",
-      "url": "https://business-analytica.com/",
+      "url": "https://www.business-analytica.com/",
       "telephone": "+447986903415",
       "email": "info@business-analytica.com"
     }
@@ -87,7 +88,7 @@
           Corporate, Land &amp; Asset Indicators
         </h1>
         <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
-          Browse all 79 indicators starting with <strong>Property</strong>, or filter by <strong>Industry</strong>, <strong>Buyer / Seller</strong>, or <strong>Signal Category</strong>. Play any clip for the audio walkthrough, or contact for pricing on any indicator dataset.
+          Browse all 79 corporate, land, and asset indicators starting with <strong>Property</strong>, or filter by <strong>Industry</strong>, <strong>Buyer / Seller</strong>, or <strong>Signal Category</strong>. Play any clip for the audio walkthrough, or contact for pricing on any indicator dataset.
         </p>
       </div>
 
@@ -159,6 +160,10 @@
         <div class="text-[11px] font-bold uppercase tracking-wider text-stone-500">Category Buttons</div>
         <div id="catButtons" class="grid grid-cols-2 sm:grid-cols-4 gap-2"></div>
       </div>
+
+      <p class="text-xs text-stone-600 leading-relaxed pt-1">
+        These corporate, land, and asset indicators cross-check Companies House filings, director records, and charge registers against HM Land Registry property titles so acquisition teams and deal sourcers can spot motivated sellers, debt pressure, and active buyers faster.
+      </p>
 
       <div class="pt-1 flex flex-wrap items-center justify-between gap-2 border-t border-stone-200 text-xs">
         <span id="resultsCount" class="font-bold text-[#141A21]">Showing 79 of 79 indicators</span>
@@ -253,7 +258,7 @@
       </div>
 
       <div class="flex flex-col sm:items-end gap-2.5 text-sm">
-        <a href="https://wa.me/447986903415" target="_blank" rel="noopener noreferrer"
+        <a href="https://wa.me/447986903415" target="_blank" rel="noopener noreferrer nofollow"
            onclick="trackEvent('footer_lead_click', { channel: 'whatsapp' })"
            class="bg-[#D4AF37] text-[#0B192C] font-bold px-5 py-3 rounded hover:bg-amber-400 transition text-center">
           WhatsApp: +44 7986 903415
@@ -265,8 +270,8 @@
         </a>
         <div class="flex flex-wrap gap-4 sm:gap-5 text-xs text-slate-400 pt-1">
           <a href="./index.html" onclick="trackEvent('nav_click', { target: 'footer_home' })" class="hover:text-white">Home</a>
-          <a href="https://www.linkedin.com/company/136176605" target="_blank" rel="noopener noreferrer" onclick="trackEvent('footer_lead_click', { channel: 'linkedin' })" class="hover:text-white">LinkedIn</a>
-          <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" rel="noopener noreferrer" onclick="trackEvent('footer_lead_click', { channel: 'facebook' })" class="hover:text-white">Facebook</a>
+          <a href="https://www.linkedin.com/company/136176605" target="_blank" rel="noopener noreferrer nofollow" onclick="trackEvent('footer_lead_click', { channel: 'linkedin' })" class="hover:text-white">LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" rel="noopener noreferrer nofollow" onclick="trackEvent('footer_lead_click', { channel: 'facebook' })" class="hover:text-white">Facebook</a>
           <span>&copy; 2026 Business Analytica</span>
         </div>
       </div>
@@ -1008,7 +1013,7 @@
     function getIndicatorShareUrl(anchorId) {
       const origin = window.location.origin && window.location.origin !== "null"
         ? window.location.origin
-        : "https://business-analytica.com";
+        : "https://www.business-analytica.com";
       const pathname = window.location.pathname && window.location.pathname !== "/"
         ? window.location.pathname
         : "/indicators.html";
