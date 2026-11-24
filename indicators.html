@@ -57,7 +57,7 @@
   <!-- HEADER -->
   <header class="sticky top-0 z-50 bg-[#0B192C] text-white border-b border-slate-800">
     <div class="max-w-5xl mx-auto px-3.5 sm:px-5 h-14 sm:h-16 flex items-center justify-between gap-2">
-      <a href="./index.html" class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+      <a href="./index.html" onclick="trackEvent('nav_click', { target: 'home' })" class="flex items-center gap-2 sm:gap-2.5 shrink-0">
         <img src="./business.png"
              alt="Business Analytica logo"
              width="32"
@@ -67,9 +67,10 @@
         <span class="font-bold tracking-wide sm:tracking-wider text-[11px] sm:text-sm uppercase whitespace-nowrap">Business Analytica</span>
       </a>
       <nav aria-label="Primary Navigation" class="flex items-center gap-3 sm:gap-7 text-[11px] sm:text-xs font-semibold tracking-wide text-slate-300">
-        <a href="./index.html" class="hover:text-white transition whitespace-nowrap">Home</a>
-        <a href="./indicators.html" class="hidden sm:inline text-[#D4AF37] whitespace-nowrap">Signals</a>
+        <a href="./index.html" onclick="trackEvent('nav_click', { target: 'home' })" class="hover:text-white transition whitespace-nowrap">Home</a>
+        <a href="./indicators.html" onclick="trackEvent('nav_click', { target: 'signals' })" class="hidden sm:inline text-[#D4AF37] whitespace-nowrap">Signals</a>
         <a href="./index.html#contact"
+           onclick="trackEvent('nav_click', { target: 'contact' })"
            class="bg-[#D4AF37] text-[#0B192C] font-bold px-2.5 sm:px-4 py-1.5 sm:py-2 rounded text-[11px] sm:text-xs hover:bg-amber-400 transition whitespace-nowrap">
           Contact
         </a>
@@ -86,7 +87,7 @@
           Corporate, Land &amp; Asset Indicators
         </h1>
         <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
-          Filter all 79 indicators by <strong>Industry</strong>, <strong>Buyer / Seller</strong>, or <strong>Signal Category</strong>. Unmute any clip for the audio walkthrough, or contact for pricing on any indicator dataset.
+          Browse all 79 indicators starting with <strong>Property</strong>, or filter by <strong>Industry</strong>, <strong>Buyer / Seller</strong>, or <strong>Signal Category</strong>. Play any clip for the audio walkthrough, or contact for pricing on any indicator dataset.
         </p>
       </div>
 
@@ -95,6 +96,46 @@
         <input id="signalFilter" type="text" oninput="handleSearchInput()"
                placeholder="Search # or keyword..."
                class="w-full bg-white border border-stone-300 rounded px-3.5 py-2.5 text-sm text-[#141A21] placeholder-stone-400 focus:outline-none focus:border-[#0B192C]" />
+      </div>
+    </div>
+
+    <!-- Redacted Sample Preview & Pricing Anchor -->
+    <div class="bg-[#0B192C] text-white border border-slate-800 rounded-lg p-4 sm:p-5 shadow-sm space-y-3">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-700/80 pb-3">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[#D4AF37]">Sample Dataset Row (Redacted Preview)</span>
+          <p class="text-xs text-slate-300 mt-0.5">
+            Full exports include verified entity, title, and charge records—masked below for public preview.
+          </p>
+        </div>
+        <a href="./index.html#sample"
+           onclick="trackEvent('sample_preview_click', { source: 'indicators_redacted_row' })"
+           class="text-xs font-bold text-[#D4AF37] hover:underline shrink-0">
+          View Wrekin Sample Pack &rarr;
+        </a>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="text-slate-400 border-b border-slate-800 uppercase tracking-wider text-[10px]">
+              <th class="py-2 pr-3">Entity</th>
+              <th class="py-2 pr-3">Director</th>
+              <th class="py-2 pr-3">Area / Postcode</th>
+              <th class="py-2 pr-3">Portfolio Profile</th>
+              <th class="py-2">Signal Match</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/80 text-slate-200">
+            <tr>
+              <td class="py-2.5 pr-3 font-mono text-slate-300">UK H******* L**</td>
+              <td class="py-2.5 pr-3 font-mono text-slate-300">M*** B******</td>
+              <td class="py-2.5 pr-3">Telford (TF1 ***)</td>
+              <td class="py-2.5 pr-3">Multi-unit residential &amp; commercial holdings</td>
+              <td class="py-2.5 text-[#D4AF37] font-semibold">Unencumbered Multi-Property Holding</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -143,27 +184,36 @@
           Stay informed of new indicators
         </h2>
         <p class="text-sm text-stone-600 max-w-2xl leading-relaxed">
-          Enter your website below to receive updates when new corporate, property, or sector indicators go live—or tell us what type of signal you want built next.
+          Leave your name and email to receive updates when new corporate, property, or sector indicators go live—or tell us what type of signal you want built next.
         </p>
       </div>
 
       <form onsubmit="submitIndicatorEmail(event)" class="space-y-3 pt-1">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label for="requesterWebsite" class="sr-only">Your website</label>
-            <input id="requesterWebsite"
+            <label for="requesterName" class="sr-only">Your name</label>
+            <input id="requesterName"
                    type="text"
                    required
-                   placeholder="Enter your website (e.g. yourcompany.co.uk)"
+                   placeholder="Your name"
                    class="w-full bg-[#F7F6F2] border border-stone-300 rounded px-3.5 py-2.5 text-sm text-[#141A21] placeholder-stone-400 focus:bg-white focus:outline-none focus:border-[#0B192C]" />
           </div>
           <div>
-            <label for="requesterNote" class="sr-only">Sector or indicator request (optional)</label>
-            <input id="requesterNote"
-                   type="text"
-                   placeholder="Sector or indicator request (optional)"
+            <label for="requesterEmail" class="sr-only">Your email address</label>
+            <input id="requesterEmail"
+                   type="email"
+                   required
+                   placeholder="Your email (e.g. you@example.co.uk)"
                    class="w-full bg-[#F7F6F2] border border-stone-300 rounded px-3.5 py-2.5 text-sm text-[#141A21] placeholder-stone-400 focus:bg-white focus:outline-none focus:border-[#0B192C]" />
           </div>
+        </div>
+
+        <div>
+          <label for="requesterNote" class="sr-only">Sector or indicator request (optional)</label>
+          <input id="requesterNote"
+                 type="text"
+                 placeholder="Target area, sector, or indicator request (optional)"
+                 class="w-full bg-[#F7F6F2] border border-stone-300 rounded px-3.5 py-2.5 text-sm text-[#141A21] placeholder-stone-400 focus:bg-white focus:outline-none focus:border-[#0B192C]" />
         </div>
 
         <div class="flex flex-col sm:flex-row gap-2.5">
@@ -214,9 +264,9 @@
           info@business-analytica.com
         </a>
         <div class="flex flex-wrap gap-4 sm:gap-5 text-xs text-slate-400 pt-1">
-          <a href="./index.html" class="hover:text-white">Home</a>
-          <a href="https://www.linkedin.com/company/136176605" target="_blank" rel="noopener noreferrer" class="hover:text-white">LinkedIn</a>
-          <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" rel="noopener noreferrer" class="hover:text-white">Facebook</a>
+          <a href="./index.html" onclick="trackEvent('nav_click', { target: 'footer_home' })" class="hover:text-white">Home</a>
+          <a href="https://www.linkedin.com/company/136176605" target="_blank" rel="noopener noreferrer" onclick="trackEvent('footer_lead_click', { channel: 'linkedin' })" class="hover:text-white">LinkedIn</a>
+          <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" rel="noopener noreferrer" onclick="trackEvent('footer_lead_click', { channel: 'facebook' })" class="hover:text-white">Facebook</a>
           <span>&copy; 2026 Business Analytica</span>
         </div>
       </div>
@@ -249,638 +299,727 @@
       "Strategic & Sector Asset"
     ];
 
+    const videoPosterDataUri = "data:image/svg+xml," + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">' +
+      '<rect width="640" height="360" fill="#0B192C"/>' +
+      '<circle cx="320" cy="154" r="36" fill="#13294B" stroke="#D4AF37" stroke-width="2.5"/>' +
+      '<polygon points="311,139 336,154 311,169" fill="#D4AF37"/>' +
+      '<text x="320" y="218" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1.5">BUSINESS ANALYTICA</text>' +
+      '<text x="320" y="242" fill="#CBD5E1" font-family="sans-serif" font-size="12" text-anchor="middle">Press play for signal audio walkthrough</text>' +
+      '</svg>'
+    );
+
     const indicatorsData = {
       1: {
-        role: "Buyer",
+        role: "Seller",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Ghost Holding Arbitrage",
-        finds: "Debt-free 5+ property portfolios in dormant or micro firms.",
-        plain: "Quiet, debt-free companies sitting on 5 or more properties—often unmarketed portfolios where a direct approach can work."
+        headline: "Quiet, unencumbered multi-property portfolios ripe for a direct approach",
+        name: "Unencumbered Multi-Property Holding",
+        finds: "Debt-free multi-property portfolios held in low-profile entities.",
+        plain: "Unlisted property holdings sitting inside debt-free companies—often unmarketed stock where a direct approach can work."
       },
       2: {
         role: "Seller",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "The Contagion Alert",
-        finds: "Active property firms linked to a recent sister liquidation.",
-        plain: "Active property owners whose directors just had a linked company go bust—early warning of cash pressure that may force a sale."
+        headline: "Motivated property sellers linked to recent group financial strain",
+        name: "Group Contagion Signal",
+        finds: "Active property owners linked to wider group or director strain.",
+        plain: "Surfaces property holders whose wider group faces recent financial pressure that can motivate an early disposal."
       },
       3: {
         role: "Seller",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "Institutional Liquidation Leads",
-        finds: "PLC subsidiaries with late filings or HMRC notices.",
-        plain: "Smaller arms of big listed companies falling behind on filings or facing tax pressure—potential non-core property disposals."
+        headline: "Non-core corporate property from subsidiaries facing filing or tax pressure",
+        name: "Subsidiary Compliance & Tax Pressure",
+        finds: "Corporate subsidiaries showing filing or tax compliance strain.",
+        plain: "Flags smaller corporate arms facing administrative or tax pressure where non-core property assets may be offloaded."
       },
       4: {
         role: "Dual",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "High-Frequency Debt Stacking",
-        finds: "Firms registering 5+ new charges in a single year.",
-        plain: "Companies taking on 5 or more loans in one year—either scaling fast or piling up debt under pressure."
+        headline: "Active borrowers or leveraged portfolios adding repeated new charges",
+        name: "Repeated Charge Registration",
+        finds: "Entities registering multiple new charges over time.",
+        plain: "Spots companies adding repeated borrowing—pointing either to active expansion or growing refinancing pressure."
       },
       5: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Stagnant Micro-Portfolios",
-        finds: "3+ property holdings in micro-entities for 7+ years.",
-        plain: "Small, basic companies holding 3+ properties for years without changing setup—often static family or private pots."
+        headline: "Long-held multi-property portfolios inside small, static holding structures",
+        name: "Long-Term Static Property Holding",
+        finds: "Multi-property portfolios held long-term in small corporate vehicles.",
+        plain: "Uncovers steady, low-profile property pots held for years without restructuring—often open to an exit conversation."
       },
       6: {
         role: "Seller",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "The Relocation Sell-Off Signal",
-        finds: "Firms that moved out of county while keeping local property.",
-        plain: "Businesses that moved away from the area but still own local property they may no longer need."
+        headline: "Local properties left behind when a business relocates elsewhere",
+        name: "Registered Base Relocation",
+        finds: "Companies that moved their registered base while keeping local property.",
+        plain: "Highlights businesses whose registered base shifted elsewhere while leaving local property behind."
       },
       7: {
         role: "Seller",
         industry: "Commercial",
         signalCat: "Ownership & Structure",
-        name: "The Non-Core Divestment Signal",
-        finds: "Non-property firms holding land or care sites.",
-        plain: "Retail, tech, or other trading firms holding land or care sites outside their main business that could be sold off."
+        headline: "Surplus land or specialist sites held outside a company's core trade",
+        name: "Non-Core Asset Holding",
+        finds: "Operating firms holding land or specialist sites outside core trade.",
+        plain: "Identifies businesses holding property or sites outside their main operation that may be sold to release capital."
       },
       8: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Development Deadlock",
-        finds: "Land or plots held 4+ years with zero mortgages.",
-        plain: "Land or plots held for 4+ years with no development borrowing—stalled sites where owners may be open to a deal."
+        headline: "Unbuilt plots and stalled land where owners may welcome a JV or exit",
+        name: "Unbuilt Land & Site Stagnation",
+        finds: "Long-held plots and land without active development borrowing.",
+        plain: "Finds long-held land or plots without active development debt where owners may welcome a joint venture or sale."
       },
       9: {
         role: "Seller",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "The Director Vacuum Trigger",
-        finds: "3+ mortgaged firms left with only one director.",
-        plain: "Heavily mortgaged companies left with a lone director after others quit—a common trigger for restructuring or asset sales."
+        headline: "Leveraged property companies left with a single director after departures",
+        name: "Single-Director Leveraged Transition",
+        finds: "Leveraged property entities left with one remaining director.",
+        plain: "Flags leveraged property companies after board departures leave single-handed management pressure behind."
       },
       10: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Micro-Entity Asset Overload",
-        finds: "Micro-entities holding properties worth over £500k.",
-        plain: "Bare-bones micro-companies holding properties worth over £500k."
+        headline: "Substantial property assets held inside lean holding companies",
+        name: "High-Value Lean Holding Vehicle",
+        finds: "Higher-value property assets inside basic holding companies.",
+        plain: "Spots substantial property assets held inside lean corporate wrappers."
       },
       11: {
         role: "Seller",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "High-Value Liquidation",
-        finds: "Higher-value properties in liquidation or administration.",
-        plain: "Higher-value properties belonging to companies in formal liquidation or administration."
+        headline: "Higher-value property assets connected to formal insolvency processes",
+        name: "Insolvency-Linked Asset Disposal",
+        finds: "Higher-value properties linked to formal corporate insolvency.",
+        plain: "Surfaces notable property holdings connected to formal corporate insolvency or administration."
       },
       12: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Postcode Disjunction",
-        finds: "3+ asset owners spanning 3+ distinct postcodes.",
-        plain: "Multi-property owners whose sites are scattered across 3+ different postcodes rather than concentrated locally."
+        headline: "Multi-property owners with scattered stock open to consolidation",
+        name: "Multi-Area Portfolio Spread",
+        finds: "Multi-property owners holding stock across separate areas.",
+        plain: "Finds property owners with holdings spread across different areas who may want to streamline or sell."
       },
       13: {
         role: "Seller",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "The Silent Admin Neglect",
-        finds: "Active firms with 3+ charges and overdue filings.",
-        plain: "Active firms with 3+ loans that are also letting basic company filings go overdue—often a sign of stretched management."
+        headline: "Leveraged operating entities letting routine company filings slip",
+        name: "Filing Lag Under Debt Load",
+        finds: "Leveraged companies falling behind on routine filings.",
+        plain: "Highlights indebted companies letting routine filings slip—often an early sign of operational strain."
       },
       14: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Offshore Shell Redirection",
-        finds: "Major UK property tied to offshore director residences.",
-        plain: "Major UK properties where directors or control link back to offshore or low-tax jurisdictions."
+        headline: "UK property holdings connected to offshore jurisdictions",
+        name: "Overseas Jurisdiction Linkage",
+        finds: "UK property linked to overseas financial jurisdictions.",
+        plain: "Identifies UK property holdings where control or directors connect to offshore jurisdictions."
       },
       15: {
-        role: "Buyer",
+        role: "Dual",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "Rapid Equity Stripping",
-        finds: "10+ mortgages in 6 months without new property buys.",
-        plain: "Companies taking on 10+ new mortgages in 6 months without buying new property—often borrowing heavily against existing equity."
+        headline: "Active refinancing and equity release across existing property portfolios",
+        name: "Accelerated Portfolio Refinancing",
+        finds: "Frequent borrowing activity across existing property holdings.",
+        plain: "Spots companies taking on repeated borrowing against existing stock—signalling liquidity moves or capital deployment."
       },
       16: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "The Nominee Director Pattern",
-        finds: "Directors holding 20+ boards across unrelated sectors.",
-        plain: "Individuals sitting on 20+ company boards across unrelated industries—typical of nominee or professional directors."
+        headline: "Directors holding many board roles across unrelated sectors",
+        name: "Multi-Board Directorship Profile",
+        finds: "Directors spread across many unrelated company boards.",
+        plain: "Finds directors spread across many unrelated entities—useful context when mapping decision-makers."
       },
       17: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Circular Ownership",
-        finds: "Corporate PSCs sharing the same registered office.",
-        plain: "Companies controlled by another company registered at the exact same address—layered or circular ownership."
+        headline: "Layered corporate ownership structures sharing the same registered base",
+        name: "Shared-Address Corporate Control",
+        finds: "Corporate control entities sharing a registered address.",
+        plain: "Uncovers interconnected corporate control structures sharing the same registered address."
       },
       18: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "The Phoenix Asset Transfer",
-        finds: "New local firms taking land after prior dissolutions.",
-        plain: "Old companies closing down while newly formed ones in the same area take over familiar land."
+        headline: "Land continuity when older local companies close and new ones form",
+        name: "Successor Entity Asset Transfer",
+        finds: "Regional land continuity across company transitions.",
+        plain: "Tracks land and site continuity when older corporate entities close and new local ones emerge."
       },
       19: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "High-Value Dormant Holdings",
-        finds: "Dormant firms holding £1M+ property titles.",
-        plain: "Non-trading dormant companies holding properties bought for over £1 million."
+        headline: "High-value property sitting quietly inside non-trading companies",
+        name: "Non-Trading High-Value Holding",
+        finds: "Higher-value property held inside non-trading entities.",
+        plain: "Finds valuable property held inside quiet, non-trading entities that rarely appear on public portals."
       },
       20: {
         role: "Seller",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "Post-Insolvency Director Resilience",
-        finds: "3+ failure directors running newly mortgaged entities.",
-        plain: "Directors with 3+ past failed companies who are now running newly mortgaged property firms."
+        headline: "Leveraged property vehicles led by directors with past corporate failures",
+        name: "Prior Insolvency History Linkage",
+        finds: "Directors with past insolvency history linked to leveraged vehicles.",
+        plain: "Flags directors with past failed ventures now running leveraged property entities."
       },
       21: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "High-Frequency Director Rotation",
-        finds: "Property firms with repeated director changes in 12 months.",
-        plain: "Property companies with repeated director turnover within a year—often a sign of disputes, restructuring, or behind-the-scenes handovers."
+        headline: "Asset-holding companies experiencing repeated director changes",
+        name: "Repeated Board Turnover",
+        finds: "Property entities with frequent director changes.",
+        plain: "Spots property entities seeing repeated leadership changes—often tied to restructuring or ownership shifts."
       },
       22: {
         role: "Dual",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "The Micro-Loan Layering Pattern",
-        finds: "Sub-£100k properties carrying 10+ registered mortgages.",
-        plain: "Lower-value properties (under £100k) stacked with 10+ loans or charges."
+        headline: "Lower-value properties carrying multiple stacked charges",
+        name: "Multi-Facility Charge Stacking",
+        finds: "Lower-value assets carrying multiple registered charges.",
+        plain: "Highlights smaller-ticket properties carrying multiple registered charges."
       },
       23: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Cross-Border Ghost Proxies",
-        finds: "UK land-owning firms controlled by foreign PSCs.",
-        plain: "UK land-owning companies controlled by foreign corporate entities rather than named local individuals."
+        headline: "UK land-owning companies controlled by overseas corporate parents",
+        name: "Overseas Corporate Parent Structure",
+        finds: "UK land-holding entities controlled by foreign companies.",
+        plain: "Shows UK land-owning entities controlled by foreign corporate structures rather than local individuals."
       },
       24: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Multi-Sector Shell Clusters",
-        finds: "Addresses hosting 5+ firms across unrelated sectors.",
-        plain: "Addresses hosting 5+ companies across totally unrelated sectors—often shared or nominee setups."
+        headline: "Addresses hosting multiple companies across unrelated sectors",
+        name: "Multi-Sector Registered Base",
+        finds: "Addresses hosting multiple entities across varied sectors.",
+        plain: "Finds addresses hosting clusters of companies across unrelated sectors."
       },
       25: {
         role: "Seller",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "The Stagnant Charge Red Flag",
-        finds: "15+ year open charges alongside HMRC pressure.",
-        plain: "Old mortgages sitting on file for 15+ years with no sign of repayment alongside tax pressure."
+        headline: "Long-standing uncleared charges alongside tax or compliance pressure",
+        name: "Aged Unsatisfied Charge & Strain",
+        finds: "Long-standing open charges paired with tax or filing pressure.",
+        plain: "Spots old charges left unresolved alongside tax pressure—often a sign of stalled balance sheets."
       },
       26: {
         role: "Dual",
         industry: "Commercial",
         signalCat: "Ownership & Structure",
-        name: "Residential Assets in Commercial Shells",
-        finds: "Commercial-SIC firms holding residential properties.",
-        plain: "Commercial businesses holding residential properties."
+        headline: "Residential properties held inside commercial-sector companies",
+        name: "Residential Stock in Commercial Entity",
+        finds: "Residential properties held inside commercial companies.",
+        plain: "Identifies commercial companies holding residential-type properties."
       },
       27: {
         role: "Seller",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "The Sudden Influx Debt Signal",
-        finds: "Debt-free firms taking 3+ mortgages in 90 days late.",
-        plain: "Previously debt-free companies suddenly taking on 3+ mortgages in 3 months while filing accounts late—acute cash strain."
+        headline: "Sudden new borrowing paired with late filings—early cash-strain warning",
+        name: "Sudden Borrowing & Filing Lag",
+        finds: "Sudden borrowing spikes paired with overdue filings.",
+        plain: "Catches companies taking on sudden borrowing while falling behind on filings—a frequent sign of cash strain."
       },
       28: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "The Straw Man Asset Shuffle",
-        finds: "£500k+ owners changing name or office 2+ times in 24m.",
-        plain: "Owners of £500k+ properties repeatedly changing company names or registered addresses every couple of years."
+        headline: "Higher-value property owners repeatedly changing name or registered office",
+        name: "Frequent Entity & Office Changes",
+        finds: "Higher-value property owners with repeated name or office changes.",
+        plain: "Tracks higher-value property owners repeatedly updating company names or registered offices."
       },
       29: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Beneficial Ownership Black Hole",
-        finds: "Foreign corporate PSCs with no named human controller.",
-        plain: "Asset-holding companies where control stops at a foreign corporate entity with no individual person named."
+        headline: "Asset-holding companies where control sits with an overseas entity",
+        name: "Overseas Entity Control Layer",
+        finds: "Foreign corporate control without a named local individual.",
+        plain: "Highlights asset-holding structures where control is held through an overseas corporate entity."
       },
       30: {
         role: "Seller",
         industry: "Property",
         signalCat: "Distress & Debt",
-        name: "The Lender of Last Resort Red Flag",
-        finds: "5+ mortgages held by private limited lenders.",
-        plain: "Borrowers with 5+ mortgages from private companies instead of high-street banks—often expensive or last-resort finance."
+        headline: "Borrowers relying on non-bank private lenders—prime refinance leads",
+        name: "Non-Bank Private Lender Exposure",
+        finds: "Borrowers carrying multiple non-bank private charges.",
+        plain: "Spots property owners using private lenders rather than mainstream banks—often higher-cost debt ready to refinance."
       },
       31: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "Smurfing Through Property Postcodes",
-        finds: "Linked directors running 10+ sub-£150k property firms.",
-        plain: "Linked directors running 10+ separate companies each holding a single lower-value property (under £150k) across different postcodes."
+        headline: "Linked directors holding single smaller properties across separate SPVs",
+        name: "Distributed Single-Asset SPV Network",
+        finds: "Connected directors holding smaller properties across separate entities.",
+        plain: "Uncovers linked director networks holding individual smaller properties across separate companies and areas."
       },
       32: {
         role: "Buyer",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "The Dormant Asset Escalator",
-        finds: "Dormant firms (3+ years) suddenly buying property.",
-        plain: "Dormant companies inactive for 3+ years that suddenly start acquiring property."
+        headline: "Quiet companies stepping back into property acquisitions—active buyers",
+        name: "Dormant-to-Active Buyer Shift",
+        finds: "Previously quiet entities recently acquiring property.",
+        plain: "Finds previously inactive companies that recently started buying property—active buyers worth pitching deals to."
       },
       33: {
         role: "Dual",
         industry: "Commercial",
         signalCat: "Distress & Debt",
-        name: "High-Turnover Care Shells",
-        finds: "Care home firms (87100) changing directors post-loan.",
-        plain: "Care home operators replacing their directors within 6 months of registering a large mortgage."
+        headline: "Care home operators seeing director changes around major borrowing",
+        name: "Care Operator Leadership & Debt Shift",
+        finds: "Care operators with director changes around borrowing events.",
+        plain: "Spots care home operators changing directors around major borrowing events."
       },
       34: {
         role: "Dual",
         industry: "Property",
         signalCat: "Ownership & Structure",
-        name: "The Bona Vacantia Asset Shield",
-        finds: "Land-holding firms dissolved and restored 12+m later.",
-        plain: "Companies that dissolved while holding land and were later restored a year or more later."
+        headline: "Land-holding companies that dissolved and later returned to the register",
+        name: "Restored Land-Holding Entity",
+        finds: "Land-holding firms dissolved and later restored.",
+        plain: "Tracks land-holding companies that dissolved and later returned to the register."
       },
       35: {
-        role: "Buyer",
+        role: "Dual",
         industry: "Property",
         signalCat: "Strategic & Sector Asset",
-        name: "Critical Proximity Acquisition",
-        finds: "Foreign-linked buys near defence or infrastructure sites.",
-        plain: "Foreign-linked buyers acquiring land or property near sensitive government, military, or infrastructure sites."
+        headline: "Overseas-linked land and property deals near sensitive infrastructure",
+        name: "Sensitive Site Proximity Holding",
+        finds: "Overseas-linked holdings near sensitive or infrastructure sites.",
+        plain: "Identifies overseas-linked land or property holdings close to sensitive government or infrastructure sites."
       },
       36: {
         role: "Dual",
         industry: "Industrial",
         signalCat: "Strategic & Sector Asset",
-        name: "Dual-Use Procurement Shells",
-        finds: "New tech/aerospace/defence firms with foreign control.",
-        plain: "Newly formed tech, aerospace, or defence-classified companies with no mortgages and foreign control."
+        headline: "Overseas-backed technology, aerospace, or defence-sector entities",
+        name: "Overseas-Backed Tech & Defence Entity",
+        finds: "Foreign-controlled high-tech, aerospace, or defence entities.",
+        plain: "Spots technology, aerospace, or defence-sector entities with overseas backing."
       },
       37: {
         role: "Buyer",
         industry: "Energy",
         signalCat: "Strategic & Sector Asset",
-        name: "The Telecoms Energy Land-Grab",
-        finds: "Small plots near grids/cables under foreign control.",
-        plain: "Small land plots near power grids or cable routes owned by foreign-controlled property companies."
+        headline: "Land parcels near power grids and cable corridors—prime BESS & utility sites",
+        name: "Grid & Cable Corridor Land Holding",
+        finds: "Land parcels near power grids or cable corridors.",
+        plain: "Finds land parcels near energy grid or cable infrastructure held by corporate property owners."
       },
       38: {
         role: "Dual",
         industry: "Commercial",
         signalCat: "Strategic & Sector Asset",
-        name: "Influence Philanthropy Shells",
-        finds: "Non-profits heavily mortgaged to a foreign lender.",
-        plain: "Non-profit or educational entities carrying heavy debt through a single foreign private lender."
+        headline: "Non-profit or educational entities carrying concentrated overseas debt",
+        name: "Overseas-Backed Non-Profit Debt",
+        finds: "Non-profits carrying concentrated foreign lender debt.",
+        plain: "Highlights social or educational entities backed by borrowing through a single foreign lender."
       },
       39: {
         role: "Dual",
         industry: "Property",
         signalCat: "Strategic & Sector Asset",
-        name: "Sovereign Wealth Fronts",
-        finds: "Bulk land titles held by institutional/state PSCs.",
-        plain: "Bulk land titles controlled by institutional, state-linked, or non-human corporate bodies."
+        headline: "Bulk land titles held under institutional or non-human corporate control",
+        name: "Institutional & Corporate Bulk Land",
+        finds: "Bulk land held under institutional or corporate control.",
+        plain: "Uncovers substantial land holdings controlled by institutional or corporate entities."
       },
       40: {
         role: "Dual",
         industry: "Commercial",
         signalCat: "Strategic & Sector Asset",
-        name: "The Student Academic Proxy",
-        finds: "Campus firms run by under-30 foreign visa holders.",
-        plain: "Companies registered at university addresses controlled by young foreign nationals on short-term visas."
+        headline: "Entities registered at campus addresses with young overseas controllers",
+        name: "Campus-Linked Overseas Entity",
+        finds: "Campus-linked entities with young overseas controllers.",
+        plain: "Flags companies registered at academic addresses under young overseas control."
       },
       41: {
         role: "Buyer",
         industry: "Logistics",
         signalCat: "Strategic & Sector Asset",
-        name: "Dormant Security Buffer",
-        finds: "5+ year dormant firms buying near logistics hubs.",
-        plain: "Older dormant companies (5+ years) suddenly buying land near major logistics hubs."
+        headline: "Older inactive entities acquiring land near major logistics hubs",
+        name: "Logistics Hub Land Acquisition",
+        finds: "Older inactive entities buying near logistics hubs.",
+        plain: "Spots long-standing inactive entities acquiring land near key freight and logistics hubs."
       },
       42: {
         role: "Dual",
         industry: "Logistics",
         signalCat: "Strategic & Sector Asset",
-        name: "Shadow Supply Chain",
-        finds: "Foreign-controlled depots near rail or motorway hubs.",
-        plain: "Warehouses and depots near rail junctions or motorways held by foreign-controlled entities."
+        headline: "Warehouses and depots near transport corridors under overseas control",
+        name: "Corridor Depot Overseas Control",
+        finds: "Overseas-controlled depots near major transport routes.",
+        plain: "Finds warehouses and depots near major road or rail junctions backed by overseas control."
       },
       43: {
         role: "Dual",
         industry: "Property",
         signalCat: "Strategic & Sector Asset",
-        name: "High-Security Postcode Clustering",
-        finds: "3+ foreign-owned firms sharing sensitive postcodes.",
-        plain: "Clusters of 3+ foreign-owned companies sharing addresses around sensitive defence or intelligence locations."
+        headline: "Clusters of overseas-owned entities around high-security postcodes",
+        name: "High-Security Area Entity Cluster",
+        finds: "Overseas-owned entity clusters near sensitive postcodes.",
+        plain: "Identifies multiple overseas-owned entities grouped around high-security postcodes."
       },
       44: {
         role: "Dual",
         industry: "Agriculture",
         signalCat: "Strategic & Sector Asset",
-        name: "Agricultural Dual-Use Land",
-        finds: "Large debt-free farmland under foreign/non-EU control.",
-        plain: "Large agricultural or rural land plots with no farm mortgages held under foreign or non-EU control."
+        headline: "Debt-free farmland and rural estates held under overseas control",
+        name: "Overseas-Held Rural & Farmland",
+        finds: "Unencumbered rural and agricultural land under overseas control.",
+        plain: "Spots rural and agricultural land held without farm debt under overseas control."
       },
       45: {
         role: "Dual",
         industry: "Commercial",
         signalCat: "Strategic & Sector Asset",
-        name: "Intellectual Property Vacuum Companies",
-        finds: "Foreign-backed R&D/advisory firms with no property.",
-        plain: "R&D or consultancy firms backed by foreign companies that hold no property titles."
+        headline: "Overseas-backed R&D and advisory firms without local property holdings",
+        name: "Overseas-Backed R&D / Advisory Firm",
+        finds: "Foreign-backed R&D or advisory firms without property.",
+        plain: "Highlights research or consultancy companies with overseas backing and no local property footprint."
       },
       46: {
         role: "Dual",
         industry: "Property",
         signalCat: "Strategic & Sector Asset",
-        name: "The Ex-Diplomat Director Pivot",
-        finds: "Former public/institutional sites under foreign control.",
-        plain: "Sites previously owned by local government or institutions that now sit under foreign-controlled directors."
+        headline: "Former public or institutional sites now under overseas leadership",
+        name: "Former Institutional Site Transition",
+        finds: "Former public or institutional sites under overseas control.",
+        plain: "Tracks former civic or institutional properties now held under overseas-controlled leadership."
       },
       47: {
         role: "Dual",
         industry: "Industrial",
         signalCat: "Strategic & Sector Asset",
-        name: "Dark Data Center Shells",
-        finds: "Dormant owners of high-utility industrial units.",
-        plain: "Dormant property companies holding industrial units with high power/utility use and a low public profile."
+        headline: "Low-profile industrial units with heavy power and utility footprints",
+        name: "High-Utility Industrial Site",
+        finds: "Low-profile industrial sites with heavy utility footprints.",
+        plain: "Finds quiet property vehicles holding industrial units with substantial power or utility capacity."
       },
       48: {
         role: "Dual",
         industry: "Logistics",
         signalCat: "Strategic & Sector Asset",
-        name: "Maritime Logistics Fronts",
-        finds: "Port land held via flag-of-convenience entities.",
-        plain: "Port-adjacent land held by companies linked to flag-of-convenience shipping jurisdictions."
+        headline: "Port-adjacent land held via international shipping jurisdictions",
+        name: "Port-Adjacent Maritime Entity Holding",
+        finds: "Port-area land tied to international shipping jurisdictions.",
+        plain: "Spots land near ports held via entities linked to international shipping jurisdictions."
       },
       49: {
         role: "Buyer",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "Critical Mineral Resource Anchoring",
-        finds: "Debt-free mineral-zone land under foreign ownership.",
-        plain: "Mortgage-free land in mineral-rich areas owned by foreign companies."
+        headline: "Unencumbered land in mineral-rich areas under overseas ownership",
+        name: "Mineral-Belt Overseas Land Holding",
+        finds: "Unencumbered mineral-zone land under overseas ownership.",
+        plain: "Finds debt-free land in mineral-rich areas held by overseas corporate owners."
       },
       50: {
         role: "Dual",
         industry: "Commercial",
         signalCat: "Strategic & Sector Asset",
-        name: "Proxy Recruitment Hubs",
-        finds: "Foreign-run language/travel/cultural firms near hubs.",
-        plain: "Foreign-controlled language schools, travel agencies, or cultural centres near government headquarters."
+        headline: "Overseas-controlled language, travel, or cultural entities near central hubs",
+        name: "Central Hub Overseas Service Entity",
+        finds: "Overseas-controlled travel, language, or cultural firms near hubs.",
+        plain: "Flags overseas-controlled language, travel, or cultural entities near government centres."
       },
       51: {
         role: "Dual",
         industry: "Logistics",
         signalCat: "Strategic & Sector Asset",
-        name: "High-Precision Logistics Shadowing",
-        finds: "Foreign-owned plots next to defence depots.",
-        plain: "Land plots bordering high-security defence contractor depots held by foreign-controlled owners."
+        headline: "Overseas-held plots bordering high-security logistics or defence sites",
+        name: "Adjacent Security Site Land Holding",
+        finds: "Overseas-held plots bordering sensitive logistics or defence sites.",
+        plain: "Identifies land sitting beside high-security logistics or defence sites under overseas control."
       },
       52: {
         role: "Dual",
         industry: "Energy",
         signalCat: "Strategic & Sector Asset",
-        name: "Dark Utility Interception",
-        finds: "New foreign power/water firms without grid ties.",
-        plain: "Recently formed foreign-linked power or water firms without public grid-export agreements."
+        headline: "Overseas-linked power or water entities outside standard grid-export routes",
+        name: "Off-Grid / Private-Wire Utility Entity",
+        finds: "Overseas-linked power or water firms outside standard grid ties.",
+        plain: "Spots overseas-linked utility entities operating outside standard public grid-export agreements."
       },
       53: {
         role: "Dual",
         industry: "Commercial",
         signalCat: "Strategic & Sector Asset",
-        name: "Academic Research Shells with No IP",
-        finds: "Research property holders with no patent output.",
-        plain: "Research-classified companies holding multiple properties with no patent output."
+        headline: "Research-classified property holders without visible patent output",
+        name: "Research Property Holder Without Patents",
+        finds: "Research-sector property holders without patent output.",
+        plain: "Finds research-classified companies holding property without visible patent output."
       },
       54: {
         role: "Dual",
         industry: "Commercial",
         signalCat: "Strategic & Sector Asset",
-        name: "Sovereign Debt Entrapment",
-        finds: "Local SMEs with 5+ foreign state-bank mortgages.",
-        plain: "Local SMEs carrying 5+ mortgages backed by foreign state-owned banks."
+        headline: "Smaller businesses carrying multiple loans from overseas state banks",
+        name: "Overseas State-Bank SME Borrowing",
+        finds: "Local SMEs carrying multiple overseas state-bank loans.",
+        plain: "Highlights smaller businesses carrying multiple loans from overseas state-owned banks."
       },
       55: {
         role: "Dual",
         industry: "Property",
         signalCat: "Strategic & Sector Asset",
-        name: "The Satellite Office Signal",
-        finds: "Registered offices split from operational sites.",
-        plain: "Companies keeping their registered office separate from their physical property or operational site."
+        headline: "Companies keeping their registered office apart from physical sites",
+        name: "Split Registered & Site Address",
+        finds: "Registered offices separated from operational sites.",
+        plain: "Spots entities splitting their registered office away from physical operational or asset locations."
       },
       56: {
         role: "Buyer",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "The Stalled Quarry Arbitrage",
-        finds: "Quarry/mining land held 10+ years with zero debt.",
-        plain: "Quarry or mining land held debt-free for 10+ years—potential dormant or under-worked mineral sites."
+        headline: "Long-held, debt-free quarry and mineral ground ready for restart or buyout",
+        name: "Unencumbered Quarry & Mineral Ground",
+        finds: "Long-held, debt-free quarry and mining ground.",
+        plain: "Finds unencumbered quarry or mining sites held long-term—ripe for acquisition or restart."
       },
       57: {
         role: "Seller",
         industry: "Mining",
         signalCat: "Distress & Debt",
-        name: "Extractive Distress",
-        finds: "Insolvent mining/pit firms holding land assets.",
-        plain: "Quarries, pits, and mining firms in insolvency holding land and extraction assets."
+        headline: "Distressed mineral, pit, and quarry operators ahead of public disposal",
+        name: "Extractive Operator Distress",
+        finds: "Distressed mineral, pit, and quarry operators with land assets.",
+        plain: "Surfaces distressed mining and quarrying operators holding pit and land assets ahead of public disposal."
       },
       58: {
         role: "Seller",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "The Mineral Rights Succession",
-        finds: "Quarry/aggregate operators with directors aged 70+.",
-        plain: "Quarry and aggregate operators aged 70+ running legacy sites—prime succession or sale candidates."
+        headline: "Aging owners running legacy quarry and aggregate sites—succession leads",
+        name: "Quarry & Aggregate Succession",
+        finds: "Senior operators running legacy quarry and aggregate sites.",
+        plain: "Finds senior quarry and aggregate operators where retirement or succession opens off-market deal talks."
       },
       59: {
         role: "Seller",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "Restoration Bond Neglect",
-        finds: "Permitted mining/quarry firms with overdue accounts.",
-        plain: "Mining or quarry operators with overdue accounts that hold environmental permits—sign of compliance or financial strain."
+        headline: "Permitted extraction operators falling behind on routine filings",
+        name: "Permitted Site Filing Strain",
+        finds: "Permitted extraction sites with filing strain.",
+        plain: "Flags mining or quarry operators with environmental permits falling behind on filings."
       },
       60: {
         role: "Seller",
         industry: "Mining",
         signalCat: "Distress & Debt",
-        name: "The Resource Domino Effect",
-        finds: "Active mining firms sharing a liquidating director.",
-        plain: "Active mining firms sharing a director with another mining company that just entered liquidation."
+        headline: "Active mining operators linked to a sister company entering liquidation",
+        name: "Mining Group Contagion Link",
+        finds: "Active mining firms linked to a liquidating operator.",
+        plain: "Spots active extraction companies sharing leadership with a mining firm entering liquidation."
       },
       61: {
         role: "Buyer",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "The Coal Tip Reclamation Leads",
-        finds: "Colliery tip and coal titles in mining postcodes.",
-        plain: "Colliery tips and former coal sites in historic mining areas suited to land reclamation or redevelopment."
+        headline: "Legacy colliery and coalfield sites suited to reclamation or redevelopment",
+        name: "Colliery & Coalfield Reclamation Site",
+        finds: "Legacy colliery and coalfield land opportunities.",
+        plain: "Locates historic colliery and coal sites suited to reclamation or redevelopment."
       },
       62: {
         role: "Dual",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "Dormant Mineral Rights",
-        finds: "Dormant firms holding rural land in mineral belts.",
-        plain: "Dormant companies holding rural or farmland titles inside mineral belts."
+        headline: "Quiet companies holding rural land inside mineral and aggregate belts",
+        name: "Mineral-Belt Rural Land Holding",
+        finds: "Quiet companies holding rural land in mineral belts.",
+        plain: "Uncovers quiet entities holding countryside or agricultural land inside mineral-rich belts."
       },
       63: {
         role: "Dual",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "The Aggregates Cash-Out",
-        finds: "Sand/gravel firms with 3+ open mortgages.",
-        plain: "Sand and gravel operators with 3+ active mortgages and very few loans paid off."
+        headline: "Aggregate operators adding borrowing with minimal older debt cleared",
+        name: "Aggregate Operator Debt Build-Up",
+        finds: "Sand and gravel operators with heavy unpaid debt.",
+        plain: "Highlights aggregate operators piling up debt with minimal loan payoffs."
       },
       64: {
         role: "Seller",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "Abandoned Option Agreements",
-        finds: "Mining firms facing strike-off with option land.",
-        plain: "Mining entities with strike-off warnings or late accounts that still hold option-tied land."
+        headline: "Strained mining entities still holding option-bound land titles",
+        name: "Option-Bound Site Under Strain",
+        finds: "Strained mining firms holding option-tied land.",
+        plain: "Finds mining entities facing filing or strike-off strain that still hold option-bound land."
       },
       65: {
         role: "Seller",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "The Silica Industrial Play",
-        finds: "Silica extraction operators with older directors.",
-        plain: "Silica extraction businesses led by older directors—niche succession and acquisition leads."
+        headline: "Specialist silica extraction operators with senior leadership—exit leads",
+        name: "Silica Extraction Succession",
+        finds: "Specialist silica operators with senior leadership.",
+        plain: "Spots niche silica extraction businesses where senior directors point to succession opportunities."
       },
       66: {
         role: "Seller",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "Restoration Liability Arbitrage",
-        finds: "Pits/quarries in administration with restoration debt.",
-        plain: "Pits and quarries in administration or receivership carrying heavy site-restoration obligations."
+        headline: "Distressed pits and quarries where restoration duties shape deal structure",
+        name: "Distressed Site Restoration Profile",
+        finds: "Distressed pits and quarries with restoration obligations.",
+        plain: "Identifies quarries and pits in insolvency or receivership where restoration duties shape deal value."
       },
       67: {
         role: "Buyer",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "Lithium Exploration Sleeping Licenses",
-        finds: "Debt-free lithium-belt rural land under older shells.",
-        plain: "Debt-free rural land in lithium-belt counties held by older-led mining shells."
+        headline: "Unencumbered rural land in mineral-prospecting regions",
+        name: "Prospecting-Belt Rural Land",
+        finds: "Debt-free rural ground in mineral-prospecting areas.",
+        plain: "Finds unencumbered rural land in prospecting regions held by older-led mineral vehicles."
       },
       68: {
         role: "Seller",
         industry: "Mining",
         signalCat: "Distress & Debt",
-        name: "Coal Tip Methane Secondary Recovery",
-        finds: "Defaulting/liquidating owners of coal spoil heaps.",
-        plain: "Distressed or liquidating owners of old coal spoil heaps where secondary gas or site recovery may apply."
+        headline: "Strained owners of legacy spoil sites with secondary recovery potential",
+        name: "Legacy Spoil Site Transition",
+        finds: "Strained owners of historical colliery spoil sites.",
+        plain: "Spots winding-down or strained owners of old spoil sites where secondary recovery may be viable."
       },
       69: {
         role: "Dual",
         industry: "Energy",
         signalCat: "Distress & Debt",
-        name: "Distressed Oil Gas Service Hubs",
-        finds: "Oil/gas service depots with 3+ open mortgages.",
-        plain: "Oil and gas service depots carrying 3+ active mortgages."
+        headline: "Oil and gas service depots carrying heavy active borrowing",
+        name: "Energy Service Hub Debt Load",
+        finds: "Leveraged oil and gas support yards or depots.",
+        plain: "Finds petroleum and gas service hubs carrying heavy active debt."
       },
       70: {
         role: "Dual",
         industry: "Energy",
         signalCat: "Strategic & Sector Asset",
-        name: "The Stranded Asset Gas Flare",
-        finds: "Wellhead/gas extraction shells with 5+ charges.",
-        plain: "Wellhead and gas extraction shells weighed down by 5+ charges."
+        headline: "Wellhead and gas extraction vehicles weighed down by stacked charges",
+        name: "Extraction Vehicle Charge Load",
+        finds: "Heavily charged wellhead and gas extraction entities.",
+        plain: "Flags gas and wellhead extraction entities weighed down by stacked charges."
       },
       71: {
         role: "Buyer",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "Geothermal Retrofit Legacy Mine Voids",
-        finds: "Distressed owners of flooded mine shaft sites.",
-        plain: "Flooded mine shaft sites owned by companies in administration or facing strike-off—potential geothermal sites."
+        headline: "Flooded legacy mine sites under strain—geothermal retrofit candidates",
+        name: "Legacy Mine Geothermal Candidate",
+        finds: "Strained owners of flooded mine shaft sites.",
+        plain: "Spots troubled or closing owners of flooded mine properties suited to geothermal conversion."
       },
       72: {
         role: "Dual",
         industry: "Mining",
         signalCat: "Strategic & Sector Asset",
-        name: "Dark Mineral Sovereignty",
-        finds: "High-value mineral land under foreign nominees.",
-        plain: "High-value mineral land held in dormant companies with foreign nominee control."
+        headline: "High-value mineral land held through overseas nominees",
+        name: "Overseas-Nominee Mineral Holding",
+        finds: "Valuable mineral land under overseas nominee control.",
+        plain: "Uncovers high-value mineral holdings sitting in quiet vehicles with overseas nominee control."
       },
       73: {
         role: "Dual",
         industry: "Industrial",
         signalCat: "Distress & Debt",
-        name: "Refinery Midstream Distress",
-        finds: "Oil refining/processing plants with 5+ mortgages.",
-        plain: "Mineral oil refining and processing plants carrying 5+ active mortgages."
+        headline: "Refining and midstream processing sites carrying heavy mortgage exposure",
+        name: "Processing & Refining Debt Load",
+        finds: "Leveraged oil refining and processing plants.",
+        plain: "Highlights refining and midstream processing sites carrying heavy mortgage exposure."
       },
       74: {
         role: "Seller",
         industry: "Industrial",
         signalCat: "Strategic & Sector Asset",
-        name: "The Chemical Legacy Succession",
-        finds: "Chemical plant operators with retiring directors.",
-        plain: "Aging owners of chemical and processing plants where succession or exit may be approaching."
+        headline: "Retiring owners running chemical and industrial processing sites",
+        name: "Industrial Plant Succession",
+        finds: "Retiring owners of chemical and processing plants.",
+        plain: "Finds chemical and industrial plant operators nearing retirement where succession or exit may arise."
       },
       75: {
         role: "Dual",
         industry: "Energy",
         signalCat: "Strategic & Sector Asset",
-        name: "Dark Midstream Storage Offshore Control",
-        finds: "Tank farms/terminals under offshore tax-haven firms.",
-        plain: "Fuel tank farms and storage terminals held by micro or dormant firms linked to offshore tax havens."
+        headline: "Storage terminals and tank farms held via overseas jurisdictions",
+        name: "Overseas-Linked Storage Terminal",
+        finds: "Storage terminals and tank farms under overseas control.",
+        plain: "Spots fuel storage and tank farm assets held by low-profile firms linked to overseas jurisdictions."
       },
       76: {
         role: "Dual",
         industry: "Industrial",
         signalCat: "Strategic & Sector Asset",
-        name: "Stalled Renewable Conversion HMRC Pressure",
-        finds: "Heavy industrial/smelting sites filing late accounts.",
-        plain: "Heavy industrial or smelting sites filing late accounts—potential green-transition or redevelopment targets."
+        headline: "Heavy industrial sites filing late—prime green-transition & buyout targets",
+        name: "Industrial Transition & Filing Lag",
+        finds: "Heavy industrial sites with late filings and transition potential.",
+        plain: "Finds heavy industrial or smelting sites filing late—prime targets for transition capital or buyouts."
       },
       77: {
         role: "Dual",
         industry: "Industrial",
         signalCat: "Strategic & Sector Asset",
-        name: "The Fertilizer Food Security Gap",
-        finds: "Fertilizer plants with strike-off warnings or debt.",
-        plain: "Nitrogen and fertilizer processing sites facing strike-off warnings or heavy borrowing."
+        headline: "Fertilizer and nitrogen plants facing debt or filing strain",
+        name: "Agri-Chemical Site Strain",
+        finds: "Fertilizer and nitrogen plants under debt or filing strain.",
+        plain: "Flags essential fertilizer and nitrogen facilities facing filing warnings or heavy borrowing."
       },
       78: {
         role: "Buyer",
         industry: "Industrial",
         signalCat: "Strategic & Sector Asset",
-        name: "Industrial Utility Arbitrage High Price Paid",
-        finds: "£1M+ processing works mapped to holding firms.",
-        plain: "Industrial processing works bought for over £1M—showing the corporate structure behind high-utility sites."
+        headline: "Higher-value processing works mapped to their corporate owners",
+        name: "High-Value Processing Site Owner",
+        finds: "Higher-value processing sites mapped to corporate owners.",
+        plain: "Spots major industrial processing works and identifies the corporate structure behind high-utility sites."
       },
       79: {
         role: "Seller",
         industry: "Logistics",
         signalCat: "Distress & Debt",
-        name: "Phoenixing in the Supply Chain",
-        finds: "Refining liquidations with new firms at same postcode.",
-        plain: "Refining-sector companies entering liquidation while new ones incorporate at the exact same postcode."
+        headline: "Supply-chain liquidations followed by new entities at the same postcode",
+        name: "Supply-Chain Entity Continuity",
+        finds: "Supply-chain liquidations followed by same-postcode new firms.",
+        plain: "Tracks supply-chain liquidations followed by new entities registering at the same postcode."
       }
     };
 
@@ -893,6 +1032,12 @@
       if (typeof gtag === 'function') {
         gtag('event', eventName, params);
       }
+    }
+
+    if (window.location.hash) {
+      trackEvent('indicator_anchor_land', {
+        anchor_id: window.location.hash.replace(/^#/, '')
+      });
     }
 
     document.addEventListener('play', (e) => {
@@ -1042,9 +1187,10 @@
     }
 
     function renderCategoryButtons() {
+      const totalCount = Object.keys(indicatorsData).length;
       const indBox = document.getElementById('industryButtons');
       indBox.innerHTML = industryOptions.map((ind) => {
-        const count = ind === "All" ? 79 : countBy(d => d.industry === ind);
+        const count = ind === "All" ? totalCount : countBy(d => d.industry === ind);
         return `
           <button type="button" onclick="setIndustry('${escapeJs(ind)}')" aria-pressed="${selectedIndustry === ind}"
                   class="px-3 py-2 rounded border text-xs font-semibold text-left flex items-center justify-between gap-1.5 transition ${btnStyle(selectedIndustry === ind)}">
@@ -1056,7 +1202,7 @@
 
       const roleBox = document.getElementById('roleButtons');
       roleBox.innerHTML = buyerSellerOptions.map((r) => {
-        const count = r === "All" ? 79 : countBy(d => d.role === r);
+        const count = r === "All" ? totalCount : countBy(d => d.role === r);
         const label = r === "Dual" ? "Buyer / Seller" : r;
         return `
           <button type="button" onclick="setRole('${escapeJs(r)}')" aria-pressed="${selectedRole === r}"
@@ -1069,7 +1215,7 @@
 
       const catBox = document.getElementById('catButtons');
       catBox.innerHTML = signalCategories.map((c) => {
-        const count = c === "All" ? 79 : countBy(d => d.signalCat === c);
+        const count = c === "All" ? totalCount : countBy(d => d.signalCat === c);
         return `
           <button type="button" onclick="setCat('${escapeJs(c)}')" aria-pressed="${selectedCat === c}"
                   class="px-3 py-2 rounded border text-xs font-semibold text-left flex items-center justify-between gap-1.5 transition ${btnStyle(selectedCat === c)}">
@@ -1118,41 +1264,51 @@
     }
 
     function getIndicatorRequestFields() {
-      const websiteInput = document.getElementById('requesterWebsite');
+      const nameInput = document.getElementById('requesterName');
+      const emailInput = document.getElementById('requesterEmail');
       const noteInput = document.getElementById('requesterNote');
-      const website = websiteInput.value.trim();
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
       const note = noteInput.value.trim();
-      if (!website) {
-        websiteInput.focus();
-        websiteInput.reportValidity();
+
+      if (!name) {
+        nameInput.focus();
+        nameInput.reportValidity();
         return null;
       }
-      return { website, note };
+      if (!email) {
+        emailInput.focus();
+        emailInput.reportValidity();
+        return null;
+      }
+      return { name, email, note };
     }
 
-    function buildIndicatorMessage(website, note) {
+    function buildIndicatorMessage(name, email, note) {
       const lines = [
         "Hi Business Analytica,",
         "",
         "Please keep me informed of new indicators and signal releases.",
-        `Website: ${website}`
+        `Name: ${name}`,
+        `Email: ${email}`
       ];
       if (note) {
-        lines.push(`Sector / Indicator Request: ${note}`);
+        lines.push(`Area / Sector / Request: ${note}`);
       }
       lines.push("", "Thanks");
       return lines.join("\n");
     }
 
-    function showRequestConfirmation(channel, website, note) {
+    function showRequestConfirmation(channel, name, email, note) {
       const box = document.getElementById('requestConfirmation');
-      const safeSite = escapeHtml(website);
+      const safeName = escapeHtml(name);
+      const safeEmail = escapeHtml(email);
       const safeNote = note ? ` (${escapeHtml(note)})` : "";
       const target = channel === "email"
         ? "your email client addressed to <strong>info@business-analytica.com</strong>"
         : "WhatsApp to <strong>+44 7986 903415</strong>";
 
-      box.innerHTML = `<strong>Request prepared:</strong> We have opened ${target} for <strong>${safeSite}</strong>${safeNote}. Just hit send in your app to complete your alert registration.`;
+      box.innerHTML = `<strong>Request prepared:</strong> We have opened ${target} for <strong>${safeName}</strong> (${safeEmail})${safeNote}. Hit send in your app to complete your alert registration.`;
       box.classList.remove('hidden');
     }
 
@@ -1161,9 +1317,9 @@
       const fields = getIndicatorRequestFields();
       if (!fields) return;
       trackEvent('indicator_request_submit', { channel: 'email', has_note: Boolean(fields.note) });
-      showRequestConfirmation("email", fields.website, fields.note);
+      showRequestConfirmation("email", fields.name, fields.email, fields.note);
       const subject = encodeURIComponent("Indicator Request & New Signal Alerts");
-      const body = encodeURIComponent(buildIndicatorMessage(fields.website, fields.note));
+      const body = encodeURIComponent(buildIndicatorMessage(fields.name, fields.email, fields.note));
       window.location.href = `mailto:info@business-analytica.com?subject=${subject}&body=${body}`;
     }
 
@@ -1171,18 +1327,27 @@
       const fields = getIndicatorRequestFields();
       if (!fields) return;
       trackEvent('indicator_request_submit', { channel: 'whatsapp', has_note: Boolean(fields.note) });
-      showRequestConfirmation("whatsapp", fields.website, fields.note);
-      const text = encodeURIComponent(buildIndicatorMessage(fields.website, fields.note));
+      showRequestConfirmation("whatsapp", fields.name, fields.email, fields.note);
+      const text = encodeURIComponent(buildIndicatorMessage(fields.name, fields.email, fields.note));
       window.open(`https://wa.me/447986903415?text=${text}`, "_blank", "noopener,noreferrer");
+    }
+
+    function getOrderedIndicatorIds() {
+      const allIds = Object.keys(indicatorsData).map(Number);
+      const propertyIds = allIds.filter((n) => indicatorsData[n].industry === "Property").sort((a, b) => a - b);
+      const otherIds = allIds.filter((n) => indicatorsData[n].industry !== "Property").sort((a, b) => a - b);
+      return [...propertyIds, ...otherIds];
     }
 
     function applyFilters() {
       const query = document.getElementById('signalFilter').value.trim().toLowerCase();
       const grid = document.getElementById('allIndicatorsGrid');
       const countEl = document.getElementById('resultsCount');
+      const totalCount = Object.keys(indicatorsData).length;
       const cards = [];
+      const orderedIds = getOrderedIndicatorIds();
 
-      for (let i = 79; i >= 1; i--) {
+      for (const i of orderedIds) {
         const id = pad3(i);
         const anchorId = `indicator-${id}`;
         const item = indicatorsData[i];
@@ -1193,9 +1358,10 @@
         if (selectedCat !== "All" && item.signalCat !== selectedCat) continue;
 
         const roleLabel = item.role === "Dual" ? "Buyer / Seller" : item.role;
-        const fullTitle = `Indicator #${id} — ${item.name}`;
+        const fullTitle = `Indicator #${id} — ${item.headline}`;
         const matchesQuery = !query ||
           fullTitle.toLowerCase().includes(query) ||
+          item.name.toLowerCase().includes(query) ||
           anchorId.includes(query) ||
           roleLabel.toLowerCase().includes(query) ||
           item.industry.toLowerCase().includes(query) ||
@@ -1207,8 +1373,8 @@
         if (!matchesQuery) continue;
 
         const src = `./Videos/Business%20Analytica%20Indicators/clip_ind2_item_${id}.mp4`;
-        const waText = encodeURIComponent(`Hi, I'd like pricing and a spreadsheet for ${fullTitle} | ${item.industry} | ${roleLabel}.`);
-        const mailSubj = encodeURIComponent(`Pricing & Dataset Request: ${fullTitle}`);
+        const waText = encodeURIComponent(`Hi, I'd like pricing and dataset details for Indicator #${id} (${item.name}) | ${item.industry} | ${roleLabel}.`);
+        const mailSubj = encodeURIComponent(`Pricing & Dataset Request: Indicator #${id} (${item.name})`);
         const jsName = escapeJs(item.name);
         const jsInd = escapeJs(item.industry);
         const jsRole = escapeJs(roleLabel);
@@ -1216,14 +1382,14 @@
         cards.push(`
           <article id="${anchorId}" class="scroll-mt-20 bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm flex flex-col justify-between transition">
             <div>
-              <div class="aspect-video bg-black">
-                <video class="w-full h-full object-cover" controls playsinline preload="none">
+              <div class="aspect-video bg-[#0B192C]">
+                <video class="w-full h-full object-cover" poster="${videoPosterDataUri}" controls playsinline preload="metadata">
                   <source src="${src}" type="video/mp4" />
                 </video>
               </div>
               <div class="bg-[#0B192C] text-slate-200 px-4 sm:px-5 py-2 flex items-center gap-2 text-[11px] font-medium">
                 <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#D4AF37] shrink-0"></span>
-                <span>Audio walkthrough included &mdash; unmute and play to hear how this signal is sourced and verified.</span>
+                <span>Audio walkthrough above &mdash; press play and unmute to hear how this signal is sourced and verified.</span>
               </div>
               <div class="px-4 sm:px-5 pt-4 pb-2 space-y-2">
                 <div class="flex flex-wrap items-center justify-between gap-1.5">
@@ -1241,10 +1407,10 @@
                     <span class="text-[11px] font-semibold text-stone-700 bg-[#F7F6F2] border border-stone-200 px-2 py-0.5 rounded">${item.industry}</span>
                   </div>
                 </div>
-                <h2 class="font-bold text-[#141A21] text-base leading-snug">${item.name}</h2>
-                <div class="text-[11px] font-medium text-stone-500">${item.signalCat}</div>
+                <h2 class="font-bold text-[#141A21] text-base leading-snug">${item.headline}</h2>
+                <div class="text-[11px] font-medium text-stone-500">${item.name} &bull; ${item.signalCat}</div>
                 <div class="pt-2 border-t border-stone-200 space-y-1.5">
-                  <p class="text-xs text-[#141A21] leading-relaxed truncate" title="${escapeHtml(item.finds)}">
+                  <p class="text-xs text-[#141A21] leading-relaxed">
                     <span class="font-bold text-[#141A21]">What this finds:</span> ${item.finds}
                   </p>
                   <p class="text-xs text-[#141A21] leading-relaxed">
@@ -1275,7 +1441,7 @@
         `);
       }
 
-      countEl.textContent = `Showing ${cards.length} of 79 indicators`;
+      countEl.textContent = `Showing ${cards.length} of ${totalCount} indicators`;
       grid.innerHTML = cards.length
         ? cards.join('')
         : `<p class="text-stone-600 text-sm col-span-full">No indicators matched your selected buttons.</p>`;
