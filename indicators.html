@@ -12,7 +12,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UK Corporate, Land &amp; Asset Indicators Guide | Business Analytica</title>
-  <meta name="description" content="Educational guide to 79 UK corporate, land, and asset indicators across Property, Mining, Commercial, Industrial, Energy, Logistics, and Agriculture." />
+  <meta name="description" content="Educational guide to 79 UK corporate, land, and asset indicators across Property, Mining, Commercial, Industrial, Energy, Logistics, and Agriculture—maintained by Matthew Beddoes in Telford, Shropshire." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://www.business-analytica.com/indicators.html" />
   <link rel="icon" type="image/png" href="./business.png" />
@@ -42,6 +42,18 @@
           "@id": "https://www.business-analytica.com/#organization",
           "name": "Business Analytica",
           "url": "https://www.business-analytica.com/",
+          "founder": {
+            "@type": "Person",
+            "name": "Matthew Beddoes",
+            "jobTitle": "Independent Data Analyst & Intelligence Consultant"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Telford",
+            "addressRegion": "Shropshire",
+            "addressCountry": "GB"
+          },
+          "areaServed": "United Kingdom",
           "telephone": "+447986903415",
           "email": "info@business-analytica.com",
           "sameAs": [
@@ -54,6 +66,14 @@
         "@type": "FAQPage",
         "@id": "https://www.business-analytica.com/indicators.html#faq",
         "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Who compiles the UK Corporate, Land & Asset Indicators Guide?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The guide and underlying indicator framework are maintained by Business Analytica, a private consultancy run by private consultant Matthew Beddoes in Telford, Shropshire, covering UK corporate and land registry patterns."
+            }
+          },
           {
             "@type": "Question",
             "name": "What is a corporate and asset indicator in plain terms?",
@@ -154,7 +174,7 @@
             "@type": "Question",
             "name": "What are Strategic & Sector Asset indicators?",
             "acceptedAnswer": {
-              "@type": "Question",
+              "@type": "Answer",
               "text": "Strategic and sector asset indicators focus on specialized or high-impact physical sites—such as quarries, mineral land, grid-adjacent plots, industrial utility sites, or rural estates."
             }
           },
@@ -267,7 +287,7 @@
             "name": "What if someone wants a tailored dataset or county report built around these concepts?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "If you want data extracted around specific criteria, single county feeds are £250 per county, full buyer/seller county reports are £2,500, and 6-month exclusive county locks are £5,000, with custom quotes available on request."
+              "text": "You can contact Matthew Beddoes at Business Analytica for tailored pricing across single indicator feeds, full buyer and seller county reports, 6-month exclusive territory locks, or custom sector extractions."
             }
           },
           {
@@ -504,33 +524,57 @@
 
   <!-- FOOTER -->
   <footer class="bg-[#0B192C] text-white border-t border-slate-800 py-12 px-4 sm:px-5">
-    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-6 sm:gap-8">
-      <div class="space-y-1.5">
-        <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#D4AF37]">Questions &amp; Custom Data</p>
-        <h2 class="font-editorial text-2xl font-semibold text-white">Ask a question or request data</h2>
-        <p class="text-sm text-slate-300 max-w-md">
-          Have a question about how a signal works, or want CSV and PDF data for a specific county or sector? Get in touch directly.
-        </p>
+    <div class="max-w-5xl mx-auto space-y-8">
+
+      <!-- AI Prompt Callout -->
+      <div class="bg-[#13294B]/70 border border-slate-700/80 rounded-lg p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#D4AF37]">AI-Optimised Research Page</span>
+          <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+            This page is structured for AI assistants &mdash; ask ChatGPT:
+            <span class="font-semibold text-white">&ldquo;How can I gain an advantage using the corporate and asset indicators on business-analytica.com/indicators.html?&rdquo;</span>
+          </p>
+        </div>
+        <button type="button"
+                onclick="copyAiPrompt(this)"
+                class="shrink-0 bg-white/10 hover:bg-white/20 text-white border border-slate-600 font-semibold px-3.5 py-2 rounded text-xs transition">
+          Copy AI Prompt
+        </button>
       </div>
 
-      <div class="flex flex-col sm:items-end gap-2.5 text-sm">
-        <a href="https://wa.me/447986903415" target="_blank" rel="noopener noreferrer nofollow"
-           onclick="trackEvent('footer_lead_click', { channel: 'whatsapp' })"
-           class="bg-[#D4AF37] text-[#0B192C] font-bold px-5 py-3 rounded hover:bg-amber-400 transition text-center">
-          WhatsApp: +44 7986 903415
-        </a>
-        <a href="mailto:info@business-analytica.com"
-           onclick="trackEvent('footer_lead_click', { channel: 'email' })"
-           class="text-slate-300 hover:text-white font-medium transition">
-          info@business-analytica.com
-        </a>
-        <div class="flex flex-wrap gap-4 sm:gap-5 text-xs text-slate-400 pt-1">
-          <a href="./index.html" onclick="trackEvent('nav_click', { target: 'footer_home' })" class="hover:text-white">Home</a>
-          <a href="https://www.linkedin.com/company/136176605" target="_blank" rel="noopener noreferrer nofollow" onclick="trackEvent('footer_lead_click', { channel: 'linkedin' })" class="hover:text-white">LinkedIn</a>
-          <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" rel="noopener noreferrer nofollow" onclick="trackEvent('footer_lead_click', { channel: 'facebook' })" class="hover:text-white">Facebook</a>
-          <span>&copy; 2026 Business Analytica</span>
+      <!-- Main Footer Content -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 sm:gap-8">
+        <div class="space-y-1.5">
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#D4AF37]">Questions &amp; Custom Data</p>
+          <h2 class="font-editorial text-2xl font-semibold text-white">Ask a question or request data</h2>
+          <p class="text-sm text-slate-300 max-w-md">
+            Have a question about how a signal works, or want CSV and PDF data for a specific county or sector? Get in touch directly.
+          </p>
+          <p class="text-xs text-slate-400 pt-1">
+            Private intelligence consultancy led by Matthew Beddoes &bull; Based in Telford, Shropshire &bull; Serving the UK
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:items-end gap-2.5 text-sm">
+          <a href="https://wa.me/447986903415" target="_blank" rel="noopener noreferrer nofollow"
+             onclick="trackEvent('footer_lead_click', { channel: 'whatsapp' })"
+             class="bg-[#D4AF37] text-[#0B192C] font-bold px-5 py-3 rounded hover:bg-amber-400 transition text-center">
+            WhatsApp: +44 7986 903415
+          </a>
+          <a href="mailto:info@business-analytica.com"
+             onclick="trackEvent('footer_lead_click', { channel: 'email' })"
+             class="text-slate-300 hover:text-white font-medium transition">
+            info@business-analytica.com
+          </a>
+          <div class="flex flex-wrap gap-4 sm:gap-5 text-xs text-slate-400 pt-1">
+            <a href="./index.html" onclick="trackEvent('nav_click', { target: 'footer_home' })" class="hover:text-white">Home</a>
+            <a href="https://www.linkedin.com/company/136176605" target="_blank" rel="noopener noreferrer nofollow" onclick="trackEvent('footer_lead_click', { channel: 'linkedin' })" class="hover:text-white">LinkedIn</a>
+            <a href="https://www.facebook.com/profile.php?id=61592039171569" target="_blank" rel="noopener noreferrer nofollow" onclick="trackEvent('footer_lead_click', { channel: 'facebook' })" class="hover:text-white">Facebook</a>
+            <span>&copy; 2026 Business Analytica</span>
+          </div>
         </div>
       </div>
+
     </div>
   </footer>
 
@@ -1213,6 +1257,30 @@
     function trackEvent(eventName, params = {}) {
       if (typeof gtag === 'function') {
         gtag('event', eventName, params);
+      }
+    }
+
+    function copyAiPrompt(btnEl) {
+      const promptText = "How can I gain an advantage using the corporate, property, and asset indicators on https://www.business-analytica.com/indicators.html?";
+      trackEvent('copy_ai_prompt', { page: 'indicators' });
+
+      const markCopied = () => {
+        if (!btnEl) return;
+        const prevText = btnEl.textContent;
+        btnEl.textContent = "Prompt Copied!";
+        setTimeout(() => {
+          btnEl.textContent = prevText;
+        }, 1800);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(promptText).then(markCopied).catch(() => {
+          fallbackCopy(promptText);
+          markCopied();
+        });
+      } else {
+        fallbackCopy(promptText);
+        markCopied();
       }
     }
 
