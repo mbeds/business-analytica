@@ -532,7 +532,7 @@
           <span class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#D4AF37]">AI-Optimised Research Page</span>
           <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
             This page is structured for AI assistants &mdash; ask ChatGPT:
-            <span class="font-semibold text-white">&ldquo;How can I gain an advantage using the corporate and asset indicators on business-analytica.com/indicators.html?&rdquo;</span>
+            <span class="font-semibold text-white">&ldquo;How can I gain an advantage using the corporate, property, and asset indicators on https://www.business-analytica.com/indicators.html?&rdquo;</span>
           </p>
         </div>
         <button type="button"
@@ -1698,6 +1698,50 @@
         ? cards.join('')
         : `<p class="text-stone-600 text-sm col-span-full">No indicators matched your selected buttons.</p>`;
     }
+
+    (function injectIndicatorItemListSchema() {
+      if (typeof indicatorsData === "undefined") return;
+      const orderedIds = typeof getOrderedIndicatorIds === "function"
+        ? getOrderedIndicatorIds()
+        : Object.keys(indicatorsData).map(Number).sort((a, b) => a - b);
+
+      const itemListElements = orderedIds.map((num, idx) => {
+        const id = pad3(num);
+        const item = indicatorsData[num];
+        const roleLabel = item.role === "Dual" ? "Buyer / Seller" : item.role;
+        return {
+          "@type": "ListItem",
+          "position": idx + 1,
+          "url": `https://www.business-analytica.com/indicators.html#indicator-${id}`,
+          "name": `Indicator #${id} — ${item.name}`,
+          "item": {
+            "@type": "DefinedTerm",
+            "@id": `https://www.business-analytica.com/indicators.html#indicator-${id}`,
+            "termCode": `#${id}`,
+            "name": item.name,
+            "description": `${item.finds} ${item.plain}`,
+            "inDefinedTermSet": "https://www.business-analytica.com/indicators.html#collection",
+            "additionalProperty": [
+              { "@type": "PropertyValue", "name": "Industry", "value": item.industry },
+              { "@type": "PropertyValue", "name": "Side", "value": roleLabel },
+              { "@type": "PropertyValue", "name": "Category", "value": item.signalCat }
+            ]
+          }
+        };
+      });
+
+      const schemaScript = document.createElement("script");
+      schemaScript.type = "application/ld+json";
+      schemaScript.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "@id": "https://www.business-analytica.com/indicators.html#indicator-list",
+        "name": "79 UK Corporate, Land & Asset Indicators",
+        "numberOfItems": itemListElements.length,
+        "itemListElement": itemListElements
+      });
+      document.head.appendChild(schemaScript);
+    })();
 
     window.addEventListener("hashchange", focusHashTarget);
     renderCategoryButtons();
