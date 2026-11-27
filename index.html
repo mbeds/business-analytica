@@ -215,7 +215,7 @@
           },
           {
             "@type": "Question",
-            "name": "Do I need verify filings independently before acting on a lead?",
+            "name": "Do I need to verify filings independently before acting on a lead?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Yes. Always check current official filings and complete your own legal, financial, and property due diligence before making offers or entering agreements."
@@ -540,14 +540,14 @@
             A Sample of the Signals We Track
           </h2>
           <p class="text-sm text-stone-600 mt-1">
-            Four examples from our 79 categorized corporate, financial, and real-asset indicators. Contact for pricing.
+            Four examples from our 79 categorized corporate, financial, and real-asset indicators. Click any signal to jump to its full breakdown on the <a href="./indicators.html" onclick="trackEvent('cta_click', { cta_name: 'slider_intro_indicators_link' })" class="font-semibold text-[#0B192C] underline hover:text-[#8C6D1F]">Indicators Guide</a>.
           </p>
         </div>
         <div class="flex items-center gap-2">
           <a href="./indicators.html"
              onclick="trackEvent('cta_click', { cta_name: 'view_all_signals' })"
              class="text-xs font-bold text-[#0B192C] border border-[#0B192C] px-3.5 sm:px-4 py-2 rounded hover:bg-[#0B192C] hover:text-white transition">
-            View All Signals &rarr;
+            View All 79 Signals &rarr;
           </a>
           <button type="button" onclick="slideTrack('indicatorTrack', -1)" aria-label="Previous signal"
                   class="w-9 h-9 rounded bg-white border border-stone-300 text-stone-700 hover:border-[#0B192C] transition shrink-0">
@@ -695,30 +695,64 @@
 
     function buildIndicatorTrack() {
       const track = document.getElementById('indicatorTrack');
-      track.innerHTML = featuredIndicators.map((item) => {
+      const cardsHtml = featuredIndicators.map((item) => {
         const src = `./Videos/Business%20Analytica%20Indicators/clip_ind2_item_${item.id}.mp4`;
         const safeTitle = item.title.replace(/'/g, "\\'");
+        const targetUrl = `./indicators.html#indicator-${item.id}`;
         return `
-          <article data-indicator-id="indicator-${item.id}" data-indicator-title="${item.title}" class="snap-start shrink-0 w-[88%] sm:w-[47%] bg-white border border-stone-300 rounded-lg overflow-hidden shadow-sm flex flex-col justify-between">
-            <div class="aspect-video bg-[#0B192C]">
-              <video class="w-full h-full object-cover" poster="${videoPosterDataUri}" controls playsinline preload="metadata">
-                <source src="${src}" type="video/mp4" />
-              </video>
-            </div>
-            <div class="p-4 space-y-1">
-              <div class="flex items-center justify-between gap-2">
-                <a href="./indicators.html#indicator-${item.id}"
-                   onclick="trackEvent('featured_indicator_click', { indicator_id: 'indicator-${item.id}', indicator_name: '${safeTitle}' })"
-                   class="font-bold text-[#141A21] text-sm hover:text-[#8C6D1F] transition">${item.title}</a>
-                <a href="./indicators.html#indicator-${item.id}"
-                   onclick="trackEvent('featured_indicator_click', { indicator_id: 'indicator-${item.id}', indicator_name: '${safeTitle}' })"
-                   class="text-[11px] font-bold text-[#8C6D1F] hover:underline shrink-0">Indicator #${item.id}</a>
+          <article data-indicator-id="indicator-${item.id}" data-indicator-title="${item.title}" class="snap-start shrink-0 w-[88%] sm:w-[47%] bg-white border border-stone-300 hover:border-[#0B192C] rounded-lg overflow-hidden shadow-sm flex flex-col justify-between transition group">
+            <div>
+              <div class="aspect-video bg-[#0B192C]">
+                <video class="w-full h-full object-cover" poster="${videoPosterDataUri}" controls playsinline preload="metadata">
+                  <source src="${src}" type="video/mp4" />
+                </video>
               </div>
-              <p class="text-xs text-stone-600 leading-relaxed">${item.desc}</p>
+              <div class="p-4 space-y-1.5">
+                <div class="flex items-center justify-between gap-2">
+                  <a href="${targetUrl}"
+                     onclick="trackEvent('featured_indicator_click', { indicator_id: 'indicator-${item.id}', indicator_name: '${safeTitle}', source: 'card_title' })"
+                     class="font-bold text-[#141A21] text-sm group-hover:text-[#8C6D1F] transition">${item.title}</a>
+                  <a href="${targetUrl}"
+                     onclick="trackEvent('featured_indicator_click', { indicator_id: 'indicator-${item.id}', indicator_name: '${safeTitle}', source: 'card_badge' })"
+                     class="text-[11px] font-bold text-[#8C6D1F] hover:underline shrink-0">Indicator #${item.id}</a>
+                </div>
+                <p class="text-xs text-stone-600 leading-relaxed">${item.desc}</p>
+              </div>
+            </div>
+            <div class="px-4 pb-4 pt-2 flex items-center justify-between border-t border-stone-100">
+              <span class="text-[11px] text-stone-500">1 of 79 signals in guide</span>
+              <a href="${targetUrl}"
+                 onclick="trackEvent('featured_indicator_click', { indicator_id: 'indicator-${item.id}', indicator_name: '${safeTitle}', source: 'card_footer' })"
+                 class="text-xs font-bold text-[#0B192C] group-hover:text-[#8C6D1F] transition">
+                Inspect Signal &rarr;
+              </a>
             </div>
           </article>
         `;
       }).join('');
+
+      const viewAllCardHtml = `
+        <a href="./indicators.html"
+           onclick="trackEvent('cta_click', { cta_name: 'slider_end_view_all_79' })"
+           class="snap-start shrink-0 w-[88%] sm:w-[47%] bg-[#0B192C] text-white border border-slate-800 hover:border-[#D4AF37] rounded-lg p-6 shadow-sm flex flex-col justify-between transition group">
+          <div class="space-y-2.5">
+            <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-[#D4AF37]">Full Signal Library</span>
+            <h3 class="font-editorial text-2xl font-semibold text-white leading-snug">
+              Explore all 79 corporate, property &amp; sector indicators
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Filter by Property, Mining, Commercial, Industrial, Energy, Logistics, or Agriculture—and separate Buyer vs. Seller triggers.
+            </p>
+          </div>
+          <div class="pt-4">
+            <span class="inline-block bg-[#D4AF37] text-[#0B192C] font-bold px-4 py-2.5 rounded text-xs group-hover:bg-amber-400 transition">
+              Open Full 79-Indicator Guide &rarr;
+            </span>
+          </div>
+        </a>
+      `;
+
+      track.innerHTML = cardsHtml + viewAllCardHtml;
     }
 
     function slideTrack(containerId, direction) {
