@@ -207,7 +207,7 @@
             "name": "What can long-held land with no development borrowing suggest?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Land or plots held for years without development debt may be sitting idle, awaiting planning or partner alignment, or held passively as a long-term land bank."
+              "text": "Land or plots held for years without development borrowing may be sitting idle, awaiting planning or partner alignment, or held passively as a long-term land bank."
             }
           },
           {
@@ -1313,6 +1313,7 @@
         const val = document.getElementById('signalFilter').value.trim();
         if (val.length >= 2) {
           trackEvent('filter_search', { search_term: val });
+          trackEvent('search', { search_term: val });
         }
       }, 650);
     }
